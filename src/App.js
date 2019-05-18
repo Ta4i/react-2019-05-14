@@ -22,11 +22,11 @@ function App({ restaurants }) {
         </Row>
       </Header>
       <Content style={{ padding: "0 50px" }}>
-        <Row gatter={8} type="flex" justify="center">
+        <Row type="flex" justify="center">
           <Col span={12}>
             <RestaurantList restaurants={restaurants} />
           </Col>
-          <Col span={5}>
+          <Col span={6}>
             <UserForm />
           </Col>
         </Row>

@@ -8,8 +8,10 @@ class RestaurantList extends Component {
       restaurants,
 
       // props from accordion decorator
-      openItemId,
-      toggleOpenItem
+      openedMenuItemId,
+      toggleOpenMenuItem,
+      openedReviewsItemId,
+      toggleOpenReviewsItem
     } = this.props;
     return (
       <div>
@@ -17,8 +19,10 @@ class RestaurantList extends Component {
           <Restaurant
             key={restaurant.id}
             {...restaurant}
-            isMenuOpen={openItemId === restaurant.id}
-            toggleOpenMenu={toggleOpenItem}
+            isMenuOpened={openedMenuItemId === restaurant.id}
+            toggleOpenMenu={toggleOpenMenuItem}
+            areReviewsOpened={openedReviewsItemId === restaurant.id}
+            toggleOpenReviews={toggleOpenReviewsItem}
           />
         ))}
       </div>

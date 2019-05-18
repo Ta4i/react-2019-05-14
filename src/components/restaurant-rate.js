@@ -1,7 +1,7 @@
-import React, { PureComponent } from "react";
+import React, { Component } from "react";
 import { Rate } from "antd";
 
-class RestaurantRate extends PureComponent {
+class RestaurantRate extends Component {
   rateDescription = [
     "Aweful",
     "Could be better",
@@ -11,7 +11,14 @@ class RestaurantRate extends PureComponent {
   ];
 
   render() {
-    return <Rate {...this.props} />;
+    return (
+      <Rate
+        {...this.props}
+        tooltips={this.rateDescription}
+        allowHalf
+        disabled
+      />
+    );
   }
 }
 

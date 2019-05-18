@@ -1,19 +1,20 @@
 import React, { PureComponent } from "react";
 import RestaurantMenu from "./restaurant-menu";
-import { Button } from "antd";
+import { Button, Icon } from "antd";
 import RestaurantRate from "./restaurant-rate";
+import RestaurantReviewList from "./restaurant-review-list";
+import ToggleButton from "./toggle-button";
 
 class Restaurant extends PureComponent {
-  rateDescription = [
-    "Aweful",
-    "Could be better",
-    "Fine",
-    "Damn, I'm good!",
-    "10 points to Griffindor!"
-  ];
-
   render() {
-    const { image, name, menu, reviews, isMenuOpen } = this.props;
+    const {
+      image,
+      name,
+      menu,
+      reviews,
+      isMenuOpened,
+      areReviewsOpened
+    } = this.props;
     const averageRating =
       reviews.reduce((sum, r) => sum + r.rating, 0) / reviews.length;
 
@@ -21,23 +22,31 @@ class Restaurant extends PureComponent {
       <div>
         <img src={image} width={64} height={64} alt={name} />
         <h3>{name}</h3>
-        <RestaurantRate
-          defaultValue={averageRating}
-          tooltips={this.rateDescription}
-          allowHalf
-          disabled
+        <RestaurantRate defaultValue={averageRating} />
+        <ToggleButton
+          onClick={this.handleToggleOpenMenu}
+          isOpened={isMenuOpened}
+          label="Menu"
         />
-        <Button onClick={this.handleToggleOpenClick}>
-          {isMenuOpen ? "Close menu" : "Open menu"}
-        </Button>
-        {isMenuOpen ? <RestaurantMenu menu={menu} /> : null}
+        <ToggleButton
+          onClick={this.handleToggleOpenReviews}
+          isOpened={areReviewsOpened}
+          label="Reviews"
+        />
+        {isMenuOpened && <RestaurantMenu menu={menu} />}
+        {areReviewsOpened && <RestaurantReviewList reviews={reviews} />}
       </div>
     );
   }
 
-  handleToggleOpenClick = () => {
-    const { isMenuOpen } = this.props;
-    this.props.toggleOpenMenu(isMenuOpen ? null : this.props.id);
+  handleToggleOpenMenu = () => {
+    const { isMenuOpened } = this.props;
+    this.props.toggleOpenMenu(isMenuOpened ? null : this.props.id);
+  };
+
+  handleToggleOpenReviews = () => {
+    const { areReviewsOpened } = this.props;
+    this.props.toggleOpenReviews(areReviewsOpened ? null : this.props.id);
   };
 }
 

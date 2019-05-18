@@ -4,7 +4,8 @@ import React, { Component } from "react";
 const accordion = OriginalComponent =>
   class DecoratedComponent extends Component {
     state = {
-      openItemId: null
+      openedMenuItemId: null,
+      openedReviewsItemId: null
     };
 
     render() {
@@ -12,14 +13,21 @@ const accordion = OriginalComponent =>
         <OriginalComponent
           {...this.props}
           {...this.state}
-          toggleOpenItem={this.toggleOpenItem}
+          toggleOpenMenuItem={this.toggleOpenMenuItem}
+          toggleOpenReviewsItem={this.toggleOpenReviewsItem}
         />
       );
     }
 
-    toggleOpenItem = id => {
+    toggleOpenMenuItem = id => {
       this.setState({
-        openItemId: id
+        openedMenuItemId: id
+      });
+    };
+
+    toggleOpenReviewsItem = id => {
+      this.setState({
+        openedReviewsItemId: id
       });
     };
   };

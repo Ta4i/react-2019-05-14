@@ -13,14 +13,18 @@ class RestaurantRate extends Component {
 
   render() {
     const { defaultValue } = this.props;
-    return defaultValue ? (
-      <Rate
-        tooltips={this.rateDescription}
-        allowHalf
-        disabled
-        {...this.props}
-      />
-    ) : (
+    if (defaultValue) {
+      return (
+        <Rate
+          tooltips={this.rateDescription}
+          allowHalf
+          disabled
+          {...this.props}
+        />
+      );
+    }
+
+    return (
       <Typography level={4} disabled>
         No rating
       </Typography>

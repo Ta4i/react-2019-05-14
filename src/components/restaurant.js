@@ -1,6 +1,7 @@
 import React, { PureComponent } from "react";
 import RestaurantMenu from "./restaurant-menu";
 import Rate from "antd/lib/rate";
+import ReviewsList from "./reviews-list";
 
 class Restaurant extends PureComponent {
   render() {
@@ -10,8 +11,9 @@ class Restaurant extends PureComponent {
     return (
       <div>
         <img src={image} width={64} height={64} alt={name} />
+        <Rate disabled allowHalf defaultValue={averageRating} />
         <h3>{name}</h3>
-        <Rate allowHalf defaultValue={averageRating} />
+        <ReviewsList reviews={reviews} />
         <br />
         <button onClick={this.handleToggleOpenClick}>
           {isMenuOpen ? "Close menu" : "Open menu"}

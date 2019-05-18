@@ -20,7 +20,6 @@ function RestaurantReviewList({ reviews }) {
           authorName={r.user}
           text={r.text}
           rating={r.rating}
-          style={{ margin: "5pt" }}
         />
       ))}
     </div>

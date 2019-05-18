@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import { Form, Input, Icon, Col, Row, Button } from "antd";
 
 class UserForm extends Component {
   state = {
@@ -9,30 +10,45 @@ class UserForm extends Component {
   render() {
     const { name, phone, address } = this.state;
     return (
-      <form>
-        <input
-          placeholder={"Name"}
-          value={name}
-          onChange={this.handleNameChange}
-        />
-        <br />
-        <input
-          type="tel"
-          placeholder={"Phone Number"}
-          value={phone}
-          onChange={this.handlePhoneChange}
-        />
-        <br />
-        <textarea
-          placeholder={"Address"}
-          value={address}
-          onChange={this.handleAddressChange}
-        />
-        <br />
-        <button type={"submit"} onClick={this.submit}>
-          Send order
-        </button>
-      </form>
+      <Row gutter={24} style={{ marginTop: "20px" }}>
+        <Col span={6}>
+          <Form>
+            <Input
+              style={{ marginTop: "10px" }}
+              prefix={<Icon type="user" style={{ color: "rgba(0,0,0,.25)" }} />}
+              placeholder="Name"
+              value={name}
+              onChange={this.handleNameChange}
+            />
+            <br />
+            <Input
+              style={{ marginTop: "10px" }}
+              prefix={
+                <Icon type="phone" style={{ color: "rgba(0,0,0,.25)" }} />
+              }
+              placeholder="Phone Number"
+              value={phone}
+              onChange={this.handlePhoneChange}
+            />
+            <br />
+            <Input.TextArea
+              style={{ marginTop: "10px" }}
+              placeholder="Address"
+              value={address}
+              onChange={this.handleAddressChange}
+            />
+            <br />
+            <Button
+              type="primary"
+              htmlType="submit"
+              onClick={this.submit}
+              style={{ marginTop: "10px" }}
+            >
+              Send order
+            </Button>
+          </Form>
+        </Col>
+      </Row>
     );
   }
 

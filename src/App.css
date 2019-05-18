@@ -6,3 +6,8 @@
 .header {
   text-align: right;
 }
+
+.buttons-group {
+  display: inline-block;
+  float: right;
+}

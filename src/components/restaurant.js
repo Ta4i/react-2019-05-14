@@ -3,10 +3,8 @@ import RestaurantMenu from "./restaurant-menu";
 import RestaurantRating from "./restaurant-rating";
 import RestaurantReviewList from "./restaurant-review-list";
 import ToggleButton from "./toggle-button";
-import { Row, Col, Card, Avatar, Collapse } from "antd";
+import { Row, Col, Card, Avatar } from "antd";
 import Title from "antd/lib/typography/Title";
-
-const { Panel } = Collapse;
 
 class Restaurant extends PureComponent {
   render() {
@@ -43,7 +41,7 @@ class Restaurant extends PureComponent {
               isOpened={isMenuOpened}
               label="Menu"
             />
-            {isMenuOpened && <RestaurantMenu menu={menu} />}
+            {isMenuOpened && <RestaurantMenu menuItems={menu} />}
           </Col>
           <Col>
             <ToggleButton

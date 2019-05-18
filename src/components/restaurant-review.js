@@ -1,15 +1,18 @@
 import React from "react";
-import { Comment } from "antd";
+import { Comment, Typography } from "antd";
 import RestaurantRating from "./restaurant-rating";
+
+const { Title, Text } = Typography;
 
 function RestaurantReview({ authorName, text, rating }) {
   return (
     <Comment
-      author={authorName}
+      author={<Title level={4}>{authorName}</Title>}
       content={
         <div>
           <RestaurantRating defaultValue={rating} />
-          <p>{text}</p>
+          <br />
+          <Text>{text}</Text>
         </div>
       }
     />

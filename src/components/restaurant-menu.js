@@ -1,19 +1,22 @@
 import React from "react";
-import Dish from "./dish";
-import { Typography } from "antd";
+import RestaurantMenuItem from "./restaurant-menu-item";
+import { Card, Typography } from "antd";
 
-function RestaurantMenu({ menu }) {
-  if (!menu || menu.length <= 0) {
+const { Title } = Typography;
+
+function RestaurantMenu({ menuItems }) {
+  if (!menuItems || menuItems.length <= 0) {
     return (
-      <Typography level={2}>
-        The restaurant hasn't provided its menu yet.
-      </Typography>
+      <Title level={4}>The restaurant hasn't provided its menuItems yet.</Title>
     );
   }
+
   return (
     <div>
-      {menu.map(dish => (
-        <Dish key={dish.id} {...dish} />
+      {menuItems.map(dish => (
+        <Card key={dish.id} size="small" style={{ width: 300 }}>
+          <RestaurantMenuItem {...dish} />
+        </Card>
       ))}
     </div>
   );

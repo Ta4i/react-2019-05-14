@@ -18,8 +18,9 @@ const accordion = OriginalComponent =>
     }
 
     toggleOpenItem = id => {
+      const newId = this.state.openItemId === id ? null : id;
       this.setState({
-        openItemId: id
+        openItemId: newId
       });
     };
   };

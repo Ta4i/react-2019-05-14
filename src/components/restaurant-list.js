@@ -8,7 +8,7 @@ class RestaurantList extends Component {
     const {
       restaurants,
 
-      // props from accordion decorator
+      // props from decorators
       openedMenuItemId,
       toggleOpenMenuItem,
       openedReviewsItemId,

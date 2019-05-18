@@ -21,21 +21,18 @@ class Restaurant extends PureComponent {
 
     return (
       <Card
+        size="small"
         title={
           <Title level={2}>
             <Avatar size="large" shape="square" src={image} />
             {name}
+            <RestaurantRating defaultValue={averageRating} />
           </Title>
         }
+        style={{ width: "600pt" }}
       >
         <Row>
-          <Col>
-            Rating:
-            <RestaurantRating defaultValue={averageRating} />
-          </Col>
-        </Row>
-        <Row>
-          <Col>
+          <Col span={12}>
             <ToggleButton
               onClick={this.handleToggleOpenMenu}
               isOpened={isMenuOpened}
@@ -43,7 +40,7 @@ class Restaurant extends PureComponent {
             />
             {isMenuOpened && <RestaurantMenu menuItems={menu} />}
           </Col>
-          <Col>
+          <Col span={12}>
             <ToggleButton
               onClick={this.handleToggleOpenReviews}
               isOpened={areReviewsOpened}

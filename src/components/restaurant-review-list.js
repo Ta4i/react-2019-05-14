@@ -1,7 +1,15 @@
 import React from "react";
 import RestaurantReview from "./restaurant-review";
+import { Typography } from "antd";
 
 function RestaurantReviewList({ reviews }) {
+  if (!reviews || reviews.length <= 0) {
+    return (
+      <Typography level={2}>
+        There is no review for this restaurant yet.
+      </Typography>
+    );
+  }
   return (
     <div>
       {reviews.map(r => (

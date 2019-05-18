@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { Rate } from "antd";
+import { Typography } from "antd";
 
 class RestaurantRate extends Component {
   rateDescription = [
@@ -11,13 +12,18 @@ class RestaurantRate extends Component {
   ];
 
   render() {
-    return (
+    const { defaultValue } = this.props;
+    return defaultValue ? (
       <Rate
-        {...this.props}
         tooltips={this.rateDescription}
         allowHalf
         disabled
+        {...this.props}
       />
+    ) : (
+      <Typography level={4} disabled>
+        No rating
+      </Typography>
     );
   }
 }

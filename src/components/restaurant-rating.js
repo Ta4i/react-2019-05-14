@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { Rate } from "antd";
 import { Typography } from "antd";
 
-class RestaurantRate extends Component {
+class RestaurantRating extends Component {
   rateDescription = [
     "Aweful",
     "Could be better",
@@ -32,4 +32,4 @@ class RestaurantRate extends Component {
   }
 }
 
-export default RestaurantRate;
+export default RestaurantRating;

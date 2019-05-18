@@ -1,6 +1,6 @@
 import React, { PureComponent } from "react";
 import RestaurantMenu from "./restaurant-menu";
-import RestaurantRate from "./restaurant-rate";
+import RestaurantRating from "./restaurant-rating";
 import RestaurantReviewList from "./restaurant-review-list";
 import ToggleButton from "./toggle-button";
 
@@ -21,7 +21,7 @@ class Restaurant extends PureComponent {
       <div>
         <img src={image} width={64} height={64} alt={name} />
         <h3>{name}</h3>
-        <RestaurantRate defaultValue={averageRating} />
+        <RestaurantRating defaultValue={averageRating} />
         <ToggleButton
           onClick={this.handleToggleOpenMenu}
           isOpened={isMenuOpened}

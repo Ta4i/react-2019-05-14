@@ -1,6 +1,6 @@
 import React from "react";
 import { Comment } from "antd";
-import RestaurantRate from "./restaurant-rate";
+import RestaurantRating from "./restaurant-rating";
 
 function RestaurantReview({ authorName, text, rating }) {
   return (
@@ -8,7 +8,7 @@ function RestaurantReview({ authorName, text, rating }) {
       author={authorName}
       content={
         <div>
-          <RestaurantRate defaultValue={rating} />
+          <RestaurantRating defaultValue={rating} />
           <p>{text}</p>
         </div>
       }

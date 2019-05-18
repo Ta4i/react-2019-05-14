@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import Restaurant from "./restaurant";
-import { accordion } from "../decorators/accordion";
+import { menuAccordion } from "../decorators/menu-accordion";
+import { reviewAccordion } from "../decorators/review-accordion";
 
 class RestaurantList extends Component {
   render() {
@@ -30,4 +31,4 @@ class RestaurantList extends Component {
   }
 }
 
-export default accordion(RestaurantList);
+export default reviewAccordion(menuAccordion(RestaurantList));

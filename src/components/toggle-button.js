@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React from "react";
 import { Button, Icon } from "antd";
 
 function ToggleButton({ label, isOpened, onClick }) {

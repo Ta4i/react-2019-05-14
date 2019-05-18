@@ -1,6 +1,5 @@
 import React, { PureComponent } from "react";
 import RestaurantMenu from "./restaurant-menu";
-import { Button, Icon } from "antd";
 import RestaurantRate from "./restaurant-rate";
 import RestaurantReviewList from "./restaurant-review-list";
 import ToggleButton from "./toggle-button";

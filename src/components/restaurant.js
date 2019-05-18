@@ -3,8 +3,9 @@ import RestaurantMenu from "./restaurant-menu";
 import RestaurantRating from "./restaurant-rating";
 import RestaurantReviewList from "./restaurant-review-list";
 import ToggleButton from "./toggle-button";
-import { Row, Col, Card, Avatar } from "antd";
-import Title from "antd/lib/typography/Title";
+import { Row, Col, Card, Avatar, Typography } from "antd";
+
+const { Text } = Typography;
 
 class Restaurant extends PureComponent {
   render() {
@@ -16,20 +17,22 @@ class Restaurant extends PureComponent {
       isMenuOpened,
       areReviewsOpened
     } = this.props;
+
     const averageRating =
+      reviews &&
+      reviews.length > 0 &&
       reviews.reduce((sum, r) => sum + r.rating, 0) / reviews.length;
 
     return (
       <Card
         size="small"
         title={
-          <Title level={2}>
+          <React.Fragment>
             <Avatar size="large" shape="square" src={image} />
-            {name}
+            <Text style={{ "font-size": "22pt" }}>{name}</Text>
             <RestaurantRating defaultValue={averageRating} />
-          </Title>
+          </React.Fragment>
         }
-        style={{ width: "600pt" }}
       >
         <Row>
           <Col span={12}>

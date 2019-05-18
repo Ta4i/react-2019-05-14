@@ -20,12 +20,14 @@ function RestaurantMenuItem({ price, name }) {
           type="primary"
           shape="circle"
           icon="caret-down"
+          size="small"
         />
         <Button
           onClick={increase}
           type="primary"
           shape="circle"
           icon="caret-up"
+          size="small"
         />
       </div>
       <div>

@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import Restaurant from "./restaurant";
 import { accordion } from "../decorators/accordion";
+import { Row, Col } from "antd/lib/grid";
 
 class RestaurantList extends Component {
   render() {
@@ -12,16 +13,17 @@ class RestaurantList extends Component {
       toggleOpenItem
     } = this.props;
     return (
-      <div>
+      <Row gutter={24}>
         {restaurants.map(restaurant => (
-          <Restaurant
-            key={restaurant.id}
-            {...restaurant}
-            isMenuOpen={openItemId === restaurant.id}
-            toggleOpenMenu={toggleOpenItem}
-          />
+          <Col span={6} key={restaurant.id}>
+            <Restaurant
+              {...restaurant}
+              isMenuOpen={openItemId === restaurant.id}
+              toggleOpenMenu={toggleOpenItem}
+            />
+          </Col>
         ))}
-      </div>
+      </Row>
     );
   }
 }

@@ -21,3 +21,8 @@ li > h3 > * {
   width: 500px;
   height: 300px;
 }
+
+.buttons-group {
+  display: inline-block;
+  float: right;
+}

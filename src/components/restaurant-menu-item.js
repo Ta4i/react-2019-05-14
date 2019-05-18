@@ -6,7 +6,7 @@ const { Title, Text } = Typography;
 function RestaurantMenuItem({ price, name }) {
   const [amount, decrease, increase] = useCounter(0);
   return (
-    <React.Fragment>
+    <div>
       <Title level={4}>{name}</Title>
       <div>
         <Text>only for </Text>
@@ -33,7 +33,7 @@ function RestaurantMenuItem({ price, name }) {
       <div>
         <Text strong>Total Cost: {amount * price}$</Text>
       </div>
-    </React.Fragment>
+    </div>
   );
 }
 

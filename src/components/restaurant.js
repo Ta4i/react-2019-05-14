@@ -29,13 +29,13 @@ class Restaurant extends PureComponent {
         title={
           <React.Fragment>
             <Avatar size="large" shape="square" src={image} />
-            <Text style={{ "font-size": "22pt" }}>{name}</Text>
+            <Text style={{ fontSize: "22pt" }}>{name}</Text>
             <RestaurantRating defaultValue={averageRating} />
           </React.Fragment>
         }
       >
-        <Row>
-          <Col span={12}>
+        <Row gutter={16}>
+          <Col span={8}>
             <ToggleButton
               onClick={this.handleToggleOpenMenu}
               isOpened={isMenuOpened}
@@ -43,7 +43,7 @@ class Restaurant extends PureComponent {
             />
             {isMenuOpened && <RestaurantMenu menuItems={menu} />}
           </Col>
-          <Col span={12}>
+          <Col span={8}>
             <ToggleButton
               onClick={this.handleToggleOpenReviews}
               isOpened={areReviewsOpened}

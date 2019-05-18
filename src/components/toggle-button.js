@@ -1,9 +1,10 @@
 import React from "react";
 import { Button, Icon } from "antd";
 
-function ToggleButton({ label, isOpened, onClick }) {
+function ToggleButton(props) {
+  const { label, isOpened, onClick } = props;
   return (
-    <Button onClick={onClick}>
+    <Button onClick={onClick} block>
       <Icon type={isOpened ? "caret-up" : "caret-down"} />
       {label}
     </Button>

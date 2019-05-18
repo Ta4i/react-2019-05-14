@@ -11,7 +11,7 @@ const { Title } = Typography;
 function App({ restaurants }) {
   return (
     <Layout>
-      <Header style={{ background: "#fff", padding: 0 }}>
+      <Header style={{ background: "#fff" }}>
         <Row>
           <Col span={12} offset={6}>
             <Title level={1}>
@@ -21,12 +21,12 @@ function App({ restaurants }) {
           </Col>
         </Row>
       </Header>
-      <Content style={{ padding: "0 50px" }}>
-        <Row type="flex" justify="center">
-          <Col span={12}>
+      <Content>
+        <Row gutter={16} type="flex" justify="center">
+          <Col span={16}>
             <RestaurantList restaurants={restaurants} />
           </Col>
-          <Col span={6}>
+          <Col span={4}>
             <UserForm />
           </Col>
         </Row>

@@ -16,7 +16,7 @@ function RestaurantMenu({ menuItems }) {
   return (
     <div>
       {menuItems.map(dish => (
-        <Card key={dish.id} size="small" style={{ width: 300 }}>
+        <Card type="inner" key={dish.id} size="small">
           <RestaurantMenuItem {...dish} />
         </Card>
       ))}

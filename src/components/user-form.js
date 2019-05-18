@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Button, Card, Input, Form, TextArea } from "antd";
+import { Button, Card, Input, Form, Icon } from "antd";
 
 class UserForm extends Component {
   state = {
@@ -11,38 +11,32 @@ class UserForm extends Component {
     const { name, phone, address } = this.state;
     return (
       <Card size="small">
-        <Form layout="inline" onSubmit={this.handleSubmit}>
-          <Form.Item>
-            <Input
-              placeholder="Name"
-              value={name}
-              onChange={this.handleNameChange}
-            />
-          </Form.Item>
-          <Form.Item>
-            <Input
-              placeholder="Phone Number"
-              value={phone}
-              onChange={this.handlePhoneChange}
-            />
-          </Form.Item>
-          <Form.Item>
-            <Input.TextArea
-              placeholder="Address"
-              value={address}
-              onChange={this.handleAddressChange}
-            />
-          </Form.Item>
-          <Form.Item>
-            <Button
-              type="primary"
-              htmlType="submit"
-              className="login-form-button"
-              onClick={this.submit}
-            >
-              Send Order
-            </Button>
-          </Form.Item>
+        <Form layout="vertical" onSubmit={this.handleSubmit}>
+          <Input
+            placeholder="Name"
+            value={name}
+            onChange={this.handleNameChange}
+          />
+          <Input
+            placeholder="Phone Number"
+            value={phone}
+            onChange={this.handlePhoneChange}
+          />
+          <Input.TextArea
+            placeholder="Address"
+            value={address}
+            onChange={this.handleAddressChange}
+          />
+          <Button
+            type="primary"
+            htmlType="submit"
+            className="login-form-button"
+            onClick={this.submit}
+            block
+          >
+            <Icon type="shop" />
+            Send Order
+          </Button>
         </Form>
       </Card>
     );

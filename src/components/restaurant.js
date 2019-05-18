@@ -3,6 +3,10 @@ import RestaurantMenu from "./restaurant-menu";
 import RestaurantRating from "./restaurant-rating";
 import RestaurantReviewList from "./restaurant-review-list";
 import ToggleButton from "./toggle-button";
+import { Row, Col, Card, Avatar, Collapse } from "antd";
+import Title from "antd/lib/typography/Title";
+
+const { Panel } = Collapse;
 
 class Restaurant extends PureComponent {
   render() {
@@ -18,23 +22,39 @@ class Restaurant extends PureComponent {
       reviews.reduce((sum, r) => sum + r.rating, 0) / reviews.length;
 
     return (
-      <div>
-        <img src={image} width={64} height={64} alt={name} />
-        <h3>{name}</h3>
-        <RestaurantRating defaultValue={averageRating} />
-        <ToggleButton
-          onClick={this.handleToggleOpenMenu}
-          isOpened={isMenuOpened}
-          label="Menu"
-        />
-        <ToggleButton
-          onClick={this.handleToggleOpenReviews}
-          isOpened={areReviewsOpened}
-          label="Reviews"
-        />
-        {isMenuOpened && <RestaurantMenu menu={menu} />}
-        {areReviewsOpened && <RestaurantReviewList reviews={reviews} />}
-      </div>
+      <Card
+        title={
+          <Title level={2}>
+            <Avatar size="large" shape="square" src={image} />
+            {name}
+          </Title>
+        }
+      >
+        <Row>
+          <Col>
+            Rating:
+            <RestaurantRating defaultValue={averageRating} />
+          </Col>
+        </Row>
+        <Row>
+          <Col>
+            <ToggleButton
+              onClick={this.handleToggleOpenMenu}
+              isOpened={isMenuOpened}
+              label="Menu"
+            />
+            {isMenuOpened && <RestaurantMenu menu={menu} />}
+          </Col>
+          <Col>
+            <ToggleButton
+              onClick={this.handleToggleOpenReviews}
+              isOpened={areReviewsOpened}
+              label="Reviews"
+            />
+            {areReviewsOpened && <RestaurantReviewList reviews={reviews} />}
+          </Col>
+        </Row>
+      </Card>
     );
   }
 

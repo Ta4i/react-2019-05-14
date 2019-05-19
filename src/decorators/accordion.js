@@ -1,4 +1,3 @@
-// HOC - higher order component
 import React, { Component } from "react";
 
 const accordion = OriginalComponent =>
@@ -6,7 +5,6 @@ const accordion = OriginalComponent =>
     state = {
       openItemId: null
     };
-
     render() {
       return (
         <OriginalComponent
@@ -16,12 +14,10 @@ const accordion = OriginalComponent =>
         />
       );
     }
-
     toggleOpenItem = id => {
       this.setState({
-        openItemId: id
+        openItemId: this.state.openItemId === id ? null : id
       });
     };
   };
-
 export { accordion };

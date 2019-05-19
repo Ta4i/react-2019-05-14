@@ -1,0 +1,36 @@
+.dish {
+  padding: 10px;
+  background-color: rgba(238, 232, 213, 0.125);
+  border: 1px solid rgba(0, 43, 54, 0.95);
+  border-radius: 7px;
+}
+
+.dish + .dish {
+  margin-top: 7px;
+}
+
+.dish-price {
+  float: right;
+  font-size: 20px;
+}
+
+.amount {
+  font-size: 18px;
+  color: #fff;
+}
+
+button {
+  margin-left: 15px;
+}
+
+.top {
+  font-size: 16px;
+  color: #b58900;
+  padding: 7px;
+  border-bottom: 1px solid #fff;
+}
+
+.bottom {
+  padding: 0 5px 0;
+  margin-top: 10px;
+}

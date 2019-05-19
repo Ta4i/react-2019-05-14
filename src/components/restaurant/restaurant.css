@@ -1,0 +1,49 @@
+.restaurant {
+  border-bottom: 2px solid black;
+  padding: 10px 0 10px;
+}
+
+.restaurant-header {
+  display: flex;
+  margin-bottom: 15px;
+}
+
+.restaurant-header img {
+  width: 150px;
+  height: 150px;
+  border-radius: 5px;
+}
+
+.restaurant-header .info {
+  display: flex;
+  flex-direction: column;
+  margin-left: 20px;
+}
+
+.restaurant-title {
+  color: aqua;
+  font-size: 24px;
+  margin-bottom: 15px;
+}
+
+.restaurant .controls {
+  margin-top: auto;
+}
+
+.controls button {
+  border-radius: 5px;
+  padding: 10px 15px;
+  outline: none;
+  border: 1px solid black;
+  color: #fff;
+  cursor: pointer;
+}
+
+.menu {
+  background-color: #2aa198;
+}
+
+.review {
+  margin-left: 10px;
+  background-color: #268bd2;
+}

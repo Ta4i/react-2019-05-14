@@ -1,0 +1,26 @@
+.review-item {
+  padding: 10px;
+  background-color: rgba(238, 232, 213, 0.125);
+  border: 1px solid rgba(0, 43, 54, 0.95);
+  border-radius: 7px;
+}
+
+.review-item + .review-item {
+  margin-top: 7px;
+}
+
+.author {
+  font-size: 18px;
+  color: #b58900;
+}
+
+.review-item .info {
+  margin-top: 5px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.text {
+  font-size: 16px;
+  color: #fff;
+}

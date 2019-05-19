@@ -1,0 +1,40 @@
+.use-form {
+  padding: 10px;
+  margin: auto;
+}
+
+.form-group {
+  padding: 10px;
+}
+
+label {
+  font-size: 18px;
+  color: #fff;
+}
+
+.form-control {
+  display: block;
+  width: 100%;
+  height: calc(1.5em + 0.75rem + 2px);
+  padding: 0.375rem 0.75rem;
+  line-height: 1.5;
+  color: #495057;
+  background-color: #a9bdbd;
+  background-clip: padding-box;
+  border: 1px solid rgba(0, 0, 0, 0.15);
+  border-radius: 0.25rem;
+}
+
+textarea {
+  min-height: 150px;
+}
+
+button[type="submit"] {
+  background-color: #b58900;
+  border: 1px solid black;
+  padding: 10px 15px;
+  font-size: 1rem;
+  border-radius: 5px;
+  margin-left: 10px;
+  color: #fff;
+}

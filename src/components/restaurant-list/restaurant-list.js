@@ -1,18 +1,14 @@
 import React, { Component } from "react";
-import Restaurant from "./restaurant";
-import { accordion } from "../decorators/accordion";
+import Restaurant from "../restaurant";
+import { accordion } from "../../decorators/accordion";
+import "./restaurant-list.css";
 
 class RestaurantList extends Component {
   render() {
-    const {
-      restaurants,
+    const { restaurants, openItemId, toggleOpenItem } = this.props;
 
-      // props from accordion decorator
-      openItemId,
-      toggleOpenItem
-    } = this.props;
     return (
-      <div>
+      <div className="restaurant-list">
         {restaurants.map(restaurant => (
           <Restaurant
             key={restaurant.id}

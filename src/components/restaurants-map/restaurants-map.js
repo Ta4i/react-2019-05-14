@@ -1,13 +1,16 @@
 import React, { Component } from "react";
 import Leaflet from "leaflet";
+import "./restaurants-map.css";
 
 class RestaurantsMap extends Component {
   render() {
     return <div ref={this.setEl} className="map" />;
   }
+
   setEl = ref => {
     this.div = ref;
   };
+
   componentDidMount() {
     this.map = Leaflet.map(this.div, {
       center: [51.51847684708113, -0.13999606534701844],

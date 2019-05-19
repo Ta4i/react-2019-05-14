@@ -21,3 +21,19 @@ li > h3 > * {
   width: 500px;
   height: 300px;
 }
+
+.restaurant-list {
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: space-between;
+  margin: 32px 0;
+}
+
+.card-description {
+  display: flex;
+  flex-direction: column;
+}
+
+.review {
+  margin: 12px 6px;
+}

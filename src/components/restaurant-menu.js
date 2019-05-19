@@ -1,5 +1,6 @@
-import React from "react";
-import Dish from "./dish";
+import React from 'react';
+import PropTypes from 'prop-types';
+import Dish from './dish';
 
 function RestaurantMenu(props) {
   return (
@@ -10,5 +11,9 @@ function RestaurantMenu(props) {
     </div>
   );
 }
+
+RestaurantMenu.propTypes = {
+  menu: PropTypes.array
+};
 
 export default RestaurantMenu;

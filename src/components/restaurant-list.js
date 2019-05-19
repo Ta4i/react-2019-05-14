@@ -1,6 +1,7 @@
-import React, { Component } from "react";
-import Restaurant from "./restaurant";
-import { accordion } from "../decorators/accordion";
+import React, { Component } from 'react';
+import PropTypes from 'prop-types';
+import Restaurant from './restaurant';
+import accordion from '../decorators/accordion';
 
 class RestaurantList extends Component {
   render() {
@@ -11,6 +12,7 @@ class RestaurantList extends Component {
       openItemId,
       toggleOpenItem
     } = this.props;
+
     return (
       <div>
         {restaurants.map(restaurant => (
@@ -25,5 +27,12 @@ class RestaurantList extends Component {
     );
   }
 }
+
+RestaurantList.propTypes = {
+  restaurants: PropTypes.array,
+  isOpened: PropTypes.bool,
+  openItemId: PropTypes.any,
+  toggleOpenItem: PropTypes.func
+};
 
 export default accordion(RestaurantList);

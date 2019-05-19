@@ -1,38 +1,39 @@
-import React, { Component } from "react";
+import React, { Component } from 'react';
+import { Form, Input, Button } from 'antd';
+
+const TextArea = Input.TextArea;
 
 class UserForm extends Component {
   state = {
-    name: "",
-    phone: "",
-    address: ""
+    name: '',
+    phone: '',
+    address: ''
   };
+
   render() {
     const { name, phone, address } = this.state;
     return (
-      <form>
-        <input
-          placeholder={"Name"}
-          value={name}
-          onChange={this.handleNameChange}
-        />
-        <br />
-        <input
-          type="tel"
-          placeholder={"Phone Number"}
-          value={phone}
-          onChange={this.handlePhoneChange}
-        />
-        <br />
-        <textarea
-          placeholder={"Address"}
-          value={address}
-          onChange={this.handleAddressChange}
-        />
-        <br />
-        <button type={"submit"} onClick={this.submit}>
-          Send order
-        </button>
-      </form>
+      <Form>
+        <Form.Item label="Name">
+          <Input placeholder={'Name'} value={name} onChange={this.handleNameChange} />
+        </Form.Item>
+        <Form.Item label="Phone Number">
+          <Input
+            type="tel"
+            placeholder={'Phone Number'}
+            value={phone}
+            onChange={this.handlePhoneChange}
+          />
+        </Form.Item>
+        <Form.Item label="Address">
+          <TextArea placeholder={'Address'} value={address} onChange={this.handleAddressChange} />
+        </Form.Item>
+        <Form.Item>
+          <Button type="primary" htmlType="submit" onClick={this.submit}>
+            Send order
+          </Button>
+        </Form.Item>
+      </Form>
     );
   }
 
@@ -56,7 +57,6 @@ class UserForm extends Component {
 
   submit = e => {
     e.preventDefault();
-    console.log(this.state);
   };
 }
 

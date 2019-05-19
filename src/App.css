@@ -1,7 +1,7 @@
-@import "../node_modules/antd/dist/antd.css";
+@import '../node_modules/antd/dist/antd.css';
 
 .App {
-  padding: 24px;
+  padding: 0;
 }
 
 ul,

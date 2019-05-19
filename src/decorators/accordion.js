@@ -5,6 +5,7 @@ const accordion = OriginalComponent =>
     state = {
       openItemId: null
     };
+
     render() {
       return (
         <OriginalComponent
@@ -14,6 +15,7 @@ const accordion = OriginalComponent =>
         />
       );
     }
+
     toggleOpenItem = id => {
       this.setState({
         openItemId: this.state.openItemId === id ? null : id

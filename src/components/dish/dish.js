@@ -13,7 +13,7 @@ function Dish(props) {
       <div className="bottom">
         <span className="amount">{amount}</span>
         <Button onClick={decrease} type="primary" shape="circle" icon="minus" />
-        <Button onClick={increase} type="primary" shape=" circle" icon="plus" />
+        <Button onClick={increase} type="primary" shape="circle" icon="plus" />
       </div>
     </div>
   );

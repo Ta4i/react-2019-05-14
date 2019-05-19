@@ -29,7 +29,7 @@ textarea {
   min-height: 150px;
 }
 
-button[type="submit"] {
+.submit-form {
   background-color: #b58900;
   border: 1px solid black;
   padding: 10px 15px;

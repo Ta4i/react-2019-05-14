@@ -13,10 +13,11 @@ class ReviewList extends Component {
 
     return (
       <div className="review-list">
-        <button onClick={toggleOpenReviews}>
-          {openReviews ? "Close reviews" : "Open reviews"}
-        </button>
-        {openReviews ? reviewsList : null}
+        {/*<button onClick={toggleOpenReviews}>*/}
+        {/*	{openReviews ? "Close reviews" : "Open reviews"}*/}
+        {/*</button>*/}
+        {/*{openReviews ? reviewsList : null}*/}
+        {reviewsList}
       </div>
     );
   }

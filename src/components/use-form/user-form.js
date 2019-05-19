@@ -49,7 +49,7 @@ class UserForm extends Component {
           />
         </div>
 
-        <button type="submit" onClick={this.submit}>
+        <button type="submit" onClick={this.submit} className="submit-form">
           Send order
         </button>
       </form>

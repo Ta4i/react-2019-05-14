@@ -3,7 +3,6 @@ import RestaurantMenu from "../restaurant-menu";
 import { Rate } from "antd";
 import "./restaurant.css";
 import ReviewList from "../review-list";
-import { Tabs } from "antd";
 import ReviewItem from "../review-item";
 
 class Restaurant extends PureComponent {
@@ -17,7 +16,6 @@ class Restaurant extends PureComponent {
       initRating += review.rating;
     });
     let result = +(initRating / reviews.length).toFixed(1);
-
     let value = result % Math.floor(result);
 
     if (value === 0) {
@@ -31,6 +29,12 @@ class Restaurant extends PureComponent {
     }
   };
 
+  toggleOpenReviews = () => {
+    this.setState({
+      isOpenReviews: !this.state.isOpenReviews
+    });
+  };
+
   render() {
     const {
       image,
@@ -42,7 +46,6 @@ class Restaurant extends PureComponent {
       reviews
     } = this.props;
 
-    const TabPane = Tabs.TabPane;
     let rating = this.getRestaurantRating(reviews);
 
     const reviewsList = reviews.map(review => (
@@ -62,21 +65,23 @@ class Restaurant extends PureComponent {
                 className="menu"
                 onClick={() => {
                   toggleOpenMenu(id);
+                  this.setState({
+                    isOpenReviews: false
+                  });
                 }}
               >
                 {isMenuOpen ? "Close menu" : "Open menu"}
               </button>
-              <button className="review">
+              <button className="review" onClick={this.toggleOpenReviews}>
                 {this.state.isOpenReviews ? "Close reviews" : "Open reviews"}
               </button>
             </div>
           </div>
         </div>
-        {/*/restaurant-header*/}
 
         {isMenuOpen ? <RestaurantMenu menu={menu} /> : null}
 
-        <ReviewList reviews={reviews} />
+        {this.state.isOpenReviews ? <ReviewList reviews={reviews} /> : null}
       </div>
     );
   }

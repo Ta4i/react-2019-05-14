@@ -1,9 +1,29 @@
 import React, { PureComponent } from "react";
 import RestaurantMenu from "./restaurant-menu";
+import Rate from "antd/lib/rate";
+import RestaurantReviews from "./restaurant-reviews";
+import { opener } from "../decorators/opener";
 
 class Restaurant extends PureComponent {
   render() {
-    const { image, name, menu, isMenuOpen } = this.props;
+    const {
+      image,
+      name,
+      menu,
+      reviews,
+      isMenuOpen,
+      isReviewsOpen,
+      toggleOpenList
+    } = this.props;
+    let averageRate = reviews.length
+      ? reviews.reduce((average, current) => {
+          return average + current.rating / reviews.length;
+        }, 0)
+      : 0;
+    const value =
+      (averageRate ^ 0) == averageRate ? averageRate : (averageRate ^ 0) + 0.5;
+    averageRate =
+      (averageRate ^ 0) == averageRate ? averageRate : averageRate.toFixed(1);
 
     return (
       <div>
@@ -13,6 +33,14 @@ class Restaurant extends PureComponent {
           {isMenuOpen ? "Close menu" : "Open menu"}
         </button>
         {isMenuOpen ? <RestaurantMenu menu={menu} /> : null}
+        <div>
+          <Rate allowHalf value={value} disabled />
+          <span>{averageRate}</span>
+        </div>
+        <button onClick={toggleOpenList}>
+          {isReviewsOpen ? "Close reviews" : "Open reviews"}
+        </button>
+        {isReviewsOpen ? <RestaurantReviews reviews={reviews} /> : null}
       </div>
     );
   }
@@ -22,4 +50,4 @@ class Restaurant extends PureComponent {
   };
 }
 
-export default Restaurant;
+export default opener(Restaurant);

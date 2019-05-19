@@ -2,26 +2,20 @@
 import React, { Component } from "react";
 
 const accordion = OriginalComponent =>
-  class DecoratedComponent extends Component {
-    state = {
-      openItemId: null
-    };
+    class DecoratedComponent extends Component {
+        state = {
+            openItemId: null,
+        };
 
-    render() {
-      return (
-        <OriginalComponent
-          {...this.props}
-          {...this.state}
-          toggleOpenItem={this.toggleOpenItem}
-        />
-      );
-    }
+        render() {
+            return <OriginalComponent {...this.props} {...this.state} toggleOpenItem={this.toggleOpenItem} />;
+        }
 
-    toggleOpenItem = id => {
-      this.setState({
-        openItemId: id
-      });
+        toggleOpenItem = id => {
+            this.setState({
+                openItemId: id === this.state.openItemId ? null : id,
+            });
+        };
     };
-  };
 
 export { accordion };

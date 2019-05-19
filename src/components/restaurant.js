@@ -1,6 +1,7 @@
 import React, { PureComponent } from "react";
 import RestaurantMenu from "./restaurant-menu";
 
+const btns = document.getElementById("btns");
 class Restaurant extends PureComponent {
   render() {
     const { image, name, menu, isMenuOpen } = this.props;

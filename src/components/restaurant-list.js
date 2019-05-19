@@ -9,7 +9,8 @@ class RestaurantList extends Component {
 
       // props from accordion decorator
       openItemId,
-      toggleOpenItem
+      toggleOpenItem,
+      toggleCloseItem
     } = this.props;
     return (
       <div>

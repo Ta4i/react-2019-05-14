@@ -1,25 +1,44 @@
 import React, { PureComponent } from "react";
 import RestaurantMenu from "./restaurant-menu";
+import RestorauntRate from "./restoraunt-rate";
+import ReviewsList from "./reviews-list";
+import { visibility } from "../decorators/visibility";
+
+import { Avatar, Button, Card } from "antd";
 
 class Restaurant extends PureComponent {
-  render() {
-    const { image, name, menu, isMenuOpen } = this.props;
+    render() {
+        const { image, name, menu, isMenuOpen, reviews, isVisible } = this.props;
 
-    return (
-      <div>
-        <img src={image} width={64} height={64} alt={name} />
-        <h3>{name}</h3>
-        <button onClick={this.handleToggleOpenClick}>
-          {isMenuOpen ? "Close menu" : "Open menu"}
-        </button>
-        {isMenuOpen ? <RestaurantMenu menu={menu} /> : null}
-      </div>
-    );
-  }
+        const CardTitle = (
+            <h3>
+                <Avatar src={image} size={64} alt={name} shape="square" /> {name} <RestorauntRate reviews={reviews} />
+            </h3>
+        );
 
-  handleToggleOpenClick = () => {
-    this.props.toggleOpenMenu(this.props.id);
-  };
+        return (
+            <div>
+                <Card title={CardTitle} size={"small"}>
+                    <Button size="small" onClick={this.handleToggleOpenClick}>
+                        {isMenuOpen ? "Close menu" : "Open menu"}
+                    </Button>
+                    <Button size="small" onClick={this.handleToggleVisibleItem}>
+                        {isVisible ? "Close reviews" : "Open review"}
+                    </Button>
+                    {isMenuOpen ? <RestaurantMenu menu={menu} /> : null}
+                    {isVisible ? <ReviewsList reviews={reviews} /> : null}
+                </Card>
+            </div>
+        );
+    }
+
+    handleToggleOpenClick = () => {
+        this.props.toggleOpenMenu(this.props.id);
+    };
+
+    handleToggleVisibleItem = () => {
+        this.props.toggleVisibleItem();
+    };
 }
 
-export default Restaurant;
+export default visibility(Restaurant);

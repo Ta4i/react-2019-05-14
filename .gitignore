@@ -23,3 +23,6 @@ yarn-debug.log*
 yarn-error.log*
 
 .idea
+
+Lection01.js
+package-lock.json

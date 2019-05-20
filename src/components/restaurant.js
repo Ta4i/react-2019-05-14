@@ -1,9 +1,14 @@
 import React, { PureComponent } from "react";
 import RestaurantMenu from "./restaurant-menu";
+import RateComponent from "./rate-component";
+import ReviewList from "./reviews-list";
+import { openClose } from "../decorators/open-close";
+
+const ReviewListDecorated = openClose(ReviewList);
 
 class Restaurant extends PureComponent {
   render() {
-    const { image, name, menu, isMenuOpen } = this.props;
+    const { image, name, menu, isMenuOpen, reviews } = this.props;
 
     return (
       <div>
@@ -13,6 +18,8 @@ class Restaurant extends PureComponent {
           {isMenuOpen ? "Close menu" : "Open menu"}
         </button>
         {isMenuOpen ? <RestaurantMenu menu={menu} /> : null}
+        <RateComponent reviews={reviews} />
+        <ReviewListDecorated reviews={reviews} />
       </div>
     );
   }

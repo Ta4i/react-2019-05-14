@@ -2,6 +2,8 @@ import React, { Component } from "react";
 import Restaurant from "./restaurant";
 import { accordion } from "../decorators/accordion";
 
+import "./restaurant-list.css";
+
 class RestaurantList extends Component {
   render() {
     const {

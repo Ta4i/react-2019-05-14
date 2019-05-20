@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import Button from "antd/lib/button";
+import "./dish.css";
 
 function Dish(props) {
   const [amount, decrease, increase] = useCounter(0);

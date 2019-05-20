@@ -2,6 +2,8 @@ import React, { PureComponent } from "react";
 import RestaurantMenu from "./restaurant-menu";
 import RestaurantReviews from "./restaurant-reviews";
 
+import "./restaurant.css";
+
 import { Rate, Button } from "antd";
 
 class Restaurant extends PureComponent {

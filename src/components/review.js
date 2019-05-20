@@ -2,11 +2,13 @@ import React from "react";
 
 import { Rate } from "antd";
 
+import "./review.css";
+
 function Review(props) {
   return (
-    <div className="b-reviews">
-      <div className="b-reviews__head">
-        <div className="b-reviews__name">{props.user}</div>
+    <div className="b-review">
+      <div className="b-review__head">
+        <div className="b-review__name">{props.user}</div>
         <Rate
           allowHalf
           style={{

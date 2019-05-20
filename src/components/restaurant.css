@@ -1,0 +1,41 @@
+.b-restaurant-item {
+  background: #fff;
+  padding: 17px 24px;
+  border-radius: 4px;
+}
+
+.b-restaurant-item__head {
+  margin-bottom: 10px;
+}
+
+@media (min-width: 768px) {
+  .b-restaurant-item__head {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 20px;
+  }
+}
+
+.b-restaurant-item__name {
+  display: flex;
+  align-items: center;
+}
+
+@media (max-width: 768px) {
+  .b-restaurant-item__name {
+    margin-bottom: 10px;
+  }
+}
+
+.b-restaurant-item__name img {
+  margin-right: 20px;
+}
+
+.b-restaurant-item__name h3 {
+  margin: 0;
+}
+
+.b-restaurant-item + .b-restaurant-item {
+  margin-top: 10px;
+}

@@ -1,0 +1,17 @@
+.b-review {
+  padding: 10px;
+}
+
+.b-review + .b-review {
+  border-top: 1px solid #eaeaea;
+}
+
+.b-review__head {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 10px;
+}
+
+.b-review__name {
+  font-weight: bold;
+}

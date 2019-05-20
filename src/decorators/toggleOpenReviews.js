@@ -1,9 +1,9 @@
 import React, { Component } from "react";
 
-const accordion = OriginalComponent =>
+const toggleOpenReviews = OriginalComponent =>
   class DecoratorComponent extends Component {
     state = {
-      openItemID: null
+      isOpenItem: false
     };
     render() {
       return (
@@ -14,11 +14,11 @@ const accordion = OriginalComponent =>
         />
       );
     }
-    toggleOpenItem = id => {
+    toggleOpenItem = () => {
       this.setState({
-        openItemID: id
+        isOpenItem: !this.state.isOpenItem
       });
     };
   };
 
-export { accordion };
+export { toggleOpenReviews };

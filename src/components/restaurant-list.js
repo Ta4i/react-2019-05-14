@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import Restaurant from "./restaurant";
 import { accordion } from "../decorators/accordion-menu";
-import { accordionReviews } from "../decorators/accordion-reviews";
+import { accordionReviews } from "../decorators/toggle-reviews";
 import { Layout } from "antd";
 
 class RestaurantList extends Component {

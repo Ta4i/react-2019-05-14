@@ -42,7 +42,7 @@ class Restaurant extends PureComponent {
               <div className="button-review">
                 <Button onClick={this.handleToggleReviewsClick}>
                   {isReviewOpen ? "Close reviews" : "Open reviews"}
-                  <Icon type={isMenuOpen ? "caret-up" : "caret-down"} />
+                  <Icon type={isReviewOpen ? "caret-up" : "caret-down"} />
                 </Button>
                 {isReviewOpen ? <RateList reviews={reviews} /> : null}
               </div>

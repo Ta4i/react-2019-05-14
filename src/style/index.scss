@@ -1,0 +1,159 @@
+.header,
+.fa-custom {
+  color: #fff !important;
+}
+
+.ant-layout-content {
+  // background: rgba(16, 142, 233, 1);
+  // color: #fff;
+  // min-height: 120px;
+  // line-height: 120px;
+}
+
+.content-header {
+  text-align: center;
+  padding-top: 20px;
+}
+
+.header-reastaraunt {
+  font-size: 30px;
+  border-bottom: 8px double #000;
+  border-top: 8px double #000;
+  text-shadow: 0px 0px #000, 1px 1px #000, 0px 2px #000, 1px 3px #000,
+    1px 4px #000, 1px 3px #000;
+  // text-shadow: 0px 0px #000, 1px 1px #000, 2px 2px #000, 3px 3px #000, 4px 4px #000, 5px 5px #000;
+  -webkit-text-fill-color: #fff;
+  -webkit-text-stroke-width: 1px;
+  -webkit-text-stroke-color: #000;
+}
+
+.restaurant-name {
+  display: flex;
+}
+
+.restaurant-list {
+  padding: 20px;
+  border-bottom: 1px solid gray;
+}
+
+.restaurant-brand {
+  color: #000;
+  font-size: 30px;
+  padding-left: 20px;
+  padding-top: 10px;
+}
+
+.buttons {
+  margin-top: 20px;
+  display: flex;
+}
+
+.button-review {
+  margin-left: 20px;
+}
+
+.icon-menu {
+  vertical-align: middle !important;
+}
+.price {
+  float: right;
+  font-weight: 700;
+}
+
+.test {
+  border: 1px solid #e1e5e8;
+  border-radius: 60px;
+  display: flex;
+  height: 40px;
+  justify-content: space-between;
+  padding: 16px;
+  position: relative;
+  top: 2px;
+  width: 160px;
+}
+.anticon-minus,
+.anticon-plus {
+  padding-top: 4px !important;
+}
+
+.dish-minus,
+.dish-plus {
+  margin: -11px;
+}
+
+.dish-amount {
+  margin: -12px;
+}
+
+.ant-btn-circle {
+  width: 26px !important;
+  height: 26px !important;
+}
+
+.dish-block {
+  padding-top: 30px;
+}
+
+.dish-name {
+  color: #000;
+  font-weight: 500;
+}
+
+.restaurant-location,
+.header-form {
+  text-align: center;
+  padding: 20px;
+}
+
+.map {
+  margin: auto;
+}
+
+.header-reastaraunt {
+  background: #d3d3d3;
+}
+
+.row-form {
+  justify-content: center !important;
+  margin: auto !important;
+  display: flex !important;
+}
+
+.button-order {
+  width: 100% !important;
+}
+
+.ant-form {
+  padding: 20px !important;
+}
+
+.form-block {
+  background: #dcdcdc;
+  border-radius: 2px;
+  margin-bottom: 10px;
+}
+
+.form-input {
+  margin-bottom: 5px !important;
+}
+
+.container-form {
+  padding-bottom: 20px;
+  border-top: 1px solid black;
+  border-bottom: 1px solid black;
+  margin-top: 20px;
+  background: #f0f2f5;
+}
+
+.footer {
+  color: rgba(255, 255, 255, 0.65);
+  background: #001529;
+  text-align: center;
+  padding: 20px;
+}
+
+.footer-p {
+  font-size: 20px;
+  margin: auto;
+  padding-bottom: 20px;
+}

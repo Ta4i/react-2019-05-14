@@ -1,0 +1,114 @@
+.restaurant-container {
+  max-width: 550px;
+  margin: auto;
+  padding: 15px;
+}
+
+.restaurant-menu {
+  border-bottom: 2px solid #000;
+  padding-bottom: 15px;
+  margin: 15px 0;
+}
+
+.restaurant {
+  margin-bottom: 15px;
+  text-align: center;
+}
+
+.restaurant img {
+  object-fit: cover;
+  max-width: 75px;
+}
+
+.restaurant__title {
+  font-size: 25px;
+  font-weight: bold;
+  line-height: 1;
+  margin-top: 15px;
+}
+
+.dish {
+  border-bottom: 1px dotted #eee;
+  color: #000;
+  font-family: "Calibri", sans-serif;
+  font-size: 18px;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  margin-bottom: 15px;
+  padding-bottom: 15px;
+}
+
+.dish:last-child {
+  border-bottom: none;
+  padding-bottom: 0;
+}
+
+.dish__name {
+  font-size: 21px;
+  line-height: 1;
+  text-align: center;
+}
+
+.dish__price {
+  display: flex;
+  justify-content: space-between;
+}
+
+.dish__amount b {
+  margin: 0 15px;
+}
+
+.dish__row {
+  display: flex;
+  justify-content: space-between;
+}
+
+.dish__row_amount {
+  max-width: 105px;
+  flex: 0 0 105px;
+}
+
+.dish__price b {
+  max-width: 105px;
+  flex: 0 0 105px;
+  text-align: center;
+}
+
+.amount-minus {
+  margin-left: auto;
+}
+
+.rating {
+  line-height: 1;
+}
+
+.restaurant-reviews {
+  font-size: 18px;
+  font-weight: bold;
+  margin-top: 15px;
+}
+
+.reviews {
+  display: flex;
+  flex-wrap: wrap;
+  margin-top: 15px;
+}
+
+.reviews__user,
+.reviews__text {
+  font-weight: 300;
+  font-size: 14px;
+  flex: 100%;
+  text-align: left;
+}
+
+.reviews__rating {
+  border-bottom: 1px solid #eee;
+  font-size: 14px;
+  flex: 0 0 100%;
+  max-width: 100%;
+  margin-top: 15px;
+  padding-bottom: 15px;
+  text-align: left;
+}

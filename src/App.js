@@ -6,7 +6,7 @@ import RestaurantsMap from "./components/restaurants-map";
 
 function App(props) {
   return (
-    <div className="App">
+    <div className="App restaurant-container">
       <RestaurantList restaurants={props.restaurants} />
       <RestaurantsMap restaurants={props.restaurants} />
       <UserForm />

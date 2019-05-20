@@ -6,15 +6,16 @@ class RestaurantList extends Component {
   render() {
     const {
       restaurants,
-
       // props from accordion decorator
       openItemId,
       toggleOpenItem
     } = this.props;
+    let flag = false;
     return (
-      <div>
+      <div className={"restaurant-container"}>
         {restaurants.map(restaurant => (
           <Restaurant
+            flag={!flag}
             key={restaurant.id}
             {...restaurant}
             isMenuOpen={openItemId === restaurant.id}

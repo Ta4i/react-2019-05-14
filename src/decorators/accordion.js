@@ -3,9 +3,18 @@ import React, { Component } from "react";
 
 const accordion = OriginalComponent =>
   class DecoratedComponent extends Component {
-    state = {
-      openItemId: null
-    };
+    constructor(props) {
+      super(props);
+      let restaurant = {
+        ...props.restaurants.map(restaurant => {
+          return restaurant;
+        })
+      };
+
+      this.state = {
+        openItemId: null
+      };
+    }
 
     render() {
       return (
@@ -18,9 +27,15 @@ const accordion = OriginalComponent =>
     }
 
     toggleOpenItem = id => {
-      this.setState({
-        openItemId: id
-      });
+      if (this.state.openItemId === id) {
+        this.setState({
+          openItemId: null
+        });
+      } else {
+        this.setState({
+          openItemId: id
+        });
+      }
     };
   };
 

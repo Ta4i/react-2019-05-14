@@ -27,11 +27,11 @@ class Restaurant extends PureComponent {
       <Card
         size="small"
         title={
-          <React.Fragment>
+          <>
             <Avatar size="large" shape="square" src={image} />
             <Text style={{ fontSize: "22pt" }}>{name}</Text>
             <RestaurantRating defaultValue={averageRating} />
-          </React.Fragment>
+          </>
         }
       >
         <Row gutter={16}>

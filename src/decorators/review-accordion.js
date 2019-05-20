@@ -4,7 +4,7 @@ import React, { Component } from "react";
 const reviewAccordion = OriginalComponent =>
   class DecoratedComponent extends Component {
     state = {
-      openedReviewsItemId: "a757a0e9-03c1-4a2a-b384-8ac21dbe2fb2"
+      openedReviewsItemId: null
     };
 
     render() {

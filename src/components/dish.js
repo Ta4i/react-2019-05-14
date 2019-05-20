@@ -4,13 +4,32 @@ import Button from "antd/lib/button";
 function Dish(props) {
   const [amount, decrease, increase] = useCounter(0);
   return (
-    <div>
-      <span>{props.name}</span>
-      <span style={{ float: "right" }}>{props.price}</span>
+    <div className="dish-block">
+      <span className="dish-name">{props.name}</span>
+      <span className="price">{props.price}$ </span>
       <hr />
-      <span>{amount}</span>
-      <Button onClick={decrease} type="primary" shape="circle" icon="minus" />
-      <Button onClick={increase} type="primary" shape="circle" icon="plus" />
+      <div className="test">
+        <div className="dish-minus">
+          <Button
+            className="button-minus"
+            onClick={decrease}
+            shape="circle"
+            icon="minus"
+          />
+        </div>
+
+        <div className="dish-amount">
+          <h2>{amount}</h2>
+        </div>
+        <div className="dish-plus">
+          <Button
+            className="button-plus"
+            onClick={increase}
+            shape="circle"
+            icon="plus"
+          />
+        </div>
+      </div>
     </div>
   );
 }

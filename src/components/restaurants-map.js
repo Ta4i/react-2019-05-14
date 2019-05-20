@@ -3,7 +3,12 @@ import Leaflet from "leaflet";
 
 class RestaurantsMap extends Component {
   render() {
-    return <div ref={this.setEl} className="map" />;
+    return (
+      <div>
+        <h2 className="restaurant-location"> Restaurants location </h2>
+        <div ref={this.setEl} className="map" />
+      </div>
+    );
   }
   setEl = ref => {
     this.div = ref;

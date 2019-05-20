@@ -1,5 +1,8 @@
 import React, { Component } from "react";
 
+import { Layout } from "antd";
+import { Button, Input, Form, Row, Col } from "antd";
+
 class UserForm extends Component {
   state = {
     name: "",
@@ -8,8 +11,45 @@ class UserForm extends Component {
   };
   render() {
     const { name, phone, address } = this.state;
+
     return (
-      <form>
+      <div className="container-form">
+        <h2 className="header-form"> Make an order </h2>
+        <Row className="row-form">
+          <Col span={6} className="form-block">
+            <Form>
+              <Input
+                className="form-input"
+                placeholder={"Name"}
+                value={name}
+                onChange={this.handleNameChange}
+              />
+              <Input
+                className="form-input"
+                type="tel"
+                placeholder={"Phone Number"}
+                value={phone}
+                onChange={this.handlePhoneChange}
+              />
+              <Input.TextArea
+                className="form-input"
+                placeholder="Address"
+                value={address}
+                onChange={this.handleAddressChange}
+              />
+
+              <Button
+                className="button-order"
+                type={"primary"}
+                onClick={this.submit}
+              >
+                {" "}
+                Send order
+              </Button>
+            </Form>
+          </Col>
+        </Row>
+        {/* <form>
         <input
           placeholder={"Name"}
           value={name}
@@ -32,7 +72,8 @@ class UserForm extends Component {
         <button type={"submit"} onClick={this.submit}>
           Send order
         </button>
-      </form>
+      </form> */}
+      </div>
     );
   }
 

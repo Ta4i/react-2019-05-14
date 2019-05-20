@@ -1,10 +1,10 @@
 import React from "react";
 import Dish from "./dish";
 
-function RestaurantMenu(props) {
+function RestaurantMenu({ menu }) {
   return (
     <div>
-      {props.menu.map(dish => (
+      {menu.map(dish => (
         <Dish key={dish.id} {...dish} />
       ))}
     </div>

@@ -1,6 +1,8 @@
 import React, { Component } from "react";
 import Restaurant from "./restaurant";
-import { accordion } from "../decorators/accordion";
+import { accordion } from "../decorators/accordion-menu";
+import { accordionReviews } from "../decorators/accordion-reviews";
+import { Layout } from "antd";
 
 class RestaurantList extends Component {
   render() {
@@ -10,21 +12,34 @@ class RestaurantList extends Component {
       // props from accordion decorator
       openItemId,
       toggleOpenItem,
-      toggleCloseItem
+      // props from accordion reviews
+      openReviewId,
+      toggleReviewItem
     } = this.props;
     return (
       <div>
-        {restaurants.map(restaurant => (
-          <Restaurant
-            key={restaurant.id}
-            {...restaurant}
-            isMenuOpen={openItemId === restaurant.id}
-            toggleOpenMenu={toggleOpenItem}
-          />
-        ))}
+        <Layout>
+          <div className="header-reastaraunt">
+            <h1 className="content-header">
+              <i className="fas fa-utensils" /> Restaraunts{" "}
+            </h1>
+          </div>
+
+          {restaurants.map(restaurant => (
+            <Restaurant
+              key={restaurant.id}
+              {...restaurant}
+              isMenuOpen={openItemId === restaurant.id}
+              toggleOpenMenu={toggleOpenItem}
+              isReviewOpen={openReviewId === restaurant.id}
+              toggleReviewOpen={toggleReviewItem}
+              // toggleReviewOpen = {toggleOpenItem}
+            />
+          ))}
+        </Layout>
       </div>
     );
   }
 }
 
-export default accordion(RestaurantList);
+export default accordionReviews(accordion(RestaurantList));

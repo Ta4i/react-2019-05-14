@@ -6,11 +6,7 @@ const { Text } = Typography;
 
 function RestaurantReviewList({ reviews }) {
   if (!reviews || reviews.length <= 0) {
-    return (
-      <div>
-        <Text strong>There is no review for this restaurant yet.</Text>
-      </div>
-    );
+    return <Text strong>There is no review for this restaurant yet.</Text>;
   }
   return (
     <div>

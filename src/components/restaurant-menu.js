@@ -6,11 +6,7 @@ const { Text } = Typography;
 
 function RestaurantMenu({ menuItems }) {
   if (!menuItems || menuItems.length <= 0) {
-    return (
-      <div>
-        <Text strong>The restaurant hasn't provided its menu yet.</Text>
-      </div>
-    );
+    return <Text strong>The restaurant hasn't provided its menu yet.</Text>;
   }
 
   return (

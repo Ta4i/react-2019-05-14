@@ -1,6 +1,5 @@
 import React, { Component } from "react";
 
-import { Layout } from "antd";
 import { Button, Input, Form, Row, Col } from "antd";
 
 class UserForm extends Component {
@@ -49,30 +48,6 @@ class UserForm extends Component {
             </Form>
           </Col>
         </Row>
-        {/* <form>
-        <input
-          placeholder={"Name"}
-          value={name}
-          onChange={this.handleNameChange}
-        />
-        <br />
-        <input
-          type="tel"
-          placeholder={"Phone Number"}
-          value={phone}
-          onChange={this.handlePhoneChange}
-        />
-        <br />
-        <textarea
-          placeholder={"Address"}
-          value={address}
-          onChange={this.handleAddressChange}
-        />
-        <br />
-        <button type={"submit"} onClick={this.submit}>
-          Send order
-        </button>
-      </form> */}
       </div>
     );
   }

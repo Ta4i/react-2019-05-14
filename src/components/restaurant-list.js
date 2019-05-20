@@ -33,7 +33,6 @@ class RestaurantList extends Component {
               toggleOpenMenu={toggleOpenItem}
               isReviewOpen={openReviewId === restaurant.id}
               toggleReviewOpen={toggleReviewItem}
-              // toggleReviewOpen = {toggleOpenItem}
             />
           ))}
         </Layout>

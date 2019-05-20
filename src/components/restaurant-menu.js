@@ -3,7 +3,7 @@ import Dish from "./dish";
 
 function RestaurantMenu(props) {
   return (
-    <div>
+    <div className="restaurant-menu">
       {props.menu.map(dish => (
         <Dish key={dish.id} {...dish} />
       ))}

@@ -1,10 +1,10 @@
 // HOC - higher order component
 import React, { Component } from "react";
 
-const accordion = OriginalComponent =>
+const openclose = OriginalComponent =>
   class DecoratedComponent extends Component {
     state = {
-      openItemId: null
+      isOpenItem: false
     };
 
     render() {
@@ -12,16 +12,16 @@ const accordion = OriginalComponent =>
         <OriginalComponent
           {...this.props}
           {...this.state}
-          toggleOpenItem={this.toggleOpenItem}
+          openItem={this.openItem}
         />
       );
     }
 
-    toggleOpenItem = id => {
+    openItem = id => {
       this.setState({
-        openItemId: id === this.state.openItemId ? "null" : id
+        isOpenItem: !this.state.isOpenItem
       });
     };
   };
 
-export { accordion };
+export { openclose };

@@ -12,7 +12,7 @@ class RestaurantList extends Component {
       toggleOpenItem
     } = this.props;
     return (
-      <div>
+      <div className="restaurant-wrap">
         {restaurants.map(restaurant => (
           <Restaurant
             key={restaurant.id}

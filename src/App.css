@@ -17,7 +17,55 @@ li > h3 > * {
   margin-right: 24px;
 }
 
+.amount {
+  margin-right: 10px;
+}
+
 .map {
   width: 500px;
   height: 300px;
+}
+
+.restaurant-wrap {
+  width: 700px;
+}
+
+.restaurant {
+  margin-bottom: 20px;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 10px;
+}
+
+.restaurant-menu {
+  margin: 20px;
+}
+
+.restaurant-reviews-wrap {
+  margin-top: 20px;
+}
+
+.restaurant-reviews {
+  margin: 20px;
+}
+
+.restaurant-review {
+  margin-bottom: 15px;
+}
+
+.review-text {
+  margin-top: 10px;
+}
+
+.rate {
+  margin-right: 10px;
+}
+
+.form {
+  width: 500px;
+}
+
+.form input,
+.form textarea {
+  margin: 10px 0;
 }

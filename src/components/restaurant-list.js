@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import Restaurant from "./restaurant";
 import { accordion } from "../decorators/accordion";
+import { accordionWrapper } from "../decorators/accordion-wrapper";
 
 class RestaurantList extends Component {
   render() {
@@ -9,16 +10,20 @@ class RestaurantList extends Component {
 
       // props from accordion decorator
       openItemId,
-      toggleOpenItem
+      toggleOpenItem,
+      toggleOpenElement,
+      openElementId
     } = this.props;
     return (
-      <div>
+      <div className="restaurant-list">
         {restaurants.map(restaurant => (
           <Restaurant
             key={restaurant.id}
             {...restaurant}
             isMenuOpen={openItemId === restaurant.id}
             toggleOpenMenu={toggleOpenItem}
+            isReviewsOpen={openElementId === restaurant.id}
+            toggleOpenReviews={toggleOpenElement}
           />
         ))}
       </div>
@@ -26,4 +31,4 @@ class RestaurantList extends Component {
   }
 }
 
-export default accordion(RestaurantList);
+export default accordionWrapper(accordion(RestaurantList));

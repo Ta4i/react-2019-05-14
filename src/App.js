@@ -1,6 +1,6 @@
 import React from "react";
 import "./App.css";
-import RestaurantList from "./components/restaurant-list";
+import RestaurantList from "./components/restaurant-list.js";
 import UserForm from "./components/user-form";
 import RestaurantsMap from "./components/restaurants-map";
 

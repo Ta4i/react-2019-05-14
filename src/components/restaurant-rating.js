@@ -11,6 +11,12 @@ class RestaurantRating extends Component {
     "10 points to Griffindor!"
   ];
 
+  // Antd's Rate component accepts .5 values only like 3, 3.5, 4, etc.
+  adjustRatingValue = value => {
+    let fraction = value - (value ^ 0);
+    return (value ^ 0) + (fraction >= 0.5 ? 0.5 : 0);
+  };
+
   render() {
     const { defaultValue } = this.props;
     if (defaultValue) {
@@ -20,6 +26,7 @@ class RestaurantRating extends Component {
           allowHalf
           disabled
           {...this.props}
+          defaultValue={this.adjustRatingValue(defaultValue)}
         />
       );
     }

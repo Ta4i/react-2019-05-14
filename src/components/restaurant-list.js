@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 import Restaurant from "./restaurant";
-import { menuAccordion } from "../decorators/menu-accordion";
-import { reviewAccordion } from "../decorators/review-accordion";
+import { toggleVisibilityAccordion } from "../decorators/toggle-visibility-accordion";
 
 class RestaurantList extends Component {
   render() {
@@ -9,21 +8,22 @@ class RestaurantList extends Component {
       restaurants,
 
       // props from decorators
-      openedMenuItemId,
-      toggleOpenMenuItem,
-      openedReviewsItemId,
-      toggleOpenReviewsItem
+      menuItemId,
+      toggleVisibility_menuItemId,
+      reviewsItemId,
+      toggleVisibility_reviewsItemId
     } = this.props;
+
     return (
       <div>
         {restaurants.map(restaurant => (
           <Restaurant
             key={restaurant.id}
             {...restaurant}
-            isMenuOpened={openedMenuItemId === restaurant.id}
-            toggleOpenMenu={toggleOpenMenuItem}
-            areReviewsOpened={openedReviewsItemId === restaurant.id}
-            toggleOpenReviews={toggleOpenReviewsItem}
+            isMenuOpened={menuItemId === restaurant.id}
+            toggleOpenMenu={toggleVisibility_menuItemId}
+            areReviewsOpened={reviewsItemId === restaurant.id}
+            toggleOpenReviews={toggleVisibility_reviewsItemId}
           />
         ))}
       </div>
@@ -31,4 +31,7 @@ class RestaurantList extends Component {
   }
 }
 
-export default reviewAccordion(menuAccordion(RestaurantList));
+export default toggleVisibilityAccordion(
+  toggleVisibilityAccordion(RestaurantList, "menuItemId"),
+  "reviewsItemId"
+);

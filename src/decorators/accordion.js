@@ -4,7 +4,8 @@ import React, { Component } from "react";
 const accordion = OriginalComponent =>
   class DecoratedComponent extends Component {
     state = {
-      openItemId: null
+      openItemId: null,
+      openItemName: null
     };
 
     render() {
@@ -17,10 +18,20 @@ const accordion = OriginalComponent =>
       );
     }
 
-    toggleOpenItem = id => {
-      this.setState({
-        openItemId: id
-      });
+    toggleOpenItem = (id, itemName) => {
+      const { openItemId, openItemName } = this.state;
+
+      if (openItemId === id && openItemName === itemName) {
+        this.setState({
+          openItemId: null,
+          openItemName: null
+        });
+      } else {
+        this.setState({
+          openItemId: id,
+          openItemName: itemName
+        });
+      }
     };
   };
 

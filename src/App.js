@@ -7,9 +7,24 @@ import RestaurantsMap from "./components/restaurants-map";
 function App(props) {
   return (
     <div className="App">
-      <RestaurantList restaurants={props.restaurants} />
-      <RestaurantsMap restaurants={props.restaurants} />
-      <UserForm />
+      <div className="container-fluid">
+        <div className="row">
+          <div className="col-md-12">
+            <h1>Restaurants:</h1>
+            <div className="row">
+              <div className="col-md-12">
+                <RestaurantList restaurants={props.restaurants} />
+              </div>
+              <div className="col-md-12">
+                <RestaurantsMap restaurants={props.restaurants} />
+              </div>
+            </div>
+            <div className="col-md-12">
+              <UserForm />
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
   );
 }

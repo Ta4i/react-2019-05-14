@@ -9,18 +9,22 @@ class RestaurantList extends Component {
 
       // props from accordion decorator
       openItemId,
+      openItemName,
       toggleOpenItem
     } = this.props;
     return (
-      <div>
-        {restaurants.map(restaurant => (
-          <Restaurant
-            key={restaurant.id}
-            {...restaurant}
-            isMenuOpen={openItemId === restaurant.id}
-            toggleOpenMenu={toggleOpenItem}
-          />
-        ))}
+      <div className="container-fluid">
+        <div className="row">
+          {restaurants.map(restaurant => (
+            <Restaurant
+              key={restaurant.id}
+              {...restaurant}
+              openItemId={openItemId}
+              openItemName={openItemName}
+              toggleOpenMenu={toggleOpenItem}
+            />
+          ))}
+        </div>
       </div>
     );
   }

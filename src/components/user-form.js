@@ -10,26 +10,39 @@ class UserForm extends Component {
     const { name, phone, address } = this.state;
     return (
       <form>
-        <input
-          placeholder={"Name"}
-          value={name}
-          onChange={this.handleNameChange}
-        />
-        <br />
-        <input
-          type="tel"
-          placeholder={"Phone Number"}
-          value={phone}
-          onChange={this.handlePhoneChange}
-        />
-        <br />
+        <h1>Order:</h1>
+        <div className="row mb-3">
+          <div className="col">
+            <input
+              placeholder={"Name"}
+              value={name}
+              onChange={this.handleNameChange}
+              className={"form-control"}
+            />
+          </div>
+          <div className="col">
+            <input
+              type="tel"
+              placeholder={"Phone Number"}
+              value={phone}
+              onChange={this.handlePhoneChange}
+              className={"form-control"}
+            />
+          </div>
+        </div>
+
         <textarea
           placeholder={"Address"}
           value={address}
           onChange={this.handleAddressChange}
+          className={"form-control"}
         />
         <br />
-        <button type={"submit"} onClick={this.submit}>
+        <button
+          type={"submit"}
+          onClick={this.submit}
+          className={"btn btn-primary"}
+        >
           Send order
         </button>
       </form>

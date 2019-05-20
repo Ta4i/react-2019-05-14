@@ -1,24 +1,29 @@
 import React, { Component } from "react";
 import Restaurant from "./restaurant";
-import { accordion } from "../decorators/accordion";
+import { toggleVisibilityAccordion } from "../decorators/toggle-visibility-accordion";
 
 class RestaurantList extends Component {
   render() {
     const {
       restaurants,
 
-      // props from accordion decorator
-      openItemId,
-      toggleOpenItem
+      // props from decorators
+      menuItemId,
+      toggleVisibility_menuItemId,
+      reviewsItemId,
+      toggleVisibility_reviewsItemId
     } = this.props;
+
     return (
       <div>
         {restaurants.map(restaurant => (
           <Restaurant
             key={restaurant.id}
             {...restaurant}
-            isMenuOpen={openItemId === restaurant.id}
-            toggleOpenMenu={toggleOpenItem}
+            isMenuOpened={menuItemId === restaurant.id}
+            toggleOpenMenu={toggleVisibility_menuItemId}
+            areReviewsOpened={reviewsItemId === restaurant.id}
+            toggleOpenReviews={toggleVisibility_reviewsItemId}
           />
         ))}
       </div>
@@ -26,4 +31,7 @@ class RestaurantList extends Component {
   }
 }
 
-export default accordion(RestaurantList);
+export default toggleVisibilityAccordion(
+  toggleVisibilityAccordion(RestaurantList, "menuItemId"),
+  "reviewsItemId"
+);

@@ -1,11 +1,20 @@
 import React from "react";
-import Dish from "./dish";
+import RestaurantMenuItem from "./restaurant-menu-item";
+import { Card, Typography } from "antd";
 
-function RestaurantMenu(props) {
+const { Text } = Typography;
+
+function RestaurantMenu({ menuItems }) {
+  if (!menuItems || menuItems.length <= 0) {
+    return <Text strong>The restaurant hasn't provided its menu yet.</Text>;
+  }
+
   return (
     <div>
-      {props.menu.map(dish => (
-        <Dish key={dish.id} {...dish} />
+      {menuItems.map(dish => (
+        <Card type="inner" key={dish.id} size="small">
+          <RestaurantMenuItem {...dish} />
+        </Card>
       ))}
     </div>
   );

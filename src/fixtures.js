@@ -162,6 +162,18 @@ const restaurants = [
         rating: 5
       }
     ]
+  },
+  {
+    id: "00814bec-dc61-438a-9cd6-efcf80d44ff0",
+    name: "Joe Pesci's Bar",
+    location: {
+      lat: 51.51084146746025,
+      lng: -0.12009270211070839
+    },
+    image:
+      "http://shark-film.ru/uploads/actors/2019-02/34e2df3dc165037107-dzho-peshi-3.jpg",
+    menu: [],
+    reviews: []
   }
 ];
 

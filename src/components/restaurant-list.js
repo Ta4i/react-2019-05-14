@@ -2,6 +2,8 @@ import React, { Component } from "react";
 import Restaurant from "./restaurant";
 import { accordion } from "../decorators/accordion";
 
+import "./restaurant-list.css";
+
 class RestaurantList extends Component {
   render() {
     const {
@@ -12,13 +14,13 @@ class RestaurantList extends Component {
       toggleOpenItem
     } = this.props;
     return (
-      <div>
+      <div className="b-restaurant-list">
         {restaurants.map(restaurant => (
           <Restaurant
             key={restaurant.id}
             {...restaurant}
             isMenuOpen={openItemId === restaurant.id}
-            toggleOpenMenu={toggleOpenItem}
+            toggleMenu={toggleOpenItem}
           />
         ))}
       </div>

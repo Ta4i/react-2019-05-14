@@ -1,0 +1,25 @@
+.b-dish {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 8px 10px;
+  border-bottom: 1px solid #eaeaea;
+}
+
+.b-dish:last-child {
+  border-bottom: none;
+}
+
+.b-dish__name {
+  flex: 1 0 0;
+}
+
+.b-dish__price {
+  margin: 0 20px 0 0;
+}
+
+.b-dish__count > span {
+  width: 35px;
+  display: inline-block;
+  text-align: center;
+}

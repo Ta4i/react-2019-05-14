@@ -12,13 +12,13 @@ class RestaurantList extends Component {
       toggleOpenItem
     } = this.props;
     return (
-      <div>
+      <div className="b-restaurant-list">
         {restaurants.map(restaurant => (
           <Restaurant
             key={restaurant.id}
             {...restaurant}
             isMenuOpen={openItemId === restaurant.id}
-            toggleOpenMenu={toggleOpenItem}
+            toggleMenu={toggleOpenItem}
           />
         ))}
       </div>

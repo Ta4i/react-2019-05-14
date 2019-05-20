@@ -1,4 +1,6 @@
 import React, { Component } from "react";
+import { Input } from "antd";
+import { Button } from "antd";
 
 class UserForm extends Component {
   state = {
@@ -8,30 +10,32 @@ class UserForm extends Component {
   };
   render() {
     const { name, phone, address } = this.state;
+    const { TextArea } = Input;
     return (
-      <form>
-        <input
+      <form className="form">
+        <Input
           placeholder={"Name"}
           value={name}
           onChange={this.handleNameChange}
         />
         <br />
-        <input
+        <Input
           type="tel"
           placeholder={"Phone Number"}
           value={phone}
           onChange={this.handlePhoneChange}
         />
         <br />
-        <textarea
+        <TextArea
+          rows={4}
           placeholder={"Address"}
           value={address}
           onChange={this.handleAddressChange}
         />
         <br />
-        <button type={"submit"} onClick={this.submit}>
+        <Button type={"submit"} onClick={this.submit}>
           Send order
-        </button>
+        </Button>
       </form>
     );
   }

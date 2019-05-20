@@ -8,7 +8,7 @@ function Dish(props) {
       <span>{props.name}</span>
       <span style={{ float: "right" }}>{props.price}</span>
       <hr />
-      <span>{amount}</span>
+      <span className="amount">{amount}</span>
       <Button onClick={decrease} type="primary" shape="circle" icon="minus" />
       <Button onClick={increase} type="primary" shape="circle" icon="plus" />
     </div>

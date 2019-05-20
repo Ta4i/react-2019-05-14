@@ -1,18 +1,40 @@
 import React, { PureComponent } from "react";
 import RestaurantMenu from "./restaurant-menu";
+import RestaurantReviewsPanel from "./restaurant-reviews-panel";
+import RestaurantRating from "./restaurant-rating";
+import { openclose } from "../decorators/openclose";
+import { Button } from "antd";
 
 class Restaurant extends PureComponent {
   render() {
-    const { image, name, menu, isMenuOpen } = this.props;
+    const {
+      image,
+      name,
+      menu,
+      isMenuOpen,
+      reviews,
+      isOpenItem,
+      openItem
+    } = this.props;
 
     return (
-      <div>
+      <div className="restaurant">
         <img src={image} width={64} height={64} alt={name} />
         <h3>{name}</h3>
-        <button onClick={this.handleToggleOpenClick}>
+        <p>
+          <RestaurantRating key={this.props.id} reviews={reviews} />
+        </p>
+        <Button type="primary" onClick={this.handleToggleOpenClick}>
           {isMenuOpen ? "Close menu" : "Open menu"}
-        </button>
+        </Button>
         {isMenuOpen ? <RestaurantMenu menu={menu} /> : null}
+
+        <RestaurantReviewsPanel
+          key={this.props.id}
+          reviews={reviews}
+          isReviewsOpen={isOpenItem}
+          openReviews={openItem}
+        />
       </div>
     );
   }
@@ -22,4 +44,4 @@ class Restaurant extends PureComponent {
   };
 }
 
-export default Restaurant;
+export default openclose(Restaurant);

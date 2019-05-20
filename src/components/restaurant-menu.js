@@ -1,12 +1,15 @@
 import React from "react";
 import Dish from "./dish";
+import { List } from "antd";
 
 function RestaurantMenu(props) {
   return (
     <div>
-      {props.menu.map(dish => (
-        <Dish key={dish.id} {...dish} />
-      ))}
+      <List>
+        {props.menu.map(dish => (
+          <Dish key={dish.id} {...dish} />
+        ))}
+      </List>
     </div>
   );
 }

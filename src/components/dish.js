@@ -1,17 +1,20 @@
 import React, { useState } from "react";
-import Button from "antd/lib/button";
+import { List, Button } from "antd";
 
 function Dish(props) {
-  const [amount, decrease, increase] = useCounter(0);
+  const [count, decrease, increase] = useCounter(0);
   return (
-    <div>
-      <span>{props.name}</span>
-      <span style={{ float: "right" }}>{props.price}</span>
-      <hr />
-      <span>{amount}</span>
-      <Button onClick={decrease} type="primary" shape="circle" icon="minus" />
-      <Button onClick={increase} type="primary" shape="circle" icon="plus" />
-    </div>
+    <List.Item>
+      <List.Item.Meta title={props.name} />
+      <div style={{ marginRight: "32px" }}>
+        <span style={{ fontSize: "20px" }}>{props.price} €</span>
+      </div>
+      <div>
+        <Button shape="circle" icon="minus" onClick={decrease} />
+        <span style={{ margin: "0 8px" }}>{count}</span>
+        <Button shape="circle" icon="plus" onClick={increase} />
+      </div>
+    </List.Item>
   );
 }
 

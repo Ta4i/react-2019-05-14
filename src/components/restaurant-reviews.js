@@ -4,7 +4,7 @@ function RestaurantReviews(props) {
   return (
     <ul>
       {props.reviews.map(review => (
-        <li>
+        <li key={review.id}>
           <b>{review.user}</b>
           <p>{review.text}</p>
           <span>Rating {review.rating}</span>

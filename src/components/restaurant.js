@@ -2,6 +2,7 @@ import React, { PureComponent } from "react";
 import RestaurantMenu from "./restaurant-menu";
 import VisitorReviews from "./visitor-reviews";
 import VisitorRating from "./visitor-rating";
+import { accordion } from "../decorators/accordion";
 
 class Restaurant extends PureComponent {
   render() {
@@ -24,17 +25,9 @@ class Restaurant extends PureComponent {
     );
   }
 
-  visitorsReviews = reviews => {
-    let reviewsText = "";
-    for (const review of reviews) {
-      reviewsText = reviewsText + review.text + "<br />";
-    }
-    return reviewsText;
-  };
-
   handleToggleOpenClick = () => {
     this.props.toggleOpenMenu(this.props.id);
   };
 }
 
-export default Restaurant;
+export default accordion(Restaurant);

@@ -6,8 +6,18 @@ import ReviewList from "./review-list";
 import { toggleVisibility } from "../decorators/toggleVisibility";
 
 class Restaurant extends PureComponent {
+  state = {
+    error: null
+  };
+  componentDidCatch(error) {
+    this.setState({
+      error
+    });
+  }
+
   render() {
     const {
+      id,
       image,
       name,
       menu,
@@ -17,7 +27,9 @@ class Restaurant extends PureComponent {
       toggleVisibility
     } = this.props;
 
-    return (
+    return this.state.error ? (
+      "Not available"
+    ) : (
       <>
         <List.Item
           style={{ paddingLeft: "8px" }}
@@ -26,7 +38,10 @@ class Restaurant extends PureComponent {
             <Button onClick={toggleVisibility}>
               {isReviewOpen ? "Hide reviews" : "Show reviews"}
             </Button>,
-            <Button onClick={this.handleToggleOpenClick}>
+            <Button
+              data-automation-id={`toggle-menu`}
+              onClick={this.handleToggleOpenClick}
+            >
               {isMenuOpen ? "Close menu" : "Open menu"}
             </Button>
           ]}

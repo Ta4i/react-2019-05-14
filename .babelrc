@@ -1,0 +1,22 @@
+{
+  "presets": [
+    [
+      "airbnb",
+      {
+        "useBuiltIns": "entry",
+        "modules": false,
+        "debug": true
+      }
+    ],
+    "jest",
+    "@babel/preset-env",
+    "@babel/preset-react"
+  ],
+  "ignore": [
+    "node_modules"
+  ],
+  "plugins": [
+    "@babel/plugin-proposal-private-methods",
+    "@babel/plugin-proposal-class-properties"
+  ]
+}

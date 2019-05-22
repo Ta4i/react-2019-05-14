@@ -4,6 +4,12 @@ import Restaurant from './restaurant';
 import accordion from '../decorators/accordion';
 
 class RestaurantList extends Component {
+  componentDidMount() {
+    if (this.props.fetchData) {
+      this.props.fetchData();
+    }
+  }
+
   render() {
     const {
       restaurants,
@@ -32,7 +38,8 @@ RestaurantList.propTypes = {
   restaurants: PropTypes.array,
   isOpened: PropTypes.bool,
   openItemId: PropTypes.any,
-  toggleOpenItem: PropTypes.func
+  toggleOpenItem: PropTypes.func,
+  fetchData: PropTypes.func
 };
 
 export default accordion(RestaurantList);

@@ -14,11 +14,11 @@ class Restaurant extends PureComponent {
   #defaultRateCount = 5;
 
   state = {
-    defaultTabKey: 'Menu'
+    defaultActiveKey: 'menu'
   };
 
   render() {
-    const { defaultTabKey } = this.state;
+    const { defaultActiveKey } = this.state;
     const { image, name, menu, reviews, isMenuOpen, isToggle } = this.props;
 
     return (
@@ -36,8 +36,8 @@ class Restaurant extends PureComponent {
             />
           }
         />
-        <Tabs defaultActiveKey={defaultTabKey} size="small" onTabClick={this.handleTabClick}>
-          <TabPane tab="Menu" key="menu">
+        <Tabs defaultActiveKey={defaultActiveKey} size="small" onTabClick={this.handleTabClick}>
+          <TabPane data-automation-id="menu-tab" tab="Menu" key="menu">
             {isMenuOpen ? <RestaurantMenu menu={menu} /> : null}
           </TabPane>
           <TabPane

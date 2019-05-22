@@ -1,4 +1,5 @@
 import React from "react";
+import PropTypes from "prop-types";
 import Dish from "./dish";
 import { Row, Col } from "antd";
 
@@ -15,5 +16,9 @@ function RestaurantMenu(props) {
     </div>
   );
 }
+
+RestaurantMenu.propTypes = {
+  menu: PropTypes.arrayOf(PropTypes.object)
+};
 
 export default RestaurantMenu;

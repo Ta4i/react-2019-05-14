@@ -1,12 +1,13 @@
 import React from "react";
 import Dish from "./dish";
 import { Row, Col } from "antd";
+import { PropTypes } from "prop-types";
 
-function RestaurantMenu(props) {
+function RestaurantMenu({ menu }) {
   return (
     <div data-automation-id="menu" style={{ padding: "16px" }}>
       <Row gutter={16}>
-        {props.menu.map(dish => (
+        {menu.map(dish => (
           <Col key={dish.id} span={8}>
             <Dish {...dish} />
           </Col>
@@ -15,5 +16,13 @@ function RestaurantMenu(props) {
     </div>
   );
 }
+
+RestaurantMenu.propTypes = {
+  menu: PropTypes.arrayOf(
+    PropTypes.shape({
+      id: PropTypes.string.isRequired
+    })
+  ).isRequired
+};
 
 export default RestaurantMenu;

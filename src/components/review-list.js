@@ -1,6 +1,7 @@
 import React from "react";
 import { List } from "antd";
 import Review from "./review";
+import { PropTypes } from "prop-types";
 
 function ReviewList({ reviews }) {
   return (
@@ -11,5 +12,13 @@ function ReviewList({ reviews }) {
     </List>
   );
 }
+
+ReviewList.propTypes = {
+  reviews: PropTypes.arrayOf(
+    PropTypes.shape({
+      id: PropTypes.object.isRequired
+    })
+  ).isRequired
+};
 
 export default ReviewList;

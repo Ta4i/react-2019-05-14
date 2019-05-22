@@ -4,11 +4,28 @@ import { List, Avatar, Button } from "antd";
 import AverageRating from "./average-rating";
 import ReviewList from "./review-list";
 import { toggleVisibility } from "../decorators/toggleVisibility";
+import { PropTypes } from "prop-types";
 
 class Restaurant extends PureComponent {
+  static propTypes = {
+    name: PropTypes.string.isRequired,
+    image: PropTypes.string.isRequired,
+    menu: PropTypes.array.isRequired,
+    reviews: PropTypes.array.isRequired,
+    isMenuOpen: PropTypes.bool,
+    isOpen: PropTypes.bool,
+    toggleVisibility: PropTypes.func.isRequired
+  };
+
+  static defaults = {
+    isMenuOpen: false,
+    isOpen: false
+  };
+
   state = {
     error: null
   };
+
   componentDidCatch(error) {
     this.setState({
       error
@@ -17,9 +34,8 @@ class Restaurant extends PureComponent {
 
   render() {
     const {
-      id,
-      image,
       name,
+      image,
       menu,
       reviews,
       isMenuOpen,

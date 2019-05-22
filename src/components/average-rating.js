@@ -3,8 +3,12 @@ import { Rate } from "antd";
 import PropTypes from "prop-types";
 
 class AverageRating extends PureComponent {
-  state = {
-    value: 0
+  static propTypes = {
+    reviews: PropTypes.arrayOf(
+      PropTypes.shape({
+        rating: PropTypes.number.isRequired
+      })
+    ).isRequired
   };
 
   render() {
@@ -18,9 +22,5 @@ class AverageRating extends PureComponent {
     return <Rate defaultValue={normalizedRating} disabled />;
   }
 }
-
-AverageRating.propTypes = {
-  reviews: PropTypes.arrayOf(PropTypes.object).isRequired
-};
 
 export default AverageRating;

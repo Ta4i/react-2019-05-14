@@ -1,6 +1,7 @@
 import React from "react";
 import Dish from "./dish";
 import { Row, Col } from "antd";
+import PropTypes from "prop-types";
 
 function RestaurantMenu(props) {
   return (
@@ -15,5 +16,16 @@ function RestaurantMenu(props) {
     </div>
   );
 }
+
+RestaurantMenu.propTypes = {
+  menu: PropTypes.arrayOf(
+    PropTypes.shape({
+      id: PropTypes.string,
+      name: PropTypes.string,
+      price: PropTypes.number,
+      ingredients: PropTypes.arrayOf(PropTypes.string)
+    })
+  ).isRequired
+};
 
 export default RestaurantMenu;

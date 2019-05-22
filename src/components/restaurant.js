@@ -4,6 +4,7 @@ import { List, Avatar, Button } from "antd";
 import AverageRating from "./average-rating";
 import ReviewList from "./review-list";
 import { toggleVisibility } from "../decorators/toggleVisibility";
+import PropTypes from "prop-types";
 
 class Restaurant extends PureComponent {
   state = {
@@ -17,7 +18,6 @@ class Restaurant extends PureComponent {
 
   render() {
     const {
-      id,
       image,
       name,
       menu,
@@ -61,5 +61,31 @@ class Restaurant extends PureComponent {
     this.props.toggleOpenMenu(this.props.id);
   };
 }
+
+Restaurant.propTypes = {
+  id: PropTypes.string,
+  name: PropTypes.string,
+  location: PropTypes.shape({
+    lat: PropTypes.number,
+    lng: PropTypes.number
+  }),
+  image: PropTypes.string,
+  menu: PropTypes.arrayOf(
+    PropTypes.shape({
+      id: PropTypes.string,
+      name: PropTypes.string,
+      price: PropTypes.number,
+      ingredients: PropTypes.arrayOf(PropTypes.string)
+    })
+  ).isRequired,
+  reviews: PropTypes.arrayOf(
+    PropTypes.shape({
+      id: PropTypes.string,
+      user: PropTypes.string,
+      text: PropTypes.string,
+      rating: PropTypes.number
+    })
+  ).isRequired
+};
 
 export default toggleVisibility(Restaurant);

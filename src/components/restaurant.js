@@ -3,24 +3,9 @@ import RestaurantMenu from "./restaurant-menu";
 import Rate from "antd/lib/rate";
 import RestaurantReviews from "./restaurant-reviews";
 import { opener } from "../decorators/opener";
-import memoize from "../decorators/memoize-one";
-
-//import Rating from "./rating";
+import { ratingCalculate } from "../decorators/cashing-one";
 
 class Restaurant extends PureComponent {
-  rating = memoize(reviews => {
-    let averageRate = reviews.length
-      ? reviews.reduce((average, current) => {
-          return average + current.rating / reviews.length;
-        }, 0)
-      : 0;
-    const value =
-      (averageRate ^ 0) === averageRate ? averageRate : (averageRate ^ 0) + 0.5;
-    averageRate =
-      (averageRate ^ 0) === averageRate ? averageRate : averageRate.toFixed(1);
-    console.log("new calculate");
-    return { averageRate, value };
-  });
   render() {
     const {
       image,
@@ -32,7 +17,8 @@ class Restaurant extends PureComponent {
       toggleOpenList
     } = this.props;
 
-    const { averageRate, value } = this.rating(reviews);
+    const ratings = reviews.map(review => review.rating);
+    const { averageRate, value } = ratingCalculate(name, ratings);
 
     return (
       <div>
@@ -44,7 +30,6 @@ class Restaurant extends PureComponent {
         {isMenuOpen ? <RestaurantMenu menu={menu} /> : null}
         <div>
           <Rate allowHalf value={value} disabled />
-          {/* <Rating reviews={reviews} /> */}
           <span>{averageRate}</span>
         </div>
         <button onClick={toggleOpenList}>

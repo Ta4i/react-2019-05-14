@@ -65,9 +65,10 @@ class Restaurant extends PureComponent {
   }
 
   getRate = reviews => {
-    return reviews.length
+    const rate = reviews.length
       ? reviews.reduce((sum, item) => sum + item.rating, 0) / reviews.length
       : 0;
+    return Math.floor(rate) === rate ? rate : Math.floor(rate) + 0.5;
   };
 
   handleTabClick = key => {

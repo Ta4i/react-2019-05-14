@@ -1,5 +1,6 @@
 import React from "react";
 import { Comment, Rate } from "antd";
+import PropTypes, { object } from "prop-types";
 
 function Review({ review }) {
   return (
@@ -20,5 +21,9 @@ function Review({ review }) {
     />
   );
 }
+
+Review.propTypes = {
+  review: PropTypes.instanceOf(Review)
+};
 
 export default Review;

@@ -1,9 +1,10 @@
 import React, { PureComponent } from "react";
 import RestaurantMenu from "./restaurant-menu";
-import { List, Avatar, Button } from "antd";
+import { List, Avatar, Button, Menu } from "antd";
 import AverageRating from "./average-rating";
 import ReviewList from "./review-list";
 import { toggleVisibility } from "../decorators/toggleVisibility";
+import PropTypes from "prop-types";
 
 class Restaurant extends PureComponent {
   state = {
@@ -61,5 +62,14 @@ class Restaurant extends PureComponent {
     this.props.toggleOpenMenu(this.props.id);
   };
 }
+
+Restaurant.propTypes = {
+  name: PropTypes.string.isRequired,
+  menu: PropTypes.array,
+  reviews: PropTypes.array,
+  isMenuOpen: PropTypes.bool,
+  isOpen: PropTypes.bool,
+  toggleOpenMenu: PropTypes.func
+};
 
 export default toggleVisibility(Restaurant);

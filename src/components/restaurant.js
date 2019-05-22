@@ -1,4 +1,4 @@
-import React, { PureComponent } from 'react';
+import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { ChickenLegIcon } from './chicken-leg';
 import { Card, Rate, Avatar, Tabs, Badge } from 'antd';
@@ -9,7 +9,7 @@ import toggle from '../decorators/toggle';
 const { Meta } = Card;
 const { TabPane } = Tabs;
 
-class Restaurant extends PureComponent {
+class Restaurant extends Component {
   /* private */
   #defaultRateCount = 5;
 
@@ -19,7 +19,7 @@ class Restaurant extends PureComponent {
 
   render() {
     const { defaultActiveKey } = this.state;
-    const { image, name, menu, reviews, isMenuOpen, isToggle } = this.props;
+    const { image, name, menu, reviews, isMenuOpen, isToggle: isReviewsToggle } = this.props;
 
     return (
       <Card size="small">
@@ -37,7 +37,7 @@ class Restaurant extends PureComponent {
           }
         />
         <Tabs defaultActiveKey={defaultActiveKey} size="small" onTabClick={this.handleTabClick}>
-          <TabPane data-automation-id="menu-tab" tab="Menu" key="menu">
+          <TabPane tab="Menu" key="menu">
             {isMenuOpen ? <RestaurantMenu menu={menu} /> : null}
           </TabPane>
           <TabPane
@@ -57,7 +57,7 @@ class Restaurant extends PureComponent {
             }
             key="reviews"
           >
-            {isToggle ? <ReviewList reviews={reviews} /> : null}
+            {isReviewsToggle ? <ReviewList reviews={reviews} /> : null}
           </TabPane>
         </Tabs>
       </Card>
@@ -74,19 +74,29 @@ class Restaurant extends PureComponent {
   handleTabClick = key => {
     switch (key) {
       case 'menu': {
-        this.handleToggleOpenClick();
+        this.handleOpenMenu();
+        if (this.props.isToggle) {
+          this.handleToggleReviews();
+        }
         break;
       }
       case 'reviews': {
-        this.props.handleToggleItem();
+        this.handleToggleReviews();
+        if (this.props.isMenuOpen) {
+          this.handleOpenMenu();
+        }
         break;
       }
       default:
     }
   };
 
-  handleToggleOpenClick = () => {
+  handleOpenMenu = () => {
     this.props.toggleOpenMenu(this.props.id);
+  };
+
+  handleToggleReviews = () => {
+    this.props.handleToggleItem();
   };
 }
 

@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Button, InputNumber, Form, Row, Col } from 'antd';
+import { Button, InputNumber, Row, Col } from 'antd';
 import PropTypes from 'prop-types';
 
 const ButtonGroup = Button.Group;

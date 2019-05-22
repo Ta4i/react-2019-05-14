@@ -39,7 +39,7 @@ function Dish(props) {
 Dish.propTypes = {
   price: PropTypes.number.isRequired,
   name: PropTypes.string.isRequired,
-  ingredients: PropTypes.arrayOf(PropTypes.object).isRequired
+  ingredients: PropTypes.array.isRequired
 };
 
 function useCounter(initialValue) {

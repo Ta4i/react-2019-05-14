@@ -5,7 +5,7 @@ import { PropTypes } from "prop-types";
 
 function RestaurantMenu({ menu }) {
   return (
-    <div data-automation-id="menu" style={{ padding: "16px" }}>
+    <div data-aid="menu" style={{ padding: "16px" }}>
       <Row gutter={16}>
         {menu.map(dish => (
           <Col key={dish.id} span={8}>

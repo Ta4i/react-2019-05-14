@@ -16,7 +16,7 @@ function ReviewList({ reviews }) {
 ReviewList.propTypes = {
   reviews: PropTypes.arrayOf(
     PropTypes.shape({
-      id: PropTypes.object.isRequired
+      id: PropTypes.any.isRequired
     })
   ).isRequired
 };

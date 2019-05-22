@@ -3,17 +3,40 @@ import RestaurantMenu from "./restaurant-menu";
 import RateList from "./rate-list";
 import RatingSystem from "./rate";
 import { Layout, Icon, Button } from "antd";
+import { accordionReviews } from "../decorators/toggle-reviews";
 const { Content } = Layout;
 
 class Restaurant extends PureComponent {
-  render() {
-    const { image, name, menu, reviews, isMenuOpen, isReviewOpen } = this.props;
+  state = {
+    error: null
+  };
 
-    let restarauntRate = reviews.reduce((sum, current) => {
+  componentDidCatch(error) {
+    console.error(error);
+    this.setState({
+      error
+    });
+  }
+  render() {
+    const {
+      image,
+      name,
+      menu,
+      reviews,
+      isMenuOpen,
+      // isReviewOpen,
+
+      openReviewId: isReviewOpen,
+      toggleReviewItem
+    } = this.props;
+
+    const restarauntRate = reviews.reduce((sum, current) => {
       return sum + current.rating / reviews.length;
     }, 0);
 
-    return (
+    return this.state.error ? (
+      "not available"
+    ) : (
       <div>
         <Layout className="restaurant-layout">
           <Content className="restaurant-list">
@@ -28,7 +51,10 @@ class Restaurant extends PureComponent {
 
             <div className="buttons">
               <div className="button-menu">
-                <Button onClick={this.handleToggleOpenClick}>
+                <Button
+                  onClick={this.handleToggleOpenClick}
+                  data-automation-id={`toggle-menu`}
+                >
                   {isMenuOpen ? "Close menu" : "Open menu"}
                   <Icon
                     className="icon-menu"
@@ -40,7 +66,10 @@ class Restaurant extends PureComponent {
               </div>
               {/*  reviews button */}
               <div className="button-review">
-                <Button onClick={this.handleToggleReviewsClick}>
+                <Button
+                  onClick={toggleReviewItem}
+                  data-automation-id={`toggle-review`}
+                >
                   {isReviewOpen ? "Close reviews" : "Open reviews"}
                   <Icon type={isReviewOpen ? "caret-up" : "caret-down"} />
                 </Button>
@@ -56,10 +85,10 @@ class Restaurant extends PureComponent {
   handleToggleOpenClick = () => {
     this.props.toggleOpenMenu(this.props.id);
   };
-
-  handleToggleReviewsClick = () => {
-    this.props.toggleReviewOpen(this.props.id);
-  };
 }
+//   handleToggleReviewsClick = () => {
+//     this.props.toggleReviewOpen(this.props.id);
+//   };
+// }
 
-export default Restaurant;
+export default accordionReviews(Restaurant);

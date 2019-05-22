@@ -1,27 +1,32 @@
-import React from "react";
+import React, { Component } from "react";
 import RestaurantReview from "./restaraunt-review";
+import PropTypes from "prop-types";
+class RateList extends Component {
+  state = {
+    error: null
+  };
+  render() {
+    const { reviews } = this.props;
 
-function RateList({ reviews }) {
-  if (!reviews || reviews.length <= 0) {
-    return (
-      <div>
-        <p>There is no review for this restaurant yet.</p>
+    return this.state.error ? (
+      "not available"
+    ) : (
+      <div data-automation-id={`review`}>
+        {reviews.map(value => (
+          <RestaurantReview
+            key={value.id}
+            authorName={value.user}
+            text={value.text}
+            rating={value.rating}
+          />
+        ))}
       </div>
     );
   }
-
-  return (
-    <div>
-      {reviews.map(r => (
-        <RestaurantReview
-          key={r.id}
-          authorName={r.user}
-          text={r.text}
-          rating={r.rating}
-        />
-      ))}
-    </div>
-  );
 }
+
+RateList.propTypes = {
+  reviews: PropTypes.array.isRequired
+};
 
 export default RateList;

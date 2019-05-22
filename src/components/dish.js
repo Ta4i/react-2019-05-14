@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import Button from "antd/lib/button";
+import PropTypes from "prop-types";
 
 function Dish(props) {
   const [amount, decrease, increase] = useCounter(0);
@@ -43,4 +44,8 @@ function useCounter(initialValue) {
   ];
 }
 
+Dish.propTypes = {
+  name: PropTypes.string,
+  price: PropTypes.number
+};
 export default Dish;

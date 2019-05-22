@@ -4,7 +4,6 @@ import RestaurantList from "./components/restaurant-list";
 import UserForm from "./components/user-form";
 import Footer from "./components/footer";
 import RestaurantsMap from "./components/restaurants-map";
-
 function App(props) {
   return (
     <div className="App">

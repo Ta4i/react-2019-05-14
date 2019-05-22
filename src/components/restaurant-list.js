@@ -1,10 +1,14 @@
 import React, { Component } from "react";
 import Restaurant from "./restaurant";
 import { accordion } from "../decorators/accordion-menu";
-import { accordionReviews } from "../decorators/toggle-reviews";
+// import { accordionReviews } from "../decorators/toggle-reviews";
 import { Layout } from "antd";
 
 class RestaurantList extends Component {
+  componentDidMount() {
+    this.props.fetchData && this.props.fetchData();
+  }
+
   render() {
     const {
       restaurants,
@@ -41,4 +45,4 @@ class RestaurantList extends Component {
   }
 }
 
-export default accordionReviews(accordion(RestaurantList));
+export default accordion(RestaurantList);

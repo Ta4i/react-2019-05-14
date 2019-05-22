@@ -16,11 +16,11 @@ const accordionReviews = OriginalComponent =>
       );
     }
 
-    toggleReviewItem = id => {
-      const toggle = id === this.state.openReviewId ? null : id;
+    toggleReviewItem = () => {
+      // const toggle = id === this.state.openReviewId ? null : id;
 
       this.setState({
-        openReviewId: toggle
+        openReviewId: !this.state.openReviewId
       });
     };
   };

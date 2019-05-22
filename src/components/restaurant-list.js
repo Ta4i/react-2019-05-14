@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import Restaurant from "./restaurant";
 import { accordion } from "../decorators/accordion";
 import { List } from "antd";
+import PropTypes from "prop-types";
 
 class RestaurantList extends Component {
   componentDidMount() {
@@ -30,5 +31,35 @@ class RestaurantList extends Component {
     );
   }
 }
+
+RestaurantList.propTypes = {
+  restaurants: PropTypes.arrayOf(
+    PropTypes.shape({
+      id: PropTypes.string,
+      name: PropTypes.string,
+      location: PropTypes.shape({
+        lat: PropTypes.number,
+        lng: PropTypes.number
+      }),
+      image: PropTypes.string,
+      menu: PropTypes.arrayOf(
+        PropTypes.shape({
+          id: PropTypes.string,
+          name: PropTypes.string,
+          price: PropTypes.number,
+          ingredients: PropTypes.arrayOf(PropTypes.string)
+        })
+      ),
+      reviews: PropTypes.arrayOf(
+        PropTypes.shape({
+          id: PropTypes.string,
+          user: PropTypes.string,
+          text: PropTypes.string,
+          rating: PropTypes.number
+        })
+      )
+    })
+  )
+};
 
 export default accordion(RestaurantList);

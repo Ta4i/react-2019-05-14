@@ -1,9 +1,11 @@
 import React from "react";
 import { Comment, Rate } from "antd";
+import PropTypes from "prop-types";
 
 function Review({ review }) {
   return (
     <Comment
+      data-automation-id="review"
       style={{
         margin: "16px",
         backgroundColor: "white"
@@ -20,5 +22,12 @@ function Review({ review }) {
     />
   );
 }
+
+Review.propTypes = {
+  id: PropTypes.string,
+  user: PropTypes.string,
+  text: PropTypes.string,
+  rating: PropTypes.number
+};
 
 export default Review;

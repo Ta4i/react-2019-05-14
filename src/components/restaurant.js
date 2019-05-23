@@ -4,8 +4,17 @@ import { List, Avatar, Button } from "antd";
 import AverageRating from "./average-rating";
 import ReviewList from "./review-list";
 import { toggleVisibility } from "../decorators/toggleVisibility";
+import PropTypes from "prop-types";
 
 class Restaurant extends PureComponent {
+  static propTypes = {
+    id: PropTypes.string,
+    image: PropTypes.string,
+    name: PropTypes.string,
+    menu: PropTypes.arrayOf(PropTypes.object),
+    reviews: PropTypes.arrayOf(PropTypes.object)
+  };
+
   state = {
     error: null
   };
@@ -17,7 +26,6 @@ class Restaurant extends PureComponent {
 
   render() {
     const {
-      id,
       image,
       name,
       menu,

@@ -2,8 +2,13 @@ import React, { Component } from "react";
 import Restaurant from "./restaurant";
 import { accordion } from "../decorators/accordion";
 import { List } from "antd";
+import PropTypes from "prop-types";
 
 class RestaurantList extends Component {
+  static propTypes = {
+    restaurants: PropTypes.arrayOf(PropTypes.object).isRequired
+  };
+
   componentDidMount() {
     this.props.fetchData && this.props.fetchData();
   }

@@ -1,4 +1,5 @@
 import React, { PureComponent } from "react";
+import PropTypes from "prop-types";
 import RestaurantMenu from "./restaurant-menu";
 import { List, Avatar, Button } from "antd";
 import AverageRating from "./average-rating";
@@ -35,7 +36,10 @@ class Restaurant extends PureComponent {
           style={{ paddingLeft: "8px" }}
           actions={[
             <AverageRating reviews={reviews} />,
-            <Button onClick={toggleVisibility}>
+            <Button
+              data-automation-id={`toggle-review-${id}`}
+              onClick={toggleVisibility}
+            >
               {isReviewOpen ? "Hide reviews" : "Show reviews"}
             </Button>,
             <Button
@@ -51,7 +55,7 @@ class Restaurant extends PureComponent {
             title={name}
           />
         </List.Item>
-        {isReviewOpen ? <ReviewList reviews={reviews} /> : null}
+        {isReviewOpen ? <ReviewList id={id} reviews={reviews} /> : null}
         {isMenuOpen ? <RestaurantMenu menu={menu} /> : null}
       </>
     );
@@ -61,5 +65,35 @@ class Restaurant extends PureComponent {
     this.props.toggleOpenMenu(this.props.id);
   };
 }
+
+Restaurant.propTypes = {
+  restaurants: PropTypes.arrayOf(
+    PropTypes.shape({
+      id: PropTypes.string,
+      name: PropTypes.string,
+      location: PropTypes.shape({
+        lat: PropTypes.number,
+        lng: PropTypes.number
+      }),
+      image: PropTypes.string,
+      menu: PropTypes.arrayOf(
+        PropTypes.shape({
+          id: PropTypes.string,
+          name: PropTypes.string,
+          price: PropTypes.number,
+          ingredients: PropTypes.arrayOf(PropTypes.string)
+        })
+      ).isRequired,
+      reviews: PropTypes.arrayOf(
+        PropTypes.shape({
+          id: PropTypes.string,
+          user: PropTypes.string,
+          text: PropTypes.string,
+          rating: PropTypes.number
+        })
+      ).isRequired
+    })
+  ).isRequired
+};
 
 export default toggleVisibility(Restaurant);

@@ -1,4 +1,5 @@
 import React from "react";
+import PropTypes from "prop-types";
 import "./App.css";
 import RestaurantList from "./components/restaurant-list";
 import UserForm from "./components/user-form";
@@ -19,5 +20,9 @@ function App(props) {
     </Layout>
   );
 }
+
+App.propTypes = {
+  restaurants: PropTypes.arrayOf(PropTypes.object).isRequired
+};
 
 export default App;

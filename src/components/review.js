@@ -5,7 +5,6 @@ import { PropTypes } from "prop-types";
 function Review({ review }) {
   return (
     <Comment
-      data-aid={`review-${review.id}`}
       style={{
         margin: "16px",
         backgroundColor: "white"

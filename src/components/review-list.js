@@ -7,7 +7,11 @@ function ReviewList({ reviews }) {
   return (
     <List>
       {reviews.map(review => (
-        <Review key={review.id} review={review} />
+        <Review
+          data-aid={`review-${review.id}`}
+          key={review.id}
+          review={review}
+        />
       ))}
     </List>
   );

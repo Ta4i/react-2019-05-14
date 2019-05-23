@@ -4,6 +4,8 @@ import RestaurantList from "./components/restaurant-list";
 import UserForm from "./components/user-form";
 import RestaurantsMap from "./components/restaurants-map";
 import { Layout } from "antd";
+import PropTypes from "prop-types";
+
 const { Header, Content } = Layout;
 
 function App(props) {
@@ -19,5 +21,9 @@ function App(props) {
     </Layout>
   );
 }
+
+App.propTypes = {
+  restaurants: PropTypes.arrayOf(PropTypes.object)
+};
 
 export default App;

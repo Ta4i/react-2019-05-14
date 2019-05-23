@@ -1,7 +1,12 @@
 import React, { Component } from "react";
 import Leaflet from "leaflet";
+import PropTypes from "prop-types";
 
 class RestaurantsMap extends Component {
+  static propTypes = {
+    restaurants: PropTypes.arrayOf(PropTypes.object).isRequired
+  };
+
   render() {
     return <div ref={this.setEl} className="map" />;
   }

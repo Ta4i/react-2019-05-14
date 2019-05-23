@@ -4,8 +4,17 @@ import { List, Avatar, Button } from "antd";
 import AverageRating from "./average-rating";
 import ReviewList from "./review-list";
 import { toggleVisibility } from "../decorators/toggleVisibility";
+import PropTypes from "prop-types";
 
 class Restaurant extends PureComponent {
+  static propTypes = {
+    id: PropTypes.string,
+    image: PropTypes.string,
+    name: PropTypes.string,
+    menu: PropTypes.arrayOf(PropTypes.object),
+    reviews: PropTypes.arrayOf(PropTypes.object)
+  };
+
   state = {
     error: null
   };
@@ -35,7 +44,10 @@ class Restaurant extends PureComponent {
           style={{ paddingLeft: "8px" }}
           actions={[
             <AverageRating reviews={reviews} />,
-            <Button onClick={toggleVisibility}>
+            <Button
+              data-automation-id={`toggle-review-${id}`}
+              onClick={toggleVisibility}
+            >
               {isReviewOpen ? "Hide reviews" : "Show reviews"}
             </Button>,
             <Button
@@ -51,7 +63,7 @@ class Restaurant extends PureComponent {
             title={name}
           />
         </List.Item>
-        {isReviewOpen ? <ReviewList reviews={reviews} /> : null}
+        {isReviewOpen ? <ReviewList reviews={reviews} id={id} /> : null}
         {isMenuOpen ? <RestaurantMenu menu={menu} /> : null}
       </>
     );

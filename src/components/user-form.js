@@ -1,7 +1,14 @@
 import React, { Component } from "react";
 import { Form, Input, Button } from "antd";
+import PropTypes from "prop-types";
 
 class UserForm extends Component {
+  static propTypes = {
+    name: PropTypes.string,
+    phone: PropTypes.string,
+    address: PropTypes.string
+  };
+
   state = {
     name: "",
     phone: "",

@@ -10,7 +10,9 @@ function Dish(props) {
       actions={[
         `£${props.price}`,
         <>
-          <span style={{ margin: "0 12px" }}>{amount}</span>
+          <span style={{ margin: "0 12px" }} data-automation-id="dish-amount">
+            {amount}
+          </span>
           <Button.Group>
             <Button
               onClick={decrease}
@@ -44,6 +46,10 @@ function useCounter(initialValue) {
     () => setAmount(value + 1)
   ];
 }
+
+Dish.defaultProps = {
+  ingredients: []
+};
 
 Dish.propTypes = {
   id: PropTypes.string,

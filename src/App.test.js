@@ -5,6 +5,7 @@ import { restaurants } from "./fixtures";
 import { mount, configure } from "enzyme";
 import Adapter from "enzyme-adapter-react-16";
 import RestaurantList from "./components/restaurant-list";
+import Dish from "./components/dish";
 
 configure({ adapter: new Adapter() });
 
@@ -28,5 +29,14 @@ describe("when show RestaurantList", () => {
     const wrapper = mount(
       <RestaurantList restaurants={restaurants} fetchData={fetchData} />
     );
+  });
+});
+
+describe("when load Dish", () => {
+  it("component Dish loads with initial state of 0", () => {
+    const wrapper = mount(<Dish />);
+    const dishAmount = wrapper.find('[data-automation-id="dish-amount"]').at(0);
+
+    expect(dishAmount.text()).toEqual("0");
   });
 });

@@ -1,65 +1,61 @@
 import React, { PureComponent } from "react";
+import { Card, Button, Rate } from "antd";
 import RestaurantMenu from "./restaurant-menu";
-import { List, Avatar, Button } from "antd";
-import AverageRating from "./average-rating";
-import ReviewList from "./review-list";
-import { toggleVisibility } from "../decorators/toggleVisibility";
+import RestaurantReviewsList from "./restaurant-reviews-list";
+import PropTypes from "prop-types";
 
 class Restaurant extends PureComponent {
-  state = {
-    error: null
-  };
-  componentDidCatch(error) {
-    this.setState({
-      error
-    });
-  }
-
   render() {
-    const {
-      id,
-      image,
-      name,
-      menu,
-      reviews,
-      isMenuOpen,
-      isOpen: isReviewOpen,
-      toggleVisibility
-    } = this.props;
+    const { image, name, menu, isMenuOpen, reviews, id } = this.props;
 
-    return this.state.error ? (
-      "Not available"
-    ) : (
-      <>
-        <List.Item
-          style={{ paddingLeft: "8px" }}
-          actions={[
-            <AverageRating reviews={reviews} />,
-            <Button onClick={toggleVisibility}>
-              {isReviewOpen ? "Hide reviews" : "Show reviews"}
-            </Button>,
-            <Button
-              data-automation-id={`toggle-menu`}
-              onClick={this.handleToggleOpenClick}
-            >
-              {isMenuOpen ? "Close menu" : "Open menu"}
-            </Button>
-          ]}
-        >
-          <List.Item.Meta
-            avatar={<Avatar shape="square" src={image} />}
-            title={name}
-          />
-        </List.Item>
-        {isReviewOpen ? <ReviewList reviews={reviews} /> : null}
-        {isMenuOpen ? <RestaurantMenu menu={menu} /> : null}
-      </>
+    const { handleToggleOpenClick, getAverageRating } = this;
+
+    return (
+      <Card>
+        <img src={image} width={64} height={64} alt={name} />
+        <h3>{name}</h3>
+        <div>
+          <span style={{ marginRight: "10px" }}>Average rating:</span>
+          <Rate allowHalf disabled defaultValue={getAverageRating()} />
+        </div>
+        <RestaurantReviewsList reviews={reviews} id={id} />
+        <div style={{ marginTop: "20px" }}>
+          <Button
+            type={isMenuOpen ? "primary" : null}
+            onClick={handleToggleOpenClick}
+          >
+            {isMenuOpen ? "Close menu" : "Open menu"}
+          </Button>
+          {isMenuOpen ? <RestaurantMenu menu={menu} /> : null}
+        </div>
+      </Card>
     );
   }
 
   handleToggleOpenClick = () => {
     this.props.toggleOpenMenu(this.props.id);
   };
+
+  getAverageRating = () => {
+    const { reviews } = this.props;
+
+    if (!reviews && !reviews.length) {
+      return 0;
+    }
+
+    const reviewsSum = reviews.reduce((sum, review) => sum + review.rating, 0);
+    const rating = reviewsSum / reviews.length;
+    return Math.round(rating * 2) / 2;
+  };
 }
 
-export default toggleVisibility(Restaurant);
+Restaurant.propTypes = {
+  image: PropTypes.string,
+  menu: PropTypes.array,
+  isMenuOpen: PropTypes.bool,
+  reviews: PropTypes.array,
+  id: PropTypes.string,
+  name: PropTypes.string
+};
+
+export default Restaurant;

@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Form, Input, Button } from "antd";
+import { Form, Input, Icon, Col, Row, Button } from "antd";
 
 class UserForm extends Component {
   state = {
@@ -10,34 +10,45 @@ class UserForm extends Component {
   render() {
     const { name, phone, address } = this.state;
     return (
-      <Form style={{ marginTop: "24px" }}>
-        <Form.Item
-          label="Name"
-          labelCol={{ span: 4 }}
-          wrapperCol={{ span: 14 }}
-        >
-          <Input value={name} onChange={this.handleNameChange} />
-        </Form.Item>
-        <Form.Item
-          label="Phone Number"
-          labelCol={{ span: 4 }}
-          wrapperCol={{ span: 14 }}
-        >
-          <Input value={phone} onChange={this.handlePhoneChange} />
-        </Form.Item>
-        <Form.Item
-          label="Address"
-          labelCol={{ span: 4 }}
-          wrapperCol={{ span: 14 }}
-        >
-          <Input.TextArea value={address} onChange={this.handleAddressChange} />
-        </Form.Item>
-        <Form.Item style={{ textAlign: "center" }}>
-          <Button type="primary" htmlType="submit" onClick={this.submit}>
-            Send order
-          </Button>
-        </Form.Item>
-      </Form>
+      <Row gutter={24} style={{ marginTop: "20px" }}>
+        <Col span={6}>
+          <Form>
+            <Input
+              style={{ marginTop: "10px" }}
+              prefix={<Icon type="user" style={{ color: "rgba(0,0,0,.25)" }} />}
+              placeholder="Name"
+              value={name}
+              onChange={this.handleNameChange}
+            />
+            <br />
+            <Input
+              style={{ marginTop: "10px" }}
+              prefix={
+                <Icon type="phone" style={{ color: "rgba(0,0,0,.25)" }} />
+              }
+              placeholder="Phone Number"
+              value={phone}
+              onChange={this.handlePhoneChange}
+            />
+            <br />
+            <Input.TextArea
+              style={{ marginTop: "10px" }}
+              placeholder="Address"
+              value={address}
+              onChange={this.handleAddressChange}
+            />
+            <br />
+            <Button
+              type="primary"
+              htmlType="submit"
+              onClick={this.submit}
+              style={{ marginTop: "10px" }}
+            >
+              Send order
+            </Button>
+          </Form>
+        </Col>
+      </Row>
     );
   }
 

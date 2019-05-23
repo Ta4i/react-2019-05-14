@@ -1,9 +1,12 @@
 import React, { Component } from "react";
 import Leaflet from "leaflet";
+import PropTypes from "prop-types";
 
 class RestaurantsMap extends Component {
   render() {
-    return <div ref={this.setEl} className="map" />;
+    return (
+      <div style={{ marginTop: "20px" }} ref={this.setEl} className="map" />
+    );
   }
   setEl = ref => {
     this.div = ref;
@@ -24,5 +27,9 @@ class RestaurantsMap extends Component {
     });
   }
 }
+
+RestaurantsMap.propTypes = {
+  restaurants: PropTypes.array
+};
 
 export default RestaurantsMap;

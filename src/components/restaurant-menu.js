@@ -1,19 +1,22 @@
 import React from "react";
 import Dish from "./dish";
-import { Row, Col } from "antd";
+import { List } from "antd";
+import PropTypes from "prop-types";
 
 function RestaurantMenu(props) {
   return (
-    <div data-automation-id="menu" style={{ padding: "16px" }}>
-      <Row gutter={16}>
-        {props.menu.map(dish => (
-          <Col key={dish.id} span={8}>
-            <Dish {...dish} />
-          </Col>
-        ))}
-      </Row>
-    </div>
+    <List
+      style={{ marginTop: "20px" }}
+      bordered
+      itemLayout="horizontal"
+      dataSource={props.menu}
+      renderItem={dish => <Dish {...dish} />}
+    />
   );
 }
+
+RestaurantMenu.propTypes = {
+  menu: PropTypes.object
+};
 
 export default RestaurantMenu;

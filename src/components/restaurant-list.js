@@ -33,7 +33,7 @@ class RestaurantList extends Component {
 
 RestaurantList.propTypes = {
   restaurants: PropTypes.arrayOf(PropTypes.object),
-  openItemId: PropTypes.bool,
+  openItemId: PropTypes.string,
   toggleOpenItem: PropTypes.func,
   fetchData: PropTypes.func
 };

@@ -5,6 +5,7 @@ import { restaurants } from "./fixtures";
 import { mount, configure } from "enzyme";
 import Adapter from "enzyme-adapter-react-16";
 import RestaurantList from "./components/restaurant-list";
+import ReviewList from "./components/review-list";
 
 configure({ adapter: new Adapter() });
 
@@ -28,5 +29,17 @@ describe("when show RestaurantList", () => {
     const wrapper = mount(
       <RestaurantList restaurants={restaurants} fetchData={fetchData} />
     );
+  });
+});
+
+describe("when show review list", () => {
+  it("should open review list", () => {
+    const app = mount(<App restaurants={restaurants} />);
+    app
+      .find('[data-target="open-review-list"]')
+      .at(0)
+      .simulate("click");
+
+    expect(app.find('[data-automation-review-id="review"]').length > 0);
   });
 });

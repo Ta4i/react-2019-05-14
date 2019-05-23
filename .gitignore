@@ -23,5 +23,12 @@ yarn-debug.log*
 yarn-error.log*
 
 .idea
+<<<<<<< HEAD
 Lection01.js
 Lection02_2105.js
+=======
+
+Lection01.js
+Lection02_2105.js
+package-lock.json
+>>>>>>> 06fd9cff9ab29a87789eda185425bb5b862f73c6

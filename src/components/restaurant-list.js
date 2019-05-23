@@ -2,16 +2,11 @@ import React, { Component } from "react";
 import Restaurant from "./restaurant";
 import { accordion } from "../decorators/accordion";
 import { Row, Col } from "antd/lib/grid";
+import PropTypes from "prop-types";
 
 class RestaurantList extends Component {
   render() {
-    const {
-      restaurants,
-
-      // props from accordion decorator
-      openItemId,
-      toggleOpenItem
-    } = this.props;
+    const { restaurants, openItemId, toggleOpenItem } = this.props;
     return (
       <Row gutter={24}>
         {restaurants.map(restaurant => (
@@ -27,5 +22,11 @@ class RestaurantList extends Component {
     );
   }
 }
+
+RestaurantList.propTypes = {
+  restaurants: PropTypes.array,
+  openItemId: PropTypes.string,
+  toggleOpenItem: PropTypes.func
+};
 
 export default accordion(RestaurantList);

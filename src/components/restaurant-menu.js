@@ -1,6 +1,7 @@
 import React from "react";
 import Dish from "./dish";
 import { List } from "antd";
+import PropTypes from "prop-types";
 
 function RestaurantMenu(props) {
   return (
@@ -13,5 +14,9 @@ function RestaurantMenu(props) {
     />
   );
 }
+
+RestaurantMenu.propTypes = {
+  menu: PropTypes.object
+};
 
 export default RestaurantMenu;

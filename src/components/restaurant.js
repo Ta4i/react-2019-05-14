@@ -17,7 +17,6 @@ class Restaurant extends PureComponent {
 
   render() {
     const {
-      id,
       image,
       name,
       menu,

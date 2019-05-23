@@ -8,6 +8,8 @@ import RestaurantList from "./components/restaurant-list";
 
 configure({ adapter: new Adapter() });
 
+const restorauntId = "bb8afbec-2fec-491f-93e9-7f13950dd80b";
+
 describe("when click on Open menu in Restaurant", () => {
   it("should open menu", () => {
     const wrapper = mount(<App restaurants={restaurants} />);
@@ -28,5 +30,19 @@ describe("when show RestaurantList", () => {
     const wrapper = mount(
       <RestaurantList restaurants={restaurants} fetchData={fetchData} />
     );
+  });
+});
+
+describe("open reviews list", () => {
+  it("should open reviews", () => {
+    const wrapper = mount(<App restaurants={restaurants} />);
+    wrapper
+      .find(`button[data-automation-id="toggle-review-${restorauntId}"]`)
+      .simulate("click");
+
+    const list = wrapper.find(
+      `div[data-automation-id="review-${restorauntId}"]`
+    );
+    expect(list.exists()).toEqual(true);
   });
 });

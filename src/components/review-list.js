@@ -2,9 +2,9 @@ import React from "react";
 import { List } from "antd";
 import Review from "./review";
 
-function ReviewList({ reviews }) {
+function ReviewList({ reviews, id }) {
   return (
-    <List>
+    <List data-automation-id={`review-${id}`}>
       {reviews.map(review => (
         <Review key={review.id} review={review} />
       ))}

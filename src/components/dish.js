@@ -19,12 +19,14 @@ function Dish(props) {
               type="primary"
               shape="circle"
               icon="minus"
+              data-automation-id="dish-amount-decrease"
             />
             <Button
               onClick={increase}
               type="primary"
               shape="circle"
               icon="plus"
+              data-automation-id="dish-amount-increase"
             />
           </Button.Group>
         </>

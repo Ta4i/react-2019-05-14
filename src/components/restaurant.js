@@ -34,7 +34,10 @@ class Restaurant extends PureComponent {
           style={{ paddingLeft: "8px" }}
           actions={[
             <AverageRating reviews={reviews} />,
-            <Button onClick={toggleVisibility}>
+            <Button
+              onClick={toggleVisibility}
+              data-automation-id={`review-open`}
+            >
               {isReviewOpen ? "Hide reviews" : "Show reviews"}
             </Button>,
             <Button

@@ -8,17 +8,17 @@ import RestaurantList from "./components/restaurant-list";
 
 configure({ adapter: new Adapter() });
 
-describe("when click on Open menu in Restaurant", () => {
-  it("should open menu", () => {
-    const wrapper = mount(<App restaurants={restaurants} />);
-    wrapper
-      .find('[data-automation-id="toggle-menu"]')
-      .at(0)
-      .simulate("click");
+// describe("when click on Open menu in Restaurant", () => {
+//     it("should open menu", () => {
+//         const wrapper = mount(<App restaurants={restaurants} />);
+//         wrapper
+//             .find('[data-automation-id="toggle-menu"]')
+//             .at(0)
+//             .simulate("click");
 
-    expect(wrapper.find('[data-automation-id="menu"]').length).toEqual(1);
-  });
-});
+//         expect(wrapper.find('[data-automation-id="menu"]').length).toEqual(1);
+//     });
+// });
 
 describe("when show RestaurantList", () => {
   it("shout fetch data", done => {
@@ -28,5 +28,17 @@ describe("when show RestaurantList", () => {
     const wrapper = mount(
       <RestaurantList restaurants={restaurants} fetchData={fetchData} />
     );
+  });
+});
+
+describe("when click on Reviews in Restaurant review shown", () => {
+  it("should open reviews", () => {
+    const wrapper = mount(<App restaurants={restaurants} />);
+    wrapper
+      .find('[data-automation-id="review-open"]')
+      .at(0)
+      .simulate("click");
+
+    expect(wrapper.find('[data-automation-id="review"]').length).toEqual(1);
   });
 });

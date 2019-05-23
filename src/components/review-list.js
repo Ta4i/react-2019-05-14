@@ -5,11 +5,13 @@ import PropTypes from "prop-types";
 
 function ReviewList({ reviews }) {
   return (
-    <List>
-      {reviews.map(review => (
-        <Review key={review.id} review={review} />
-      ))}
-    </List>
+    <div data-automation-id="review">
+      <List>
+        {reviews.map(review => (
+          <Review key={review.id} review={review} />
+        ))}
+      </List>
+    </div>
   );
 }
 

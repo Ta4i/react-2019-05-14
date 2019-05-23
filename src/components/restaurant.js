@@ -2,11 +2,20 @@ import React, { PureComponent } from "react";
 import RestaurantMenu from "./restaurant-menu";
 import VisitorReviews from "./visitor-reviews";
 import VisitorRating from "./visitor-rating";
-import { accordion } from "../decorators/accordion";
+import { toggleVisibility } from "../decorators/toggleVisibility";
 
 class Restaurant extends PureComponent {
   render() {
-    const { image, name, menu, isMenuOpen, reviews } = this.props;
+    const {
+      image,
+      name,
+      menu,
+      isMenuOpen,
+      reviews,
+      //props from toggleVisibility decorator
+      toggleVisibility,
+      isOpen: isReviewOpen
+    } = this.props;
 
     return (
       <div>
@@ -15,7 +24,10 @@ class Restaurant extends PureComponent {
         <br />
         Visitor Reviews:
         <br />
-        <VisitorReviews reviews={reviews} />
+        <button onClick={toggleVisibility}>
+          {isReviewOpen ? "Close reviews" : "Open reviews"}
+        </button>
+        {isReviewOpen ? <VisitorReviews reviews={reviews} /> : null}
         <br />
         <button onClick={this.handleToggleOpenClick}>
           {isMenuOpen ? "Close menu" : "Open menu"}
@@ -30,4 +42,4 @@ class Restaurant extends PureComponent {
   };
 }
 
-export default accordion(Restaurant);
+export default toggleVisibility(Restaurant);

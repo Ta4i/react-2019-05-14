@@ -71,7 +71,7 @@ const restaurants = [
         id: "53b642d7-5e86-4717-a466-0640a1dee076",
         user: "Diana",
         text: "Perfect Margarita",
-        rating: 5
+        rating: 1
       },
       {
         id: "c27ab88e-375c-4e98-aa94-8a180150a797",
@@ -159,7 +159,7 @@ const restaurants = [
         id: "381b0c31-6360-43ff-80d1-581a116159d8",
         user: "Rebeca",
         text: "Meat here is extremely delicious",
-        rating: 5
+        rating: 2
       }
     ]
   }

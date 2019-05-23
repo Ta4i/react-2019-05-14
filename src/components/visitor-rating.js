@@ -12,16 +12,12 @@ const VisitorRating = ({ name, reviews }) => {
 };
 
 const ratingAverage = reviews => {
-  let totalValue = 0;
-  for (const review of reviews) {
-    totalValue += review.rating;
-  }
+  const valueAverage =
+    reviews.reduce((acc, { rating }) => {
+      return acc + rating;
+    }, 0) / reviews.length;
 
-  let valueAverage = totalValue / reviews.length;
-  let value =
-    (valueAverage ^ 0) === valueAverage
-      ? valueAverage
-      : (valueAverage ^ 0) + 0.5;
+  const value = Math.floor(valueAverage * 2) / 2;
   return value;
 };
 

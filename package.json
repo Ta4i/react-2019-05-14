@@ -42,5 +42,10 @@
     "hooks": {
       "pre-commit": "pretty-quick --staged"
     }
+  },
+  "jest": {
+    "watchPathIgnorePatterns": [
+      "<rootDir>/node_modules/"
+    ]
   }
 }

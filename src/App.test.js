@@ -12,11 +12,11 @@ describe("when click on Open menu in Restaurant", () => {
   it("should open menu", () => {
     const wrapper = mount(<App restaurants={restaurants} />);
     wrapper
-      .find('[data-automation-id="toggle-menu"]')
+      .find('[data-aid="toggle-menu"]')
       .at(0)
       .simulate("click");
 
-    expect(wrapper.find('[data-automation-id="menu"]').length).toEqual(1);
+    expect(wrapper.find('[data-aid="menu"]').length).toEqual(1);
   });
 });
 

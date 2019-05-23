@@ -4,7 +4,7 @@ import React, { Component } from "react";
 const toggleVisibility = OriginalComponent =>
   class DecoratedComponent extends Component {
     state = {
-      isOpen: null
+      isOpen: false
     };
 
     render() {

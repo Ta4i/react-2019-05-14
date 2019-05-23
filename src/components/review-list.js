@@ -4,7 +4,7 @@ import Review from "./review";
 
 function ReviewList({ reviews }) {
   return (
-    <List>
+    <List data-automation-id="reviews">
       {reviews.map(review => (
         <Review key={review.id} review={review} />
       ))}

@@ -20,6 +20,21 @@ describe("when click on Open menu in Restaurant", () => {
   });
 });
 
+describe("when click on Show reviews in Restaurant", () => {
+  it("should open reviews", () => {
+    const wrapper = mount(<App restaurants={restaurants} />);
+    wrapper
+      .find('[data-automation-id="toggle-reviews"]')
+      .at(1)
+      .simulate("click");
+
+    // const btn = wrapper.find(`[data-automation-id="toggle-reviews"]`);
+    // console.log(btn.debug());
+
+    expect(wrapper.find('[data-automation-id="reviews"]').length).toEqual(2);
+  });
+});
+
 describe("when show RestaurantList", () => {
   it("shout fetch data", done => {
     const fetchData = () => {

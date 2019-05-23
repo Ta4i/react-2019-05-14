@@ -5,10 +5,11 @@ import { restaurants } from "./fixtures";
 import { mount, configure } from "enzyme";
 import Adapter from "enzyme-adapter-react-16";
 import RestaurantList from "./components/restaurant-list";
+import ReviewList from "./components/review-list";
 
 configure({ adapter: new Adapter() });
 
-describe("when click on Open menu in Restaurant", () => {
+/* describe("when click on Open menu in Restaurant", () => {
   it("should open menu", () => {
     const wrapper = mount(<App restaurants={restaurants} />);
     wrapper
@@ -28,5 +29,17 @@ describe("when show RestaurantList", () => {
     const wrapper = mount(
       <RestaurantList restaurants={restaurants} fetchData={fetchData} />
     );
+  });
+}); */
+
+describe("When click on reviews button", () => {
+  it("should be opened", () => {
+    const wrapper = mount(<App restaurants={restaurants} />);
+
+    wrapper
+      .find('[test-id="showReviews-id"]')
+      .at(0)
+      .simulate("click");
+    expect(wrapper.find('[test-id="review-comment"]').length).toEqual(2 * 2);
   });
 });

@@ -5,6 +5,7 @@ import PropTypes, { object } from "prop-types";
 function Review({ review }) {
   return (
     <Comment
+      test-id={"review-comment"}
       style={{
         margin: "16px",
         backgroundColor: "white"
@@ -21,9 +22,5 @@ function Review({ review }) {
     />
   );
 }
-
-Review.propTypes = {
-  review: PropTypes.instanceOf(Review)
-};
 
 export default Review;

@@ -36,47 +36,43 @@ const restaurantWithoutReviewModel = {
   reviews: []
 };
 
-describe("restaurant with menu and click on Open Review", () => {
+const findActualReviews = wrapper => wrapper.find('[data-aid*="review-"]');
+const clickOnToggleReviewsButton = wrapper =>
+  wrapper
+    .find('[data-aid="toggle-reviews"]')
+    .first()
+    .simulate("click");
+
+describe("restaurant with reviews and click on Open Review", () => {
+  const expectedReviews = restaurantWithReviewModel.reviews;
   const wrapper = mount(<Restaurant {...restaurantWithReviewModel} />);
-  const findActualReviews = () => wrapper.find('[data-aid*="review-"]');
-  const clickOnToggleReviewsButton = () =>
-    wrapper
-      .find('[data-aid="toggle-reviews"]')
-      .first()
-      .simulate("click");
 
   it("should open review list with correct amount of reviews", () => {
-    clickOnToggleReviewsButton();
+    clickOnToggleReviewsButton(wrapper);
 
-    const actualReviews = findActualReviews();
+    const actualReviews = findActualReviews(wrapper);
 
-    expect(actualReviews.length).toEqual(
-      restaurantWithReviewModel.reviews.length
-    );
+    expect(actualReviews.length).toEqual(expectedReviews.length);
   });
 
   it("should close review list after second click", () => {
-    clickOnToggleReviewsButton();
+    clickOnToggleReviewsButton(wrapper);
 
-    const actualReviews = findActualReviews();
+    const actualReviews = findActualReviews(wrapper);
 
     expect(actualReviews.length).toEqual(0);
   });
 });
 
-describe("restaurant without menu and click on Open Review", () => {
+describe("restaurant without reviews and click on Open Review", () => {
+  const expectedReviews = restaurantWithoutReviewModel.reviews;
+  const wrapper = mount(<Restaurant {...restaurantWithoutReviewModel} />);
+
   it("has no reviews in a list", () => {
-    const wrapper = mount(<Restaurant {...restaurantWithoutReviewModel} />);
+    clickOnToggleReviewsButton(wrapper);
 
-    wrapper
-      .find('[data-aid="toggle-reviews"]')
-      .first()
-      .simulate("click");
+    const actualReviews = findActualReviews(wrapper);
 
-    const actualReviews = wrapper.find('[data-aid*="review-"]');
-
-    expect(actualReviews.length).toEqual(
-      restaurantWithoutReviewModel.reviews.length
-    );
+    expect(actualReviews.length).toEqual(expectedReviews.length);
   });
 });

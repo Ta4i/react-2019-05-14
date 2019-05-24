@@ -1,10 +1,11 @@
 import React, { PureComponent } from "react";
-import RestaurantMenu from "./restaurant-menu";
+import RestaurantMenu from "../restaurant-menu";
 import { List, Avatar, Button } from "antd";
-import AverageRating from "./average-rating";
-import ReviewList from "./review-list";
-import { toggleVisibility } from "../decorators/toggleVisibility";
-import PropTypes from "prop-types";
+import AverageRating from "../average-rating";
+import ReviewList from "../review-list";
+import { toggleVisibility } from "../../decorators/toggleVisibility";
+import * as PropTypes from "prop-types";
+import "./restaurant.css";
 
 class Restaurant extends PureComponent {
   state = {
@@ -33,11 +34,11 @@ class Restaurant extends PureComponent {
     ) : (
       <>
         <List.Item
-          style={{ paddingLeft: "8px" }}
+          className="restaurant-list-item"
           actions={[
             <AverageRating reviews={reviews} />,
             <Button
-              data-automation-id={`toggle-review-${id}`}
+              data-automation-id={`toggle-review-list-${id}`}
               onClick={toggleVisibility}
             >
               {isReviewOpen ? "Hide reviews" : "Show reviews"}
@@ -67,29 +68,17 @@ class Restaurant extends PureComponent {
 }
 
 Restaurant.propTypes = {
-  id: PropTypes.string,
-  name: PropTypes.string,
-  location: PropTypes.shape({
-    lat: PropTypes.number,
-    lng: PropTypes.number
-  }),
-  image: PropTypes.string,
-  menu: PropTypes.arrayOf(
-    PropTypes.shape({
-      id: PropTypes.string,
-      name: PropTypes.string,
-      price: PropTypes.number,
-      ingredients: PropTypes.arrayOf(PropTypes.string)
-    })
-  ),
-  reviews: PropTypes.arrayOf(
-    PropTypes.shape({
-      id: PropTypes.string,
-      user: PropTypes.string,
-      text: PropTypes.string,
-      rating: PropTypes.number
-    })
-  )
+  id: PropTypes.string.isRequired,
+  image: PropTypes.string.isRequired,
+  name: PropTypes.string.isRequired,
+  menu: RestaurantMenu.propTypes.menu,
+  reviews: ReviewList.propTypes.reviews,
+
+  isMenuOpen: PropTypes.bool,
+  toggleOpenMenu: PropTypes.func.isRequired,
+
+  isOpen: PropTypes.bool,
+  toggleVisibility: PropTypes.func.isRequired
 };
 
 export default toggleVisibility(Restaurant);

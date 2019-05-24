@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { Card, Button } from "antd";
 import PropTypes from "prop-types";
+import "./dish.css";
 
 function Dish(props) {
   const [amount, decrease, increase] = useCounter(0);
@@ -10,7 +11,7 @@ function Dish(props) {
       actions={[
         `£${props.price}`,
         <>
-          <span style={{ margin: "0 12px" }}>{amount}</span>
+          <span className="dish-price">{amount}</span>
           <Button.Group>
             <Button
               onClick={decrease}
@@ -46,8 +47,8 @@ function useCounter(initialValue) {
 }
 
 Dish.propTypes = {
-  price: PropTypes.number,
-  name: PropTypes.string,
+  name: PropTypes.string.isRequired,
+  price: PropTypes.number.isRequired,
   ingredients: PropTypes.arrayOf(PropTypes.string)
 };
 

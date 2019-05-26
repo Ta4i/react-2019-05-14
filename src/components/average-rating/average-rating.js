@@ -1,6 +1,7 @@
 import React, { PureComponent } from "react";
 import { Rate } from "antd";
 import PropTypes from "prop-types";
+import Enumerable from "linq";
 
 class AverageRating extends PureComponent {
   state = {
@@ -9,10 +10,7 @@ class AverageRating extends PureComponent {
 
   render() {
     const { reviews } = this.props;
-    const rawRating =
-      reviews.reduce((acc, { rating }) => {
-        return acc + rating;
-      }, 0) / reviews.length;
+    const rawRating = Enumerable.from(reviews).average(r => r.rating);
     const normalizedRating = Math.floor(rawRating * 2) / 2;
 
     return <Rate defaultValue={normalizedRating} disabled allowHalf />;

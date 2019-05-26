@@ -6,7 +6,7 @@ import { connect } from "react-redux";
 
 function CartBadge(props) {
   return (
-    <Badge count={props.amount}>
+    <Badge {...props} count={props.amount}>
       <Button
         icon="shopping-cart"
         size="large"

@@ -21,6 +21,10 @@ export default (cartState = {}, action) => {
     }
     case "REMOVE_FROM_CART": {
       const id = action.payload.id;
+      if (!cartState[id]) {
+        return cartState;
+      }
+
       const newState = { ...cartState };
       delete newState[id];
       return newState;

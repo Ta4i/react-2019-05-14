@@ -16,3 +16,9 @@ export const decreaseCart = id => ({
     id
   }
 });
+export const removeDishFromCart = id => ({
+  type: "REMOVE_DISH_FROM_CART",
+  payload: {
+    id
+  }
+});

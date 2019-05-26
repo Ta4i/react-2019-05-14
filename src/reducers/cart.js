@@ -13,12 +13,23 @@ export default (cartState = {}, action) => {
         ...cartState
       };
       if (cartState[id] === 1) {
-        delete cartState[id];
+        delete newCartState[id];
       } else if (cartState[id]) {
         newCartState[id] = newCartState[id] - 1;
       }
       return newCartState;
     }
+    case "REMOVE_DISH_FROM_CART":
+      const id = action.payload.id;
+
+      const newCartState = {
+        ...cartState
+      };
+
+      delete newCartState[id];
+
+      return newCartState;
+
     default:
       return cartState;
   }

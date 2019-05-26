@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { Button } from "antd";
 import { connect } from "react-redux";
-import { increase, decrease } from "../../ac";
+import { increase, decrease } from "../../ac/actions";
 
 class Counter extends Component {
   render() {

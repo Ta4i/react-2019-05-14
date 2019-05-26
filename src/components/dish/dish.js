@@ -3,7 +3,7 @@ import { Card, Button } from "antd";
 import PropTypes from "prop-types";
 import "./dish.css";
 import { connect } from "react-redux";
-import { increaseCart, decreaseCart } from "../../ac";
+import { increaseCart, decreaseCart } from "../../ac/actions";
 
 function Dish(props) {
   const { id, amount, increase, decrease } = props;

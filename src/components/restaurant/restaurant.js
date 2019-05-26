@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { ChickenLegIcon } from './chicken-leg';
+import ChickenLegIcon from '../chicken-leg';
 import { Card, Rate, Avatar, Tabs, Badge } from 'antd';
-import RestaurantMenu from './restaurant-menu';
-import ReviewList from './review-list';
-import toggle from '../decorators/toggle';
+import RestaurantMenu from '../restaurant-menu/restaurant-menu';
+import ReviewList from '../review-list/review-list';
+import toggle from '../../decorators/toggle';
 
 const { Meta } = Card;
 const { TabPane } = Tabs;

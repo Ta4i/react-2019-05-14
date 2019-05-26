@@ -30,4 +30,4 @@ const ChickenLeg = () => (
 );
 
 const ChickenLegIcon = props => <Icon component={ChickenLeg} {...props} />;
-export { ChickenLegIcon };
+export default ChickenLegIcon;

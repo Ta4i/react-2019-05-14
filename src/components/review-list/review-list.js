@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { Comment, List } from 'antd';
+import { Comment, List } from 'antd/lib/index';
 
 class ReviewList extends Component {
   render() {

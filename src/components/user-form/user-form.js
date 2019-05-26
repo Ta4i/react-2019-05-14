@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
-import { Form, Input, Button } from 'antd';
+import { Form, Input } from 'antd/lib/index';
 
-const TextArea = Input.TextArea;
+const { TextArea } = Input;
 
 class UserForm extends Component {
   state = {
@@ -27,11 +27,6 @@ class UserForm extends Component {
         </Form.Item>
         <Form.Item label="Address">
           <TextArea placeholder={'Address'} value={address} onChange={this.handleAddressChange} />
-        </Form.Item>
-        <Form.Item>
-          <Button type="primary" htmlType="submit" onClick={this.submit}>
-            Send order
-          </Button>
         </Form.Item>
       </Form>
     );

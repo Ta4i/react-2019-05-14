@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import Restaurant from './restaurant';
-import accordion from '../decorators/accordion';
+import Restaurant from '../restaurant/restaurant';
+import accordion from '../../decorators/accordion';
 
 class RestaurantList extends Component {
   componentDidMount() {

@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import Dish from './dish';
+import Dish from '../dish/dish';
 
 function RestaurantMenu(props) {
   return (

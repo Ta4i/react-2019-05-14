@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Table } from "antd";
+import { Divider, Table } from "antd";
 import OrderListCartRemoveButton from "./order-list-cart-remove-button";
 import { connect } from "react-redux";
 import * as Enumerable from "linq";
@@ -11,7 +11,7 @@ class OrderList extends Component {
     const totalPrice = Enumerable.from(currentPageData).sum(
       i => i.menuItem.price * i.count
     );
-    return <Text>Total Cost: £{totalPrice}</Text>;
+    return <Text strong>Total Cost: £{totalPrice}</Text>;
   };
 
   columns = [
@@ -27,15 +27,14 @@ class OrderList extends Component {
           <Text>
             £{line.menuItem.price} x{line.count}
           </Text>
+          <Divider type="vertical" />
           <DishControl dishId={line.menuItem.id} />
         </>
       )
     },
     {
       key: "total",
-      render: (value, line) => (
-        <Text>`£${line.menuItem.price * line.count}`</Text>
-      )
+      render: (value, line) => <Text>£${line.menuItem.price * line.count}</Text>
     },
     {
       key: "actions",

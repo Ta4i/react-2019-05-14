@@ -12,9 +12,9 @@ export default (cartState = {}, action) => {
       const newCartState = {
         ...cartState
       };
-      if (cartState[id] === 1) {
-        delete cartState[id];
-      } else if (cartState[id]) {
+      if (newCartState[id] === 1) {
+        delete newCartState[id];
+      } else if (newCartState[id]) {
         newCartState[id] = newCartState[id] - 1;
       }
       return newCartState;

@@ -67,13 +67,13 @@ function mapToProps(state) {
   // I'd like to keep dish item in a cart state
   // but it requires to update logic of cart reducer, dish item, etc
   const cartItems = Enumerable.from(restaurants)
-    .selectMany(r => r.menu)
-    .where(m => cart[m.id])
+    .selectMany(r => r.menu) // .flatMap(), new array here
+    .where(m => cart[m.id]) // .find(), new array here
     .select(m => ({
       count: cart[m.id],
       menuItem: m
     }))
-    .toArray();
+    .toArray(); // map()
 
   return {
     cartItems

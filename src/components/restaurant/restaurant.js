@@ -1,10 +1,11 @@
 import React, { PureComponent } from "react";
-import RestaurantMenu from "./restaurant-menu";
-import { List, Avatar, Button, Menu } from "antd";
-import AverageRating from "./average-rating";
-import ReviewList from "./review-list";
-import { toggleVisibility } from "../decorators/toggleVisibility";
-import PropTypes from "prop-types";
+import RestaurantMenu from "../restaurant-menu";
+import { List, Avatar, Button } from "antd";
+import AverageRating from "../average-rating";
+import ReviewList from "../review-list";
+import { toggleVisibility } from "../../decorators/toggleVisibility";
+import * as PropTypes from "prop-types";
+import "./restaurant.css";
 
 class Restaurant extends PureComponent {
   state = {
@@ -33,14 +34,17 @@ class Restaurant extends PureComponent {
     ) : (
       <>
         <List.Item
-          style={{ paddingLeft: "8px" }}
+          className="restaurant-list-item"
           actions={[
             <AverageRating reviews={reviews} />,
-            <Button test-id="showReviews-id" onClick={toggleVisibility}>
+            <Button
+              data-automation-id={`toggle-review-list-${id}`}
+              onClick={toggleVisibility}
+            >
               {isReviewOpen ? "Hide reviews" : "Show reviews"}
             </Button>,
             <Button
-              data-automation-id={`toggle-menu`}
+              data-automation-id={`toggle-menu-${id}`}
               onClick={this.handleToggleOpenClick}
             >
               {isMenuOpen ? "Close menu" : "Open menu"}
@@ -64,12 +68,17 @@ class Restaurant extends PureComponent {
 }
 
 Restaurant.propTypes = {
+  id: PropTypes.string.isRequired,
+  image: PropTypes.string.isRequired,
   name: PropTypes.string.isRequired,
-  menu: PropTypes.array,
-  reviews: PropTypes.array,
+  menu: RestaurantMenu.propTypes.menu,
+  reviews: ReviewList.propTypes.reviews,
+
   isMenuOpen: PropTypes.bool,
+  toggleOpenMenu: PropTypes.func.isRequired,
+
   isOpen: PropTypes.bool,
-  toggleOpenMenu: PropTypes.func
+  toggleVisibility: PropTypes.func.isRequired
 };
 
 export default toggleVisibility(Restaurant);

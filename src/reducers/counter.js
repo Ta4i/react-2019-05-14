@@ -1,8 +1,10 @@
+import { INCREMENT, DECREMENT } from "../actionTypes";
+
 export default (count = 10, action) => {
   switch (action.type) {
-    case "INCREMENT":
+    case INCREMENT:
       return count + 1;
-    case "DECREMENT":
+    case DECREMENT:
       return count - 1;
     default:
       return count;

@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { Divider, Table } from "antd";
-import OrderListCartRemoveButton from "./order-list-cart-remove-button";
+import OrderListItemControl from "./order-list-item-control";
 import { connect } from "react-redux";
 import * as Enumerable from "linq";
 import Text from "antd/es/typography/Text";
@@ -39,7 +39,7 @@ class OrderList extends Component {
     {
       key: "actions",
       render: (value, line) => (
-        <OrderListCartRemoveButton itemId={line.menuItem.id} />
+        <OrderListItemControl itemId={line.menuItem.id} />
       )
     }
   ];

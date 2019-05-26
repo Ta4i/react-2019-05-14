@@ -10,7 +10,7 @@ class AverageRating extends PureComponent {
 
   render() {
     const { reviews } = this.props;
-    const rawRating = Enumerable.from(reviews).average();
+    const rawRating = Enumerable.from(reviews).average(r => r.rating);
     const normalizedRating = Math.floor(rawRating * 2) / 2;
 
     return <Rate defaultValue={normalizedRating} disabled allowHalf />;

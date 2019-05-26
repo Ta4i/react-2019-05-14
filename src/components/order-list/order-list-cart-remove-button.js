@@ -3,7 +3,7 @@ import { Icon, Button } from "antd";
 import { connect } from "react-redux";
 import { removeFromCart } from "../../ac";
 
-class OrderListItemRemoveButton extends Component {
+class OrderListCartRemoveButton extends Component {
   render() {
     const { itemId, removeFromCart } = this.props;
     return (
@@ -19,4 +19,4 @@ export default connect(
   {
     removeFromCart
   }
-)(OrderListItemRemoveButton);
+)(OrderListCartRemoveButton);

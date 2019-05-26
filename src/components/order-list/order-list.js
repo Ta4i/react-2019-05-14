@@ -1,29 +1,62 @@
 import React, { Component } from "react";
-import { List, Typography } from "antd";
-import OrderListItem from "./order-list-item";
+import { Table } from "antd";
+import OrderListCartRemoveButton from "./order-list-cart-remove-button";
 import { connect } from "react-redux";
 import * as Enumerable from "linq";
-
-const { Title } = Typography;
+import Text from "antd/es/typography/Text";
+import DishControl from "../dish-control";
 
 class OrderList extends Component {
-  getTotalPrice = () => {
-    const { cartItems } = this.props;
-    return Enumerable.from(cartItems).sum(i => i.menuItem.price * i.count);
+  getTotalPrice = currentPageData => {
+    const totalPrice = Enumerable.from(currentPageData).sum(
+      i => i.menuItem.price * i.count
+    );
+    return <Text>Total Cost: £{totalPrice}</Text>;
   };
+
+  columns = [
+    {
+      dataIndex: "menuItem.name",
+      key: "menuItem.id",
+      render: name => <Text strong>{name}</Text>
+    },
+    {
+      key: "priceAndCount",
+      render: (value, line) => (
+        <>
+          <Text>
+            £{line.menuItem.price} x{line.count}
+          </Text>
+          <DishControl dishId={line.menuItem.id} />
+        </>
+      )
+    },
+    {
+      key: "total",
+      render: (value, line) => (
+        <Text>`£${line.menuItem.price * line.count}`</Text>
+      )
+    },
+    {
+      key: "actions",
+      render: (value, line) => (
+        <OrderListCartRemoveButton itemId={line.menuItem.id} />
+      )
+    }
+  ];
 
   render() {
     const { cartItems } = this.props;
     return (
-      <List
-        footer={<Title>Total Cost: £{this.getTotalPrice()}</Title>}
-        dataSource={cartItems}
-        renderItem={item => (
-          <List.Item key={item.menuItem.id}>
-            <OrderListItem count={item.count} item={item.menuItem} />
-          </List.Item>
-        )}
-      />
+      <>
+        <Table
+          showHeader={false}
+          pagination={false}
+          dataSource={cartItems}
+          columns={this.columns}
+          footer={this.getTotalPrice}
+        />
+      </>
     );
   }
 }

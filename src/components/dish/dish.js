@@ -1,12 +1,12 @@
 import React from "react";
-import { Card, Button } from "antd";
+import { Card } from "antd";
 import PropTypes from "prop-types";
 import "./dish.css";
 import { connect } from "react-redux";
-import { increaseCart, decreaseCart } from "../../ac";
+import DishControl from "../dish-control";
 
 function Dish(props) {
-  const { id, amount, increase, decrease } = props;
+  const { id, amount } = props;
   return (
     <Card
       bordered
@@ -14,20 +14,7 @@ function Dish(props) {
         `£${props.price}`,
         <>
           <span className="dish-price">{amount}</span>
-          <Button.Group>
-            <Button
-              onClick={() => decrease(id)}
-              type="primary"
-              shape="circle"
-              icon="minus"
-            />
-            <Button
-              onClick={() => increase(id)}
-              type="primary"
-              shape="circle"
-              icon="plus"
-            />
-          </Button.Group>
+          <DishControl dishId={id} />
         </>
       ]}
     >
@@ -45,12 +32,6 @@ Dish.propTypes = {
   ingredients: PropTypes.arrayOf(PropTypes.string)
 };
 
-export default connect(
-  (state, ownProps) => ({
-    amount: state.cart[ownProps.id] || 0
-  }),
-  {
-    increase: increaseCart,
-    decrease: decreaseCart
-  }
-)(Dish);
+export default connect((state, ownProps) => ({
+  amount: state.cart[ownProps.id] || 0
+}))(Dish);

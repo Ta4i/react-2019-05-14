@@ -6,23 +6,40 @@ import { connect } from "react-redux";
 import { increaseCart, decreaseCart } from "../../ac";
 
 function Dish(props) {
-  const { id, amount, increase, decrease } = props;
+  const { id, amount, increase, decrease, name, price, ingredients } = props;
+
+  const onDecreaseBtnClickHandler = () => {
+    decrease({
+      id,
+      name,
+      price
+    });
+  };
+
+  const onIncreaseBtnClickHandler = () => {
+    increase({
+      id,
+      name,
+      price
+    });
+  };
+
   return (
     <Card
       bordered
       actions={[
-        `£${props.price}`,
+        `£${price}`,
         <>
           <span className="dish-price">{amount}</span>
           <Button.Group>
             <Button
-              onClick={() => decrease(id)}
+              onClick={onDecreaseBtnClickHandler}
               type="primary"
               shape="circle"
               icon="minus"
             />
             <Button
-              onClick={() => increase(id)}
+              onClick={onIncreaseBtnClickHandler}
               type="primary"
               shape="circle"
               icon="plus"
@@ -31,10 +48,7 @@ function Dish(props) {
         </>
       ]}
     >
-      <Card.Meta
-        title={props.name}
-        description={props.ingredients.join(", ")}
-      />
+      <Card.Meta title={name} description={ingredients.join(", ")} />
     </Card>
   );
 }

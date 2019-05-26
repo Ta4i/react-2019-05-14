@@ -7,25 +7,17 @@ import * as Enumerable from "linq";
 const { Title } = Typography;
 
 class OrderList extends Component {
-  renderListHeader = () => {
-    return <Title>Cart</Title>;
-  };
-
-  renderListFooter = () => {
+  getTotalPrice = () => {
     const { cartItems } = this.props;
-    const totalCost = Enumerable.from(cartItems).sum(
-      i => i.menuItem.price * i.count
-    );
-
-    return <Title>Total Cost: {totalCost}</Title>;
+    return Enumerable.from(cartItems).sum(i => i.menuItem.price * i.count);
   };
 
   render() {
     const { cartItems } = this.props;
     return (
       <List
-        header={this.renderListHeader()}
-        footer={this.renderListFooter()}
+        header={<Title>Cart</Title>}
+        footer={<Title>Total Cost: £{this.getTotalPrice()}</Title>}
         bordered
         dataSource={cartItems}
         renderItem={item => (

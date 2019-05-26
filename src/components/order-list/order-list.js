@@ -7,15 +7,6 @@ import { increaseCart, decreaseCart, removeCart } from "../../ac";
 class OrderList extends Component {
   render() {
     const { cart, rmenu, increase, decrease, remove, restaurants } = this.props;
-    console.log("cart");
-    console.log(cart);
-
-    /*const listOrder = Object.keys(cart).map(id => ({
-            ...rmenu.find(item => item.id === id),
-            count: cart[id]
-        }));*/
-    // console.log('listOrder');
-    //  console.log(listOrder);
 
     let listOrder = restaurants.map(item => ({
       id: item.id,

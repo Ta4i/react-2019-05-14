@@ -66,8 +66,8 @@ function OrderList(props) {
       key: dish.id,
       dish: dish.name,
       qty: `${cart[dish.id]}x`,
-      price: `$ ${dish.price}`,
-      total: `$ ${cart[dish.id] * dish.price}`
+      price: `£ ${dish.price}`,
+      total: `£ ${cart[dish.id] * dish.price}`
     };
   });
 
@@ -79,7 +79,7 @@ function OrderList(props) {
   const totalRow = {
     key: "total-row",
     dish: "Total",
-    total: `$ ${total}`
+    total: `£ ${total}`
   };
 
   const allRows = [...dataRows, totalRow];

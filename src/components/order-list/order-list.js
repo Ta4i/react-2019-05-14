@@ -1,14 +1,15 @@
 import React, { PureComponent } from "react";
 import propsTypes from "prop-types";
-import { Row, Col } from "antd";
+import { Row, Col, Icon, Button } from "antd";
 
 class OrderList extends PureComponent {
   static propTypes = {
-    cart: propsTypes.object
+    cart: propsTypes.object,
+    remove: propsTypes.func
   };
 
   render() {
-    const { cart } = this.props;
+    const { cart, remove } = this.props;
 
     return (
       <>
@@ -26,6 +27,14 @@ class OrderList extends PureComponent {
                   <li key={dish.id}>
                     <strong>{dish.name}</strong>
                     {` - £${dish.prise}x${dish.amount}`}
+                    <Button
+                      size={"small"}
+                      type={"danger"}
+                      style={{ marginLeft: "20px" }}
+                      onClick={() => remove(dish.id)}
+                    >
+                      <Icon type="delete" theme={"filled"} />
+                    </Button>
                   </li>
                 );
               })}

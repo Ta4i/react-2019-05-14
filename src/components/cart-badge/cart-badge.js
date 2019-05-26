@@ -8,6 +8,7 @@ function CartBadge(props) {
   return (
     <Badge count={props.amount}>
       <Button
+        {...props}
         icon="shopping-cart"
         size="large"
         type="primary"

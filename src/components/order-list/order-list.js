@@ -16,9 +16,7 @@ class OrderList extends Component {
     const { cartItems } = this.props;
     return (
       <List
-        header={<Title>Cart</Title>}
         footer={<Title>Total Cost: £{this.getTotalPrice()}</Title>}
-        bordered
         dataSource={cartItems}
         renderItem={item => (
           <List.Item key={item.menuItem.id}>

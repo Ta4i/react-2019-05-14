@@ -16,3 +16,9 @@ export const decreaseCart = id => ({
     id
   }
 });
+export const removeCart = id => ({
+  type: "REMOVE_FROM_ORDER_LIST",
+  payload: {
+    id
+  }
+});

@@ -1,0 +1,12 @@
+.order-list {
+  margin: 25px auto;
+  width: 60%;
+}
+
+.order-list__item {
+  margin-bottom: 25px;
+}
+
+.order-list__count {
+  margin-right: 20px;
+}

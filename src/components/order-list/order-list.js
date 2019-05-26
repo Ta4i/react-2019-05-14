@@ -17,7 +17,7 @@ class OrderList extends Component {
   columns = [
     {
       dataIndex: "menuItem.name",
-      key: "menuItem.id",
+      key: "menuItem.name",
       render: name => <Text strong>{name}</Text>
     },
     {

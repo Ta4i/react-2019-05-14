@@ -9,6 +9,7 @@ import CartBadge from "./components/cart-badge";
 import Counter from "./components/counter/counter";
 const { Header, Content, Footer } = Layout;
 
+
 function App(props) {
   return (
     <Layout className="App">

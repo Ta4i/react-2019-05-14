@@ -1,17 +1,31 @@
+import {
+  INCREMENT,
+  DECREMENT,
+  ADD_TO_CART,
+  REMOVE_FROM_CART,
+  REMOVE_ORDER
+} from "../actionTypes";
+
 export const increase = () => ({
-  type: "INCREMENT"
+  type: INCREMENT
 });
 export const decrease = () => ({
-  type: "DECREMENT"
+  type: DECREMENT
 });
-export const increaseCart = id => ({
-  type: "ADD_TO_CART",
+export const increaseCart = dish => ({
+  type: ADD_TO_CART,
   payload: {
-    id
+    dish
   }
 });
-export const decreaseCart = id => ({
-  type: "REMOVE_FROM_CART",
+export const decreaseCart = dish => ({
+  type: REMOVE_FROM_CART,
+  payload: {
+    dish
+  }
+});
+export const removeOrder = id => ({
+  type: REMOVE_ORDER,
   payload: {
     id
   }

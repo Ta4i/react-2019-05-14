@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Form, Input, Button } from "antd";
+import { Form, Input, Button, Row, Col } from "antd";
 import "./user-form.css";
 
 class UserForm extends Component {
@@ -11,34 +11,41 @@ class UserForm extends Component {
   render() {
     const { name, phone, address } = this.state;
     return (
-      <Form className="user-form">
-        <Form.Item
-          label="Name"
-          labelCol={{ span: 4 }}
-          wrapperCol={{ span: 14 }}
-        >
-          <Input value={name} onChange={this.handleNameChange} />
-        </Form.Item>
-        <Form.Item
-          label="Phone Number"
-          labelCol={{ span: 4 }}
-          wrapperCol={{ span: 14 }}
-        >
-          <Input value={phone} onChange={this.handlePhoneChange} />
-        </Form.Item>
-        <Form.Item
-          label="Address"
-          labelCol={{ span: 4 }}
-          wrapperCol={{ span: 14 }}
-        >
-          <Input.TextArea value={address} onChange={this.handleAddressChange} />
-        </Form.Item>
-        <Form.Item className="user-form-submit-section">
-          <Button type="primary" htmlType="submit" onClick={this.submit}>
-            Send order
-          </Button>
-        </Form.Item>
-      </Form>
+      <Row>
+        <Col span={12} offset={6}>
+          <Form className="user-form">
+            <Form.Item
+              label="Name"
+              labelCol={{ span: 4 }}
+              wrapperCol={{ span: 14 }}
+            >
+              <Input value={name} onChange={this.handleNameChange} />
+            </Form.Item>
+            <Form.Item
+              label="Phone Number"
+              labelCol={{ span: 4 }}
+              wrapperCol={{ span: 14 }}
+            >
+              <Input value={phone} onChange={this.handlePhoneChange} />
+            </Form.Item>
+            <Form.Item
+              label="Address"
+              labelCol={{ span: 4 }}
+              wrapperCol={{ span: 14 }}
+            >
+              <Input.TextArea
+                value={address}
+                onChange={this.handleAddressChange}
+              />
+            </Form.Item>
+            <Form.Item className="user-form-submit-section">
+              <Button type="primary" htmlType="submit" onClick={this.submit}>
+                Send order
+              </Button>
+            </Form.Item>
+          </Form>
+        </Col>
+      </Row>
     );
   }
 

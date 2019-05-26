@@ -7,6 +7,7 @@ import UserForm from "./components/user-form";
 import { Layout } from "antd";
 import CartBadge from "./components/cart-badge";
 import Counter from "./components/counter/counter";
+import OrderList from "./components/order-list";
 const { Header, Content, Footer } = Layout;
 
 function App(props) {
@@ -19,6 +20,9 @@ function App(props) {
         <RestaurantList restaurants={props.restaurants} />
         {/* temporary turn Map off */}
         {/*{<RestaurantsMap restaurants={props.restaurants} />}*/}
+        {Object.keys(props.cart).length ? (
+          <OrderList cart={props.cart} />
+        ) : null}
         <UserForm />
       </Content>
       <Footer>
@@ -29,5 +33,6 @@ function App(props) {
 }
 
 export default connect(store => ({
-  restaurants: store.restaurants
+  restaurants: store.restaurants,
+  cart: store.cart
 }))(App);

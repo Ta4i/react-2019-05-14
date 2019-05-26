@@ -3,6 +3,7 @@ import Restaurant from "../restaurant";
 import { accordion } from "../../decorators/accordion";
 import { List } from "antd";
 import * as PropTypes from "prop-types";
+import OrderList from "../order-list/orderlist";
 
 class RestaurantList extends Component {
   componentDidMount() {
@@ -28,6 +29,7 @@ class RestaurantList extends Component {
             toggleOpenMenu={toggleOpenItem}
           />
         ))}
+        <OrderList />
       </List>
     );
   }

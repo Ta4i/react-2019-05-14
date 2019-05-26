@@ -6,7 +6,7 @@ import { increaseCart, decreaseCart, removeCart } from "../../ac";
 
 class OrderList extends Component {
   render() {
-    const { cart, rmenu, increase, decrease, remove, restaurants } = this.props;
+    const { cart, increase, decrease, remove, restaurants } = this.props;
 
     let listOrder = restaurants.map(item => ({
       id: item.id,
@@ -39,9 +39,6 @@ class OrderList extends Component {
 
       return menu;
     }
-
-    console.log("listOrder");
-    console.log(listOrder);
 
     return (
       <Card

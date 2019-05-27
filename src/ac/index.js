@@ -4,14 +4,24 @@ export const increase = () => ({
 export const decrease = () => ({
   type: "DECREMENT"
 });
-export const increaseCart = id => ({
+export const increaseCart = ({ id, name, price }) => ({
   type: "ADD_TO_CART",
   payload: {
-    id
+    id,
+    name,
+    price
   }
 });
-export const decreaseCart = id => ({
+export const decreaseCart = ({ id, name, price }) => ({
   type: "REMOVE_FROM_CART",
+  payload: {
+    id,
+    name,
+    price
+  }
+});
+export const clearCart = id => ({
+  type: "CLEAR_CART",
   payload: {
     id
   }

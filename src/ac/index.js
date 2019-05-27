@@ -8,7 +8,7 @@ export const increaseCart = (id, price, dishName, restaurantName) => ({
   type: "ADD_TO_CART",
   payload: {
     id,
-    price: price,
+    price,
     dishName,
     restaurantName
   }

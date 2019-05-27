@@ -3,16 +3,6 @@ import { connect } from "react-redux";
 import { increaseCart, decreaseCart, removeFromOrder } from "../../../ac";
 
 class OrderRow extends PureComponent {
-  state = {
-    sum: this.props.orderData.price * this.props.orderData.amount
-  };
-  componentDidUpdate(prevProps) {
-    if (prevProps.orderData.amount !== this.props.orderData.amount) {
-      this.setState({
-        sum: this.props.orderData.price * this.props.orderData.amount
-      });
-    }
-  }
   render() {
     const {
       id,

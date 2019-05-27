@@ -7,29 +7,45 @@ import { increaseCart, decreaseCart } from "../../ac";
 
 class OrderList extends Component {
   render() {
-    const { carts, menues } = this.props;
+    const { carts, menues, amount } = this.props;
     let dishes = [];
     restaurants.forEach(r => {
       dishes = dishes.concat(r.menu);
     });
-    let c = { aaaaa: "dddd" };
-    console.log(Object.keys(c)[0]);
-    console.log(carts);
-    console.log(dishes);
+    console.log("amount:" + amount);
     return (
       <>
         {dishes
-          .filter(d => Object.keys(carts).includes(d.id))
+          .filter(d => {
+            return Object.keys(carts).includes(d.id);
+          })
+          .filter(d => carts[d.id] !== 0)
           .map(d => (
-            <Dish key={d.id} {...d} />
+            <>
+              <Dish key={d.id} {...d} />
+            </>
           ))}
+        <div>
+          Full Order Price:{" "}
+          {summer(
+            carts,
+            dishes.filter(d => {
+              return Object.keys(carts).includes(d.id);
+            })
+          )}
+        </div>
       </>
     );
   }
 }
+
+const summer = function(carts, dishes) {
+  let summ = 0;
+  dishes.forEach(d => (summ = summ + carts[d.id] * d.price));
+  return summ;
+};
+
 const mapStateToProps = function(state) {
-  console.log(state.cart);
-  console.log(state);
   return {
     carts: state.cart,
     menues: state.restaurants.menu

@@ -19,6 +19,14 @@ export default (cartState = {}, action) => {
       }
       return newCartState;
     }
+    case "DELETE_FROM_CART": {
+      const id = action.payload.id;
+      const newCartState = {
+        ...cartState
+      };
+      delete newCartState[id];
+      return newCartState;
+    }
     default:
       return cartState;
   }

@@ -1,5 +1,4 @@
 import React from "react";
-import ReactDOM from "react-dom";
 import App from "./App";
 import { restaurants } from "./fixtures";
 import RestaurantList from "./components/restaurant-list";

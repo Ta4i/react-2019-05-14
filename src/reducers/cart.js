@@ -1,21 +1,29 @@
 export default (cartState = {}, action) => {
   switch (action.type) {
     case "ADD_TO_CART": {
-      const id = action.payload.id;
+      const dish = action.payload.dish;
+      const id = dish.id;
+
       return {
         ...cartState,
-        [id]: cartState[id] ? cartState[id] + 1 : 1
+        [id]: {
+          ...dish,
+          amount: cartState[id] ? cartState[id].amount + 1 : 1
+        }
       };
     }
     case "REMOVE_FROM_CART": {
-      const id = action.payload.id;
+      const { dish, amount } = action.payload;
+      const id = dish.id;
+
       const newCartState = {
         ...cartState
       };
-      if (cartState[id] === 1) {
-        delete cartState[id];
+
+      if (cartState[id].amount <= amount) {
+        delete newCartState[id];
       } else if (cartState[id]) {
-        newCartState[id] = newCartState[id] - 1;
+        newCartState[id].amount = newCartState[id].amount - amount;
       }
       return newCartState;
     }

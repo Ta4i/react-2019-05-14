@@ -1,3 +1,5 @@
+import store from "../store/index";
+
 export default (cartState = {}, action) => {
   switch (action.type) {
     case "ADD_TO_CART": {
@@ -12,7 +14,7 @@ export default (cartState = {}, action) => {
       const newCartState = {
         ...cartState
       };
-      if (cartState[id] === 1) {
+      if (cartState[id] === 0) {
         delete cartState[id];
       } else if (cartState[id]) {
         newCartState[id] = newCartState[id] - 1;

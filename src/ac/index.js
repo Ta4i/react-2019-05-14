@@ -16,3 +16,9 @@ export const decreaseCart = id => ({
     id
   }
 });
+export const deleteDish = id => ({
+  type: "DELETE_FROM_CART",
+  payload: {
+    id
+  }
+});

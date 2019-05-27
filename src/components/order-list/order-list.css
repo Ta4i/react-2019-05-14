@@ -1,0 +1,35 @@
+.order {
+  width: 50%;
+  margin: 20px auto;
+  display: flex;
+  flex-direction: column;
+  background-color: white;
+  border: 1px solid #ececec;
+}
+
+.order__title {
+  margin: 16px auto;
+  text-transform: uppercase;
+  font-size: 16px;
+}
+
+.order__list {
+  margin: 0;
+  padding: 0;
+  border-bottom: 1px dashed #ececec;
+}
+.order__row {
+  display: flex;
+  justify-content: space-between;
+  padding: 10px;
+}
+
+.order__total {
+  margin: 0 140px 0 auto;
+  font-size: 14px;
+  font-weight: bold;
+}
+
+.order__total-value {
+  margin-left: 10px;
+}

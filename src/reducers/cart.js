@@ -7,18 +7,30 @@ export default (cartState = {}, action) => {
         [id]: cartState[id] ? cartState[id] + 1 : 1
       };
     }
+
     case "REMOVE_FROM_CART": {
       const id = action.payload.id;
       const newCartState = {
         ...cartState
       };
+
       if (cartState[id] === 1) {
-        delete cartState[id];
+        delete newCartState[id];
       } else if (cartState[id]) {
         newCartState[id] = newCartState[id] - 1;
       }
       return newCartState;
     }
+
+    case "DELETE_ORDER_ITEM": {
+      const id = action.payload.id;
+      const newCartState = {
+        ...cartState
+      };
+      delete newCartState[id];
+      return newCartState;
+    }
+
     default:
       return cartState;
   }

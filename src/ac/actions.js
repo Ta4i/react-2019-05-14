@@ -16,3 +16,10 @@ export const decreaseCart = id => ({
     id
   }
 });
+
+export const deleteOrder = id => ({
+  type: "DELETE_ORDER_ITEM",
+  payload: {
+    id
+  }
+});

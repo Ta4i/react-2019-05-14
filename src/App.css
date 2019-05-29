@@ -2,9 +2,8 @@
 
 .App {
   min-height: 100%;
+  overflow: hidden;
 }
-
-.map {
-  width: 500px;
-  height: 300px;
+.header {
+  text-align: right;
 }

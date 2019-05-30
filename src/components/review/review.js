@@ -2,6 +2,8 @@ import React from "react";
 import { Comment, Rate } from "antd";
 import PropTypes from "prop-types";
 import "./review.css";
+import { connect } from "react-redux";
+import { createReviewSelector } from "../../selectors";
 
 function Review({ review }) {
   return (
@@ -22,6 +24,7 @@ function Review({ review }) {
 }
 
 Review.propTypes = {
+  // id: PropTypes.any.isRequired,
   review: PropTypes.shape({
     user: PropTypes.string.isRequired,
     text: PropTypes.string.isRequired,
@@ -29,4 +32,11 @@ Review.propTypes = {
   }).isRequired
 };
 
-export default Review;
+const reviewSelector = createReviewSelector();
+const mapStateToProps = () => {
+  return (state, props) => ({
+    review: reviewSelector(state, props)
+  });
+};
+
+export default connect(mapStateToProps)(Review);

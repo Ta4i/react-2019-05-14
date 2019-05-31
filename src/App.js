@@ -11,7 +11,7 @@ import Cart from './components/cart';
 const { Title } = Typography;
 const { Header, Footer, Content } = Layout;
 
-function App(props) {
+export function App(props) {
   return (
     <div className="App">
       <Layout>

@@ -7,7 +7,7 @@ import { increaseCart, decreaseCart } from '../../actions';
 const DescriptionsItem = Descriptions.Item;
 const ButtonGroup = Button.Group;
 
-function Dish(props) {
+export function Dish(props) {
   const { id, amount, ingredients, increase, decrease } = props;
   return (
     <div>

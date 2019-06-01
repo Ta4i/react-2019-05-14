@@ -24,7 +24,6 @@ class Restaurant extends PureComponent {
       id,
       image,
       name,
-      menu,
       reviewIds,
       isMenuOpen,
       isOpen: isReviewOpen,
@@ -59,7 +58,7 @@ class Restaurant extends PureComponent {
           />
         </List.Item>
         {isReviewOpen ? <ReviewList reviewIds={reviewIds} /> : null}
-        {isMenuOpen ? <RestaurantMenu menu={menu} /> : null}
+        {isMenuOpen ? <RestaurantMenu restaurantId={id} /> : null}
       </>
     );
   }

@@ -1,7 +1,6 @@
 import { createSelector } from "reselect";
 import _ from "lodash";
 
-export const idSelector = (_, ownProps) => ownProps.id;
 export const cartSelector = state => state.cart;
 export const restaurantsSelector = state => state.restaurants;
 export const dishesSelector = state => state.dishes;
@@ -10,6 +9,7 @@ export const usersSelector = state => state.users;
 
 export const reviewIdPropSelector = (_, ownProps) => ownProps.reviewId;
 export const restaurantIdPropSelector = (_, ownProps) => ownProps.restaurantId;
+export const dishIdPropSelector = (_, ownProps) => ownProps.dishId;
 
 export const createRestaurantSelector = () =>
   createSelector(
@@ -52,9 +52,8 @@ export const createReviewIdsSelector = () =>
 export const createDishSelector = () =>
   createSelector(
     dishesSelector,
-    idSelector,
+    dishIdPropSelector,
     (dishes, id) => {
-      // console.log("dishSelector");
       return dishes.find(dish => dish.id === id);
     }
   );
@@ -78,31 +77,45 @@ export const createReviewAuthorSelector = () =>
     }
   );
 
-export const selectAllDishesAndTotalPrice = createSelector(
-  cartSelector,
-  restaurantsSelector,
-  (cart, restaurants) => {
-    // console.log("selectAllDishesAndTotalPrice");
-    let totalPrice = 0;
-    const allDishes = restaurants.reduce((dishes, restaurant) => {
-      restaurant.menu.forEach(dish => {
-        const amount = cart[dish.id];
-        if (amount) {
-          const totalDishPrice = amount * dish.price;
-          totalPrice += totalDishPrice;
-          dishes.push({
-            ...dish,
-            amount,
-            totalDishPrice
-          });
-        }
-      });
-      return dishes;
-    }, []);
+export const createDishCartAmountSelector = () =>
+  createSelector(
+    cartSelector,
+    dishIdPropSelector,
+    (cart, dishId) => {
+      return cart[dishId] || 0;
+    }
+  );
 
-    return {
-      dishes: allDishes,
-      totalPrice
-    };
-  }
-);
+export const createRestauranMenusSelector = () =>
+  createSelector(
+    createRestaurantSelector(),
+    dishesSelector,
+    (restaurant, dishes) => {
+      return _.filter(dishes, d => restaurant.menu.includes(d.id));
+    }
+  );
+
+export const createCartDishesSelector = () =>
+  createSelector(
+    cartSelector,
+    dishesSelector,
+    (cart, dishes) => {
+      let cartDishes = _.filter(dishes, d => cart[d.id]);
+      cartDishes = _.map(cartDishes, d => {
+        const amount = cart[d.id];
+        const totalDishPrice = amount * d.price;
+        return {
+          ...d,
+          amount,
+          totalDishPrice
+        };
+      });
+
+      const totalPrice = _.sumBy(cartDishes, d => d.totalDishPrice);
+
+      return {
+        dishes: cartDishes,
+        totalPrice
+      };
+    }
+  );

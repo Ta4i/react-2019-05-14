@@ -1,10 +1,13 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
+
 import ChickenLegIcon from '../chicken-leg';
 import { Card, Rate, Avatar, Tabs, Badge } from 'antd';
 import RestaurantMenu from '../restaurant-menu/restaurant-menu';
 import ReviewList from '../review-list/review-list';
 import toggle from '../../decorators/toggle';
+import { createAvarageRateSelector } from '../../selectors';
 
 const { Meta } = Card;
 const { TabPane } = Tabs;
@@ -19,7 +22,7 @@ class Restaurant extends Component {
 
   render() {
     const { defaultActiveKey } = this.state;
-    const { image, name, menu, reviews, isMenuOpen, isToggle: isReviewsToggle } = this.props;
+    const { image, name, menu, reviews, isMenuOpen, isToggle: isReviewsToggle, rate } = this.props;
 
     return (
       <Card size="small">
@@ -30,7 +33,7 @@ class Restaurant extends Component {
             <Rate
               character={<ChickenLegIcon theme="filled" />}
               count={this.#defaultRateCount}
-              value={this.getRate(reviews)}
+              value={rate}
               disabled
               allowHalf
             />
@@ -64,13 +67,6 @@ class Restaurant extends Component {
     );
   }
 
-  getRate = reviews => {
-    const rate = reviews.length
-      ? reviews.reduce((sum, item) => sum + item.rating, 0) / reviews.length
-      : 0;
-    return Math.floor(rate) === rate ? rate : Math.floor(rate) + 0.5;
-  };
-
   handleTabClick = key => {
     switch (key) {
       case 'menu': {
@@ -101,7 +97,7 @@ class Restaurant extends Component {
 }
 
 Restaurant.propTypes = {
-  id: PropTypes.any,
+  id: PropTypes.string.isRequired,
   image: PropTypes.string,
   name: PropTypes.string,
   menu: PropTypes.array,
@@ -109,7 +105,18 @@ Restaurant.propTypes = {
   isMenuOpen: PropTypes.bool,
   isToggle: PropTypes.bool,
   toggleOpenMenu: PropTypes.func,
-  handleToggleItem: PropTypes.func
+  handleToggleItem: PropTypes.func,
+  rate: PropTypes.number
 };
 
-export default toggle(Restaurant);
+const initMapStateToProps = () => {
+  const rateSelector = createAvarageRateSelector();
+
+  return (state, ownProps) => {
+    return {
+      rate: rateSelector(state, ownProps)
+    };
+  };
+};
+
+export default connect(initMapStateToProps)(toggle(Restaurant));

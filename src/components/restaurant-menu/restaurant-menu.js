@@ -6,7 +6,7 @@ function RestaurantMenu(props) {
   return (
     <div data-automation-id="menu">
       {props.menu.map(dish => (
-        <Dish key={dish.id} {...dish} />
+        <Dish key={dish} id={dish} />
       ))}
     </div>
   );

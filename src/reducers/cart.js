@@ -1,6 +1,8 @@
+import { ADD_TO_CART, REMOVE_FROM_CART, RESET, OPEN_CART } from '../constants';
+
 export default (cartState = {}, action) => {
   switch (action.type) {
-    case 'ADD_TO_CART': {
+    case ADD_TO_CART: {
       const { id } = action.payload;
       return {
         visible: cartState.visible,
@@ -10,7 +12,7 @@ export default (cartState = {}, action) => {
         }
       };
     }
-    case 'REMOVE_FROM_CART': {
+    case REMOVE_FROM_CART: {
       const { id, remove } = action.payload;
       const { dishes } = cartState;
       const newDishes = {
@@ -26,14 +28,14 @@ export default (cartState = {}, action) => {
         dishes: newDishes
       };
     }
-    case 'OPEN_CART':
+    case OPEN_CART:
       return {
         visible: !cartState.visible,
         dishes: {
           ...cartState.dishes
         }
       };
-    case 'RESET': {
+    case RESET: {
       return {};
     }
     default:

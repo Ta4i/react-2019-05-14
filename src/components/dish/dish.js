@@ -3,6 +3,8 @@ import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { Button, InputNumber, Row, Col, Descriptions } from 'antd';
 import { increaseCart, decreaseCart } from '../../actions';
+import { createDishSelector } from '../../selectors';
+import Price from '../price';
 
 const DescriptionsItem = Descriptions.Item;
 const ButtonGroup = Button.Group;
@@ -11,12 +13,10 @@ export function Dish(props) {
   const { id, amount, ingredients, increase, decrease } = props;
   return (
     <div>
-      <Descriptions
-        title={props.name}
-        border
-        column={{ xxl: 1, xl: 1, lg: 1, md: 1, sm: 1, xs: 1 }}
-      >
-        <DescriptionsItem label="Price">{`£${props.price}`}</DescriptionsItem>
+      <Descriptions title={props.name} column={{ xxl: 1, xl: 1, lg: 1, md: 1, sm: 1, xs: 1 }}>
+        <DescriptionsItem label="Price">
+          <Price value={props.price} />
+        </DescriptionsItem>
         <DescriptionsItem label="Ingredients">{ingredients.join(', ')}</DescriptionsItem>
       </Descriptions>
       <Row>
@@ -42,10 +42,19 @@ Dish.propTypes = {
   decrease: PropTypes.func
 };
 
+const initMapStateToProps = () => {
+  const dishSelector = createDishSelector();
+
+  return (state, ownProps) => {
+    return {
+      amount: state.cart.dishes[ownProps.id] || 0,
+      ...dishSelector(state, ownProps)
+    };
+  };
+};
+
 export default connect(
-  (state, ownProps) => ({
-    amount: state.cart.dishes[ownProps.id] || 0
-  }),
+  initMapStateToProps,
   {
     increase: increaseCart,
     decrease: decreaseCart

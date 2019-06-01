@@ -1,8 +1,11 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
+import uuidv1 from 'uuid/v1';
 import { List, Button, Descriptions } from 'antd';
 import { increaseCart, decreaseCart } from '../../actions';
+import Price from '../price';
+import { createCartDishesSelector, createOrderTotalSelector } from '../../selectors';
 
 const DescriptionsItem = Descriptions.Item;
 
@@ -13,14 +16,31 @@ class OrderList extends Component {
       <List
         size="small"
         header={<h2>Order List</h2>}
-        footer={<h2>Total: {`£${total}`}</h2>}
+        footer={
+          <h2>
+            Total: <Price value={total} />
+          </h2>
+        }
         dataSource={dishes}
         renderItem={item => (
           <List.Item
             actions={[
-              <Button size="small" onClick={() => add(item.id)} type="primary" icon="plus" />,
-              <Button size="small" onClick={() => remove(item.id)} type="primary" icon="minus" />,
               <Button
+                key={uuidv1()}
+                size="small"
+                onClick={() => add(item.id)}
+                type="primary"
+                icon="plus"
+              />,
+              <Button
+                key={uuidv1()}
+                size="small"
+                onClick={() => remove(item.id)}
+                type="primary"
+                icon="minus"
+              />,
+              <Button
+                key={uuidv1()}
                 size="small"
                 onClick={() => remove(item.id, true)}
                 type="primary"
@@ -29,7 +49,9 @@ class OrderList extends Component {
             ]}
           >
             <Descriptions title={item.name} size="small">
-              <DescriptionsItem label="Price" span={4}>{`£${item.price}`}</DescriptionsItem>
+              <DescriptionsItem label="Price" span={4}>
+                <Price value={item.price} />
+              </DescriptionsItem>
               <DescriptionsItem label="Value" span={6}>
                 {item.value}
               </DescriptionsItem>
@@ -48,31 +70,20 @@ OrderList.propTypes = {
   remove: PropTypes.func
 };
 
-const mapStateToProps = state => {
-  const dishes = [];
-  let total = 0;
-  for (const [id, value] of Object.entries(state.cart.dishes)) {
-    const menuDish = state.restaurants
-      .map(restaurant => restaurant.menu.find(item => item.id === id))
-      .filter(item => !!item);
-    if (menuDish.length) {
-      dishes.push({
-        id: menuDish[0].id,
-        name: menuDish[0].name,
-        value,
-        price: menuDish[0].price
-      });
-      total += menuDish[0].price * value;
-    }
-  }
-  return {
-    dishes,
-    total
+const initMapStateToProps = () => {
+  const cartDishesSelector = createCartDishesSelector();
+  const orderTotalSelector = createOrderTotalSelector();
+
+  return (state, ownProps) => {
+    return {
+      dishes: cartDishesSelector(state, ownProps),
+      total: orderTotalSelector(state, ownProps)
+    };
   };
 };
 
 export default connect(
-  mapStateToProps,
+  initMapStateToProps,
   {
     add: increaseCart,
     remove: decreaseCart

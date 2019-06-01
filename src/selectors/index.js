@@ -6,6 +6,7 @@ export const cartSelector = state => state.cart;
 export const restaurantsSelector = state => state.restaurants;
 export const dishesSelector = state => state.dishes;
 export const reviewsSelector = state => state.reviews;
+export const usersSelector = state => state.users;
 
 export const reviewIdPropSelector = (_, ownProps) => ownProps.reviewId;
 export const restaurantIdPropSelector = (_, ownProps) => ownProps.restaurantId;
@@ -24,8 +25,6 @@ export const createReviewSelector = () =>
     reviewsSelector,
     reviewIdPropSelector,
     (reviews, id) => {
-      // console.log("createReviewSelector",reviews, id);
-      // console.log("createReviewSelector -- id",id);
       return _.find(reviews, r => r.id === id);
     }
   );
@@ -67,6 +66,15 @@ export const createRestaurantAverageRateSelector = () =>
       return (
         reviews.reduce((acc, { rating }) => acc + rating, 0) / reviews.length
       );
+    }
+  );
+
+export const createReviewAuthorSelector = () =>
+  createSelector(
+    createReviewSelector(),
+    usersSelector,
+    (review, users) => {
+      return _.find(users, u => u.id === review.userId);
     }
   );
 

@@ -17,9 +17,7 @@ class AverageRating extends PureComponent {
 }
 
 AverageRating.propTypes = {
-  reviews: PropTypes.arrayOf(
-    PropTypes.shape({ rating: PropTypes.number.isRequired }).isRequired
-  ).isRequired
+  restaurantId: PropTypes.any.isRequired
 };
 
 const initMapStateToProps = () => {

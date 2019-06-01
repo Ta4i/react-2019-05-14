@@ -31,8 +31,6 @@ class Restaurant extends PureComponent {
       toggleVisibility
     } = this.props;
 
-    console.log("restaurantId", id);
-
     return this.state.error ? (
       "Not available"
     ) : (
@@ -72,11 +70,7 @@ class Restaurant extends PureComponent {
 }
 
 Restaurant.propTypes = {
-  id: PropTypes.string.isRequired,
-  image: PropTypes.string.isRequired,
-  name: PropTypes.string.isRequired,
-  menu: RestaurantMenu.propTypes.menu,
-  reviews: ReviewList.propTypes.reviews,
+  restaurantId: PropTypes.string.isRequired,
 
   isMenuOpen: PropTypes.bool,
   toggleOpenMenu: PropTypes.func.isRequired,

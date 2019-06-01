@@ -7,15 +7,14 @@ export const restaurantsSelector = state => state.restaurants;
 export const dishesSelector = state => state.dishes;
 export const reviewsSelector = state => state.reviews;
 
-export const reviewIdPropSelector = (_, ownProps) => ownProps.id;
-export const restaurantIdPropSelector = (_, ownProps) => ownProps.id;
+export const reviewIdPropSelector = (_, ownProps) => ownProps.reviewId;
+export const restaurantIdPropSelector = (_, ownProps) => ownProps.restaurantId;
 
 export const createRestaurantSelector = () =>
   createSelector(
     restaurantsSelector,
     restaurantIdPropSelector,
     (restaurants, id) => {
-      console.log("createRestaurantSelector", restaurants, id);
       return _.find(restaurants, r => r.id === id);
     }
   );
@@ -31,13 +30,23 @@ export const createReviewSelector = () =>
     }
   );
 
-export const createReviewIdsSelector = () =>
+export const createRestaurantReviewsSelector = () =>
   createSelector(
     reviewsSelector,
-    createRestaurantSelector,
+    createRestaurantSelector(),
     (reviews, restaurant) => {
-      // console.log("createReviewIdsSelector",reviews, restaurant);
-      return _.filter(reviews, r => _.includes(restaurant.reviews, r.id));
+      const restaurantReviews = reviews.filter(r =>
+        restaurant.reviews.includes(r.id)
+      );
+      return restaurantReviews;
+    }
+  );
+
+export const createReviewIdsSelector = () =>
+  createSelector(
+    createRestaurantReviewsSelector(),
+    reviews => {
+      return reviews.map(r => r.id);
     }
   );
 
@@ -48,6 +57,16 @@ export const createDishSelector = () =>
     (dishes, id) => {
       // console.log("dishSelector");
       return dishes.find(dish => dish.id === id);
+    }
+  );
+
+export const createRestaurantAverageRateSelector = () =>
+  createSelector(
+    createRestaurantReviewsSelector(),
+    reviews => {
+      return (
+        reviews.reduce((acc, { rating }) => acc + rating, 0) / reviews.length
+      );
     }
   );
 

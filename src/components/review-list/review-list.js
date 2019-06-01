@@ -14,7 +14,7 @@ function ReviewList({ reviewIds }) {
 }
 
 ReviewList.propTypes = {
-  // reviews: PropTypes.arrayOf(Review.propTypes.review)
+  reviewIds: PropTypes.arrayOf(PropTypes.any).isRequired
 };
 
 export default ReviewList;

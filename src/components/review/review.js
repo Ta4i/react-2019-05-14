@@ -32,11 +32,11 @@ Review.propTypes = {
   }).isRequired
 };
 
-const reviewSelector = createReviewSelector();
-const mapStateToProps = () => {
+const initMapStateToProps = () => {
+  const reviewSelector = createReviewSelector();
   return (state, props) => ({
     review: reviewSelector(state, props)
   });
 };
 
-export default connect(mapStateToProps)(Review);
+export default connect(initMapStateToProps)(Review);

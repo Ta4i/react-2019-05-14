@@ -31,7 +31,8 @@ class Restaurant extends PureComponent {
       toggleVisibility
     } = this.props;
 
-    //            <AverageRating reviewIds={reviewIds} />,
+    console.log("restaurantId", id);
+
     return this.state.error ? (
       "Not available"
     ) : (
@@ -39,6 +40,7 @@ class Restaurant extends PureComponent {
         <List.Item
           className="restaurant-list-item"
           actions={[
+            <AverageRating restaurantId={id} />,
             <Button
               data-automation-id={`toggle-review-list-${id}`}
               onClick={toggleVisibility}
@@ -83,12 +85,11 @@ Restaurant.propTypes = {
   toggleVisibility: PropTypes.func.isRequired
 };
 
-const reviewIdsSelector = createReviewIdsSelector();
-
-const mapStateToProps = () => {
+const initMapStateToProps = () => {
+  const reviewIdsSelector = createReviewIdsSelector();
   return (state, props) => ({
     reviewIds: reviewIdsSelector(state, props)
   });
 };
 
-export default connect(mapStateToProps)(toggleVisibility(Restaurant));
+export default connect(initMapStateToProps)(toggleVisibility(Restaurant));

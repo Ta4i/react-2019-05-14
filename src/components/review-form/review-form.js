@@ -18,11 +18,10 @@ class ReviewForm extends Component {
   };
 
   onSendClick = () => {
-    console.log("Send action", this.state);
     const { addReview, restaurantId } = this.props;
     addReview({
       ...this.state,
-      restaurantId: restaurantId
+      restaurantId
     });
   };
 

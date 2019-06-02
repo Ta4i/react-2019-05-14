@@ -12,7 +12,7 @@ class AverageRating extends PureComponent {
   render() {
     const { averageRating } = this.props;
     const normalizedRating = Math.floor(averageRating * 2) / 2;
-    return <Rate defaultValue={normalizedRating} disabled allowHalf />;
+    return <Rate value={normalizedRating} disabled allowHalf />;
   }
 }
 

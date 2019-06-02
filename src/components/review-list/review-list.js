@@ -1,15 +1,20 @@
-import React from "react";
+import React, { Fragment } from "react";
 import { List } from "antd";
 import Review from "../review";
 import PropTypes from "prop-types";
+import AddReviewForm from "../add-review-form";
 
 function ReviewList({ reviews }) {
   return (
-    <List data-automation-id="review-list">
-      {reviews.map(review => (
-        <Review key={review.id} review={review} />
-      ))}
-    </List>
+    <Fragment>
+      <AddReviewForm />
+
+      <List data-automation-id="review-list">
+        {reviews.map(review => (
+          <Review key={review.id} review={review} />
+        ))}
+      </List>
+    </Fragment>
   );
 }
 

@@ -23,9 +23,7 @@ function App(props) {
         <OrderList />
         <UserForm />
       </Content>
-      <Footer>
-        <Counter />
-      </Footer>
+      <Footer>{/*<Counter />*/}</Footer>
     </Layout>
   );
 }

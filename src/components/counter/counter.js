@@ -5,7 +5,7 @@ import { increase, decrease } from "../../ac";
 
 class Counter extends Component {
   render() {
-    console.log("Counter");
+    // console.log("Counter");
     return (
       <div>
         <span style={{ color: "black" }}>{this.props.countFromStore}</span>

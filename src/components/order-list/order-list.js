@@ -15,10 +15,11 @@ class OrderList extends Component {
       decreaseCart,
       deleteFromCart
     } = this.props;
-    console.log("OrderList render");
+    // console.log("OrderList render");
     if (dishes.length === 0) {
       return null;
     }
+
     return (
       <div className="order">
         <h3>Your order</h3>
@@ -34,7 +35,7 @@ class OrderList extends Component {
                   .....
                   <Price
                     className="dish-amount"
-                    value={dish.totalDishPrice}
+                    value={dish.price * dish.amount}
                   />{" "}
                   <Button.Group>
                     <Button

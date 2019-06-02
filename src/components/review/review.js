@@ -4,16 +4,18 @@ import PropTypes from "prop-types";
 import "./review.css";
 
 function Review({ review }) {
+  let { name, text, rating } = review;
+
   return (
     <Comment
       className="review"
-      author={review.user}
-      content={review.text}
+      author={name}
+      content={text}
       actions={[
         <Rate
           disabled
           allowHalf
-          defaultValue={review.rating}
+          defaultValue={rating}
           className="review-rating"
         />
       ]}
@@ -23,7 +25,7 @@ function Review({ review }) {
 
 Review.propTypes = {
   review: PropTypes.shape({
-    user: PropTypes.string.isRequired,
+    name: PropTypes.string.isRequired,
     text: PropTypes.string.isRequired,
     rating: PropTypes.number.isRequired
   }).isRequired

@@ -3,7 +3,8 @@ import {
   DECREMENT,
   ADD_TO_CART,
   SUBTRACT_FROM_CART,
-  DELETE_FROM_CART
+  DELETE_FROM_CART,
+  ADD_REVIEW
 } from "../constants";
 
 export const increase = () => ({

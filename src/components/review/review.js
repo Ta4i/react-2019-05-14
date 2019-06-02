@@ -25,7 +25,8 @@ function Review({ review, author }) {
 }
 
 Review.propTypes = {
-  reviewId: PropTypes.any.isRequired
+  reviewId: PropTypes.any.isRequired,
+  author: PropTypes.object.isRequired
 };
 
 const initMapStateToProps = () => {

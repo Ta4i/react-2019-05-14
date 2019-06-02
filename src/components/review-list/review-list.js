@@ -14,7 +14,7 @@ function ReviewList({ reviews }) {
 }
 
 ReviewList.propTypes = {
-  reviews: PropTypes.arrayOf(Review.propTypes.review)
+  reviews: PropTypes.arrayOf(PropTypes.object)
 };
 
 export default ReviewList;

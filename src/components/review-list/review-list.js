@@ -1,6 +1,7 @@
 import React from "react";
 import { List } from "antd";
 import Review from "../review";
+import ReviewForm from "../review-form";
 import PropTypes from "prop-types";
 
 function ReviewList({ reviewIds }) {
@@ -9,6 +10,7 @@ function ReviewList({ reviewIds }) {
       {reviewIds.map(id => (
         <Review key={id} reviewId={id} />
       ))}
+      <ReviewForm />
     </List>
   );
 }

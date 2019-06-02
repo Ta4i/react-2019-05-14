@@ -16,7 +16,7 @@ class OrderList extends Component {
       decreaseCart,
       deleteFromCart
     } = this.props;
-    console.log("OrderList render", totalPrice, dishes);
+
     if (dishes.length === 0) {
       return null;
     }

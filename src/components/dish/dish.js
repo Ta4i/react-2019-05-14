@@ -58,8 +58,8 @@ const initMapStateToProps = () => {
   const amountSelector = createDishCartAmountSelector();
   return (state, props) => {
     return {
-      amount: amountSelector(state, props),
-      ...dishSelector(state, props)
+      ...dishSelector(state, props),
+      amount: amountSelector(state, props)
     };
   };
 };

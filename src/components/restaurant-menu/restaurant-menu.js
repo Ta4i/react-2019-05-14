@@ -21,7 +21,6 @@ function RestaurantMenu({ dishes }) {
 
 RestaurantMenu.propTypes = {
   restaurantId: PropTypes.any.isRequired
-  // menu: PropTypes.arrayOf(PropTypes.shape(Dish.propTypes)).isRequired
 };
 
 const initMapStateToProps = () => {

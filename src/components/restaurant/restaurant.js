@@ -22,7 +22,16 @@ class Restaurant extends Component {
 
   render() {
     const { defaultActiveKey } = this.state;
-    const { image, name, menu, reviews, isMenuOpen, isToggle: isReviewsToggle, rate } = this.props;
+    const {
+      id,
+      image,
+      name,
+      menu,
+      reviews,
+      isMenuOpen,
+      isToggle: isReviewsToggle,
+      rate
+    } = this.props;
 
     return (
       <Card size="small">
@@ -60,7 +69,7 @@ class Restaurant extends Component {
             }
             key="reviews"
           >
-            {isReviewsToggle ? <ReviewList reviews={reviews} /> : null}
+            {isReviewsToggle ? <ReviewList restaurantId={id} reviews={reviews} /> : null}
           </TabPane>
         </Tabs>
       </Card>

@@ -6,7 +6,7 @@ import ReviewForm from '../review-form';
 
 class ReviewList extends Component {
   render() {
-    const { reviews } = this.props;
+    const { restaurantId, reviews } = this.props;
     return (
       <>
         <List
@@ -16,13 +16,14 @@ class ReviewList extends Component {
           dataSource={reviews}
           renderItem={review => <Review id={review} />}
         />
-        <ReviewForm />
+        <ReviewForm restaurantId={restaurantId} />
       </>
     );
   }
 }
 
 ReviewList.propTypes = {
+  restaurantId: PropTypes.string,
   reviews: PropTypes.array
 };
 

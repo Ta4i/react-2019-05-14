@@ -1,6 +1,8 @@
 import { createSelector } from 'reselect';
 
 export const idSelector = (_, ownProps) => ownProps.id;
+export const restaurantIdSelector = (_, ownProps) => ownProps.restaurantId;
+export const restaurantsSelector = state => state.restaurants;
 export const dishesSelector = state => state.dishes;
 export const reviewsSelector = state => state.reviews;
 export const currentUserSelector = state => state.user;
@@ -8,6 +10,15 @@ export const usersSelector = state => state.users;
 export const restarauntReviewsSelector = (_, ownProps) => ownProps.reviews;
 
 export const cartSelector = state => state.cart;
+
+export const createRestaurantSelector = () =>
+  createSelector(
+    restaurantIdSelector,
+    restaurantsSelector,
+    (id, restaurants) => {
+      return restaurants.find(restaurant => restaurant.id === id);
+    }
+  );
 
 export const createCartDishesSelector = () =>
   createSelector(

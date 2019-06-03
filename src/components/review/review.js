@@ -7,7 +7,7 @@ function Review({ review }) {
   return (
     <Comment
       className="review"
-      author={review.user}
+      author={review.user.name}
       content={review.text}
       actions={[
         <Rate
@@ -23,7 +23,7 @@ function Review({ review }) {
 
 Review.propTypes = {
   review: PropTypes.shape({
-    user: PropTypes.string.isRequired,
+    userId: PropTypes.string.isRequired,
     text: PropTypes.string.isRequired,
     rating: PropTypes.number.isRequired
   }).isRequired

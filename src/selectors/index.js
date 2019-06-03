@@ -4,13 +4,32 @@ export const idSelector = (_, ownProps) => ownProps.id;
 export const cartSelector = state => state.cart;
 export const restaurantsSelector = state => state.restaurants;
 export const dishesSelector = state => state.dishes;
+export const reviewsSelector = state => state.reviews;
+export const usersSelector = state => state.users;
+
+export const createUserSelector = () =>
+  createSelector(
+    usersSelector,
+    idSelector,
+    (users, id) => {
+      return users.find(user => user.id === id);
+    }
+  );
+
+export const createReviewSelector = () =>
+  createSelector(
+    reviewsSelector,
+    idSelector,
+    (reviews, id) => {
+      return reviews.find(review => review.id === id);
+    }
+  );
 
 export const createDishSelector = () =>
   createSelector(
     dishesSelector,
     idSelector,
     (dishes, id) => {
-      console.log("dishSelector");
       return dishes.find(dish => dish.id === id);
     }
   );

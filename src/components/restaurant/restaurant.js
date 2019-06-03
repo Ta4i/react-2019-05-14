@@ -60,7 +60,9 @@ class Restaurant extends PureComponent {
             title={name}
           />
         </List.Item>
-        {isReviewOpen ? <ReviewList reviews={reviews} /> : null}
+        {isReviewOpen ? (
+          <ReviewList reviews={reviews} restaurantId={id} />
+        ) : null}
         {isMenuOpen ? <RestaurantMenu menu={menu} /> : null}
       </>
     );

@@ -4,10 +4,10 @@ import Review from "../review";
 import PropTypes from "prop-types";
 import AddReviewForm from "../add-review-form";
 
-function ReviewList({ reviews }) {
+function ReviewList({ reviews, restaurantId }) {
   return (
     <Fragment>
-      <AddReviewForm />
+      <AddReviewForm restaurantId={restaurantId} />
 
       <List data-automation-id="review-list">
         {reviews.map(review => (

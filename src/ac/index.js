@@ -7,6 +7,13 @@ import {
   ADD_REVIEW
 } from "../constants";
 
+export const addReview = review => ({
+  type: ADD_REVIEW,
+  payload: {
+    review
+  }
+});
+
 export const increase = () => ({
   type: INCREMENT
 });

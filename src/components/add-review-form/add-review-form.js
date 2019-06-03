@@ -1,12 +1,15 @@
 import React, { Component } from "react";
 import { Form, Input, Button, Rate } from "antd";
+import { connect } from "react-redux";
+import { addReview } from "../../ac";
 import "./add-review-form.css";
 
 class AddReviewForm extends Component {
   state = {
     name: "",
     review: "",
-    value: 0
+    value: 0,
+    restaurantId: this.props.restaurantId
   };
 
   handleChange = value => {
@@ -14,6 +17,8 @@ class AddReviewForm extends Component {
   };
 
   render() {
+    let { addReview } = this.props;
+
     const { name, review, value } = this.state;
     const desc = ["terrible", "bad", "normal", "good", "wonderful"];
 
@@ -45,8 +50,8 @@ class AddReviewForm extends Component {
           <Button
             type="primary"
             htmlType="submit"
-            onClick={this.submit}
             className="add-review-form-btn"
+            onClick={() => addReview(this.state)}
           >
             Send review
           </Button>
@@ -66,11 +71,15 @@ class AddReviewForm extends Component {
       review: e.target.value
     });
   };
-
-  submit = e => {
-    e.preventDefault();
-    console.log(this.state);
-  };
 }
 
-export default AddReviewForm;
+export default connect(
+  state => {
+    return {
+      restaurant: state.restaurants
+    };
+  },
+  {
+    addReview
+  }
+)(AddReviewForm);

@@ -1,5 +1,11 @@
 import { normalizedReviews } from "../fixtures";
 
 export default (reviewsState = normalizedReviews, action) => {
-  return reviewsState;
+  switch (action.type) {
+    case "ADD_REVIEW": {
+    }
+
+    default:
+      return reviewsState;
+  }
 };

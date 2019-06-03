@@ -66,8 +66,7 @@ export let generateId = store => next => action => {
     ...restaurants.slice(idxRestaurant + 1)
   ];
 
-  return {
-    ...state,
+  action.payload.result = {
     users: updatedUsers,
     restaurants: updatedRestaurants,
     reviews: updatedReviews

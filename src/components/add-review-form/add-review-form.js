@@ -51,7 +51,14 @@ class AddReviewForm extends Component {
             type="primary"
             htmlType="submit"
             className="add-review-form-btn"
-            onClick={() => addReview(this.state)}
+            onClick={() => {
+              addReview(this.state);
+              this.setState({
+                name: "",
+                review: "",
+                value: 0
+              });
+            }}
           >
             Send review
           </Button>
@@ -74,11 +81,7 @@ class AddReviewForm extends Component {
 }
 
 export default connect(
-  state => {
-    return {
-      restaurant: state.restaurants
-    };
-  },
+  null,
   {
     addReview
   }

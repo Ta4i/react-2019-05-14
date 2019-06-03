@@ -1,5 +1,7 @@
 import React, { PureComponent } from "react";
 import { Button, Card, Form, Input, Rate } from "antd";
+import { connect } from "react-redux";
+import { addReviewToRestaurant } from "../../ac/";
 import "./review-form.css";
 
 const formItemLayout = {
@@ -28,13 +30,16 @@ const tailFormItemLayout = {
 class ReviewFrom extends PureComponent {
   state = {
     name: "",
-    rate: "",
-    description: ""
+    rating: "",
+    text: ""
   };
 
   submitHandler = e => {
     e.preventDefault();
-    console.log(this.state);
+    this.props.addAction({
+      ...this.state,
+      restaurant: this.props.id
+    });
   };
 
   nameChangeHandler = e => {
@@ -44,13 +49,13 @@ class ReviewFrom extends PureComponent {
   };
   rateChangeHandler = value => {
     this.setState({
-      rate: value
+      rating: value
     });
   };
 
   descriptionChangeHandler = e => {
     this.setState({
-      description: e.target.value
+      text: e.target.value
     });
   };
 
@@ -82,4 +87,13 @@ class ReviewFrom extends PureComponent {
   }
 }
 
-export default ReviewFrom;
+export default connect(
+  () => {
+    return () => {
+      return {};
+    };
+  },
+  {
+    addAction: addReviewToRestaurant
+  }
+)(ReviewFrom);

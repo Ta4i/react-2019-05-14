@@ -4,10 +4,10 @@ import Review from "../review";
 import PropTypes from "prop-types";
 import ReviewFrom from "../review-form";
 
-function ReviewList({ reviews }) {
+function ReviewList({ reviews, id }) {
   return (
     <>
-      <ReviewFrom />
+      <ReviewFrom id={id} />
       <List data-automation-id="review-list">
         {reviews.map(review => (
           <Review key={review.id} review={review} />
@@ -18,7 +18,8 @@ function ReviewList({ reviews }) {
 }
 
 ReviewList.propTypes = {
-  reviews: PropTypes.arrayOf(PropTypes.object)
+  reviews: PropTypes.arrayOf(PropTypes.object),
+  id: PropTypes.string
 };
 
 export default ReviewList;

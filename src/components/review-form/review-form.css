@@ -17,3 +17,12 @@
   resize: none;
   margin-bottom: 20px;
 }
+.review-form__wrapper {
+  position: relative;
+}
+
+.review-form__rating-tip {
+  position: absolute;
+  right: 0;
+  top: 26px;
+}

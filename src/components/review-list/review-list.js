@@ -3,10 +3,10 @@ import { List } from "antd";
 import Review from "../review";
 import PropTypes from "prop-types";
 
-function ReviewList({ reviews }) {
+function ReviewList(props) {
   return (
     <List data-automation-id="review-list">
-      {reviews.map(review => (
+      {props.reviews.map(review => (
         <Review key={review.id} review={review} />
       ))}
     </List>
@@ -14,7 +14,7 @@ function ReviewList({ reviews }) {
 }
 
 ReviewList.propTypes = {
-  reviews: PropTypes.arrayOf(Review.propTypes.review)
+  reviews: PropTypes.arrayOf(PropTypes.shape(Review.propTypes))
 };
 
 export default ReviewList;

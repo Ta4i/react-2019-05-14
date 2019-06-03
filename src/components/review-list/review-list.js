@@ -2,14 +2,18 @@ import React from "react";
 import { List } from "antd";
 import Review from "../review";
 import PropTypes from "prop-types";
+import ReviewFrom from "../review-form";
 
 function ReviewList({ reviews }) {
   return (
-    <List data-automation-id="review-list">
-      {reviews.map(review => (
-        <Review key={review.id} review={review} />
-      ))}
-    </List>
+    <>
+      <ReviewFrom />
+      <List data-automation-id="review-list">
+        {reviews.map(review => (
+          <Review key={review.id} review={review} />
+        ))}
+      </List>
+    </>
   );
 }
 

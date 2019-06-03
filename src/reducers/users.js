@@ -11,7 +11,7 @@ export default (usersState = normalizedUsers, action) => {
       if (!reviewer)
         newUsersState.push({
           id: action.payload.userId,
-          name: action.payload.name
+          name: action.payload.userName
         });
       return newUsersState;
     }

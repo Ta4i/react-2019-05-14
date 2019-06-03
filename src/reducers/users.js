@@ -5,17 +5,15 @@ export default (usersState = normalizedUsers, action) => {
   const { type, payload } = action;
   switch (type) {
     case CREATE_USER: {
-      let newUser = usersState.find(item => item.id === payload.id);
-      console.log('NewUser: ', newUser);
-      if (newUser) {
-        newUser = payload;
-      } else {
-        usersState.push(payload);
-      }
+      usersState.push(payload);
       return usersState;
     }
     case GET_USER: {
-      return usersState.find(item => item.id === payload.id);
+      const user = usersState.find(item => item.id === payload.id);
+      if (!user) {
+        // TODO: if not found throw exception
+      }
+      return usersState;
     }
     default: {
       return usersState;

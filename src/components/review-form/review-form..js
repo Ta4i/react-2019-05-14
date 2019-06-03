@@ -4,14 +4,8 @@ import { connect } from 'react-redux';
 
 import { Comment, Form, Input, Button, Rate, Icon } from 'antd';
 import ChickenLegIcon from '../chicken-leg';
-import {
-  createReview,
-  createUser,
-  getUser,
-  setCurrentUser,
-  addReviewToRestaurant
-} from '../../actions';
-import { currentUserSelector, createRestaurantSelector } from '../../selectors';
+import { createReview, createUser, setCurrentUser, addReviewToRestaurant } from '../../actions';
+import { currentUserSelector } from '../../selectors';
 
 const { TextArea } = Input;
 
@@ -77,7 +71,7 @@ class ReviewForm extends Component {
               <Button
                 htmlType="submit"
                 loading={submitting}
-                onClick={() => create({ name, email, text, rating, userId })}
+                onClick={() => create({ name, email, text, rating, userId }, currentUser)}
                 type="primary"
               >
                 Add Comment
@@ -121,19 +115,22 @@ ReviewForm.propTypes = {
 
 const initMapDispatchToProps = () => {
   return (dispatch, ownProps) => {
-    const { currentUser, restaurantId } = ownProps;
+    const { restaurantId } = ownProps;
     return {
-      create: review => {
-        const { payload: user } = review.userId
-          ? dispatch(getUser(review.userId))
+      create: (review, currentUser) => {
+        const { payload: user } = currentUser.id
+          ? {
+              payload: currentUser
+            }
           : dispatch(
               createUser({
-                id: review.userId,
                 name: review.name,
                 email: review.email
               })
             );
-        dispatch(setCurrentUser(user));
+        if (!currentUser.id) {
+          dispatch(setCurrentUser(user));
+        }
         const { payload: newReview } = dispatch(
           createReview({
             userId: user.id,

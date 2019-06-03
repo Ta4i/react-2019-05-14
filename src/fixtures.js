@@ -200,6 +200,7 @@ const normalizedRestaurants = [
     ],
     reviews: [
       "53b642d7-5e86-4717-a466-0640a1dee076",
+      "53b642d7-5e86-4717-a466-0640a1dee077",
       "c27ab88e-375c-4e98-aa94-8a180150a797",
       "abc0c5e1-cd57-4f0a-99d9-00e6b4533b3a"
     ]
@@ -334,7 +335,7 @@ const normalizedReviews = [
     rating: 5
   },
   {
-    id: "53b642d7-5e86-4717-a466-0640a1dee076",
+    id: "53b642d7-5e86-4717-a466-0640a1dee077",
     userId: "52a63cc0-5a6f-41f3-9774-0161ea4c9b0c",
     text: "Best bakery",
     rating: 5
@@ -350,7 +351,7 @@ const normalizedReviews = [
     id: "381b0c31-6360-43ff-80d1-581a116159d8",
     userId: "1547335a-ea18-4547-a73d-32bd6e9f651c",
     text: "Meat here is extremely delicious",
-    rating: 5
+    rating: 3
   }
 ];
 

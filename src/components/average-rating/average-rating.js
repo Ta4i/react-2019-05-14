@@ -1,28 +1,17 @@
-import React, { PureComponent } from "react";
+import React from "react";
 import { Rate } from "antd";
 import PropTypes from "prop-types";
+import { connect } from "react-redux";
+import { averageRatingSelector } from "../../selectors";
 
-class AverageRating extends PureComponent {
-  state = {
-    value: 0
-  };
-
-  render() {
-    const { reviews } = this.props;
-    const rawRating =
-      reviews.reduce((acc, { rating }) => {
-        return acc + rating;
-      }, 0) / reviews.length;
-    const normalizedRating = Math.floor(rawRating * 2) / 2;
-
-    return <Rate defaultValue={normalizedRating} disabled allowHalf />;
-  }
+function AverageRating(props) {
+  return <Rate defaultValue={props.rating} disabled allowHalf />;
 }
 
 AverageRating.propTypes = {
-  reviews: PropTypes.arrayOf(
-    PropTypes.shape({ rating: PropTypes.number.isRequired }).isRequired
-  ).isRequired
+  rating: PropTypes.number.isRequired
 };
 
-export default AverageRating;
+export default connect((state, ownProps) => ({
+  rating: averageRatingSelector(state, ownProps)
+}))(AverageRating);

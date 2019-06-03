@@ -3,7 +3,8 @@ import {
   DECREMENT,
   ADD_TO_CART,
   SUBTRACT_FROM_CART,
-  DELETE_FROM_CART
+  DELETE_FROM_CART,
+  ADDED_NEW_REVIEW
 } from "../constants";
 
 export const increase = () => ({
@@ -28,5 +29,15 @@ export const deleteFromCart = id => ({
   type: DELETE_FROM_CART,
   payload: {
     id
+  }
+});
+
+export const sendReview = (restaurantId, name, text, rating) => ({
+  type: ADDED_NEW_REVIEW,
+  payload: {
+    restaurantId,
+    name,
+    text,
+    rating
   }
 });

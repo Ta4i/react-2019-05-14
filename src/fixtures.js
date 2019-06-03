@@ -217,7 +217,7 @@ const normalizedRestaurants = [
       "64a4967c-2080-4a99-9074-4655a4569a95",
       "4bc8528e-26d1-46c3-a522-8e18d10c8c84"
     ],
-    reviews: ["53b642d7-5e86-4717-a466-0640a1dee076"]
+    reviews: ["63b642d7-5e86-4717-a466-0640a1dee076"]
   },
   {
     id: "d9241927-09e1-44f3-8986-a76346869037",
@@ -334,7 +334,7 @@ const normalizedReviews = [
     rating: 5
   },
   {
-    id: "53b642d7-5e86-4717-a466-0640a1dee076",
+    id: "63b642d7-5e86-4717-a466-0640a1dee076",
     userId: "52a63cc0-5a6f-41f3-9774-0161ea4c9b0c",
     text: "Best bakery",
     rating: 5

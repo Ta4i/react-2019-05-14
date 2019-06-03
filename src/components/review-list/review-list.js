@@ -2,11 +2,14 @@ import React from "react";
 import { List } from "antd";
 import Review from "../review";
 import PropTypes from "prop-types";
+import { connect } from "react-redux";
+import { createReviewListSelector } from "../../selectors";
 
-function ReviewList({ reviews }) {
+function ReviewList(props) {
+  const { reviewList } = props;
   return (
     <List data-automation-id="review-list">
-      {reviews.map(review => (
+      {reviewList.map(review => (
         <Review key={review.id} review={review} />
       ))}
     </List>
@@ -17,4 +20,12 @@ ReviewList.propTypes = {
   reviews: PropTypes.arrayOf(Review.propTypes.review)
 };
 
-export default ReviewList;
+const initMapStateToProps = () => {
+  const reviewListSelector = createReviewListSelector();
+
+  return (state, ownProps) => ({
+    reviewList: reviewListSelector(state, ownProps)
+  });
+};
+
+export default connect(initMapStateToProps)(ReviewList);

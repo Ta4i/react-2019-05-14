@@ -3,6 +3,7 @@ import RestaurantMenu from "../restaurant-menu";
 import { List, Avatar, Button } from "antd";
 import AverageRating from "../average-rating";
 import ReviewList from "../review-list";
+import ReviewForm from "../review-form";
 import { toggleVisibility } from "../../decorators/toggleVisibility";
 import * as PropTypes from "prop-types";
 import "./restaurant.css";
@@ -25,8 +26,10 @@ class Restaurant extends PureComponent {
       menu,
       reviews,
       isMenuOpen,
-      isOpen: isReviewOpen,
-      toggleVisibility
+      isOpen1: isReviewOpen,
+      isOpen2: isFormOpen,
+      toggleVisibility1,
+      toggleVisibility2
     } = this.props;
 
     return this.state.error ? (
@@ -39,9 +42,16 @@ class Restaurant extends PureComponent {
             <AverageRating arrId={reviews} />,
             <Button
               data-automation-id={`toggle-review-list-${id}`}
-              onClick={toggleVisibility}
+              onClick={toggleVisibility1}
             >
               {isReviewOpen ? "Hide reviews" : "Show reviews"}
+            </Button>,
+            <Button
+              data-automation-id={`toggle-review-form-${id}`}
+              onClick={toggleVisibility2}
+              style={{ width: 107 }}
+            >
+              {isFormOpen ? "Close" : "Send review"}
             </Button>,
             <Button
               data-automation-id={`toggle-menu-${id}`}
@@ -57,6 +67,7 @@ class Restaurant extends PureComponent {
           />
         </List.Item>
         {isReviewOpen ? <ReviewList arrId={reviews} /> : null}
+        {isFormOpen ? <ReviewForm id={id} /> : null}
         {isMenuOpen ? <RestaurantMenu menu={menu} /> : null}
       </>
     );
@@ -78,7 +89,8 @@ Restaurant.propTypes = {
   toggleOpenMenu: PropTypes.func.isRequired,
 
   isOpen: PropTypes.bool,
-  toggleVisibility: PropTypes.func.isRequired
+  toggleVisibility1: PropTypes.func.isRequired,
+  toggleVisibility2: PropTypes.func.isRequired
 };
 
 export default toggleVisibility(Restaurant);

@@ -4,7 +4,8 @@ import React, { Component } from "react";
 const toggleVisibility = OriginalComponent =>
   class DecoratedComponent extends Component {
     state = {
-      isOpen: null
+      isOpen1: null,
+      isOpen2: null
     };
 
     render() {
@@ -12,14 +13,21 @@ const toggleVisibility = OriginalComponent =>
         <OriginalComponent
           {...this.props}
           {...this.state}
-          toggleVisibility={this.toggleVisibility}
+          toggleVisibility1={this.toggleVisibility1}
+          toggleVisibility2={this.toggleVisibility2}
         />
       );
     }
 
-    toggleVisibility = () => {
+    toggleVisibility1 = () => {
       this.setState({
-        isOpen: !this.state.isOpen
+        isOpen1: !this.state.isOpen1
+      });
+    };
+
+    toggleVisibility2 = () => {
+      this.setState({
+        isOpen2: !this.state.isOpen2
       });
     };
   };

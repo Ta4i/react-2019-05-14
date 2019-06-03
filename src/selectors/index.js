@@ -8,6 +8,7 @@ export const reviewsSelector = state => state.reviews;
 export const usersSelector = state => state.users;
 export const reviewListSelector = (_, ownProps) => ownProps.reviews;
 export const reviewUserIDSelector = (_, ownProps) => ownProps.review.userId;
+export const userNameSelector = (_, ownProps) => ownProps.name;
 
 export const createDishSelector = () =>
   createSelector(
@@ -33,7 +34,17 @@ export const createUsersSelector = () =>
     usersSelector,
     reviewUserIDSelector,
     (users, id) => {
-      return users.find(user => user.id === id).name || "";
+      return users.find(user => user.id === id).name || "No name";
+    }
+  );
+
+export const createUserIdSelector = () =>
+  createSelector(
+    usersSelector,
+    userNameSelector,
+    (users, name) => {
+      console.log(typeof users.find);
+      return (users.find(user => user.name === name) || {}).id || false;
     }
   );
 

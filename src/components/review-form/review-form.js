@@ -30,7 +30,7 @@ const tailFormItemLayout = {
 class ReviewFrom extends PureComponent {
   state = {
     name: "",
-    rating: "",
+    rating: 0,
     text: ""
   };
 
@@ -39,6 +39,11 @@ class ReviewFrom extends PureComponent {
     this.props.addAction({
       ...this.state,
       restaurant: this.props.id
+    });
+    this.setState({
+      name: "",
+      rating: 0,
+      text: ""
     });
   };
 
@@ -60,20 +65,30 @@ class ReviewFrom extends PureComponent {
   };
 
   render() {
+    const { name, rating, text } = this.state;
     return (
       <Card title={"Add review"} size={"small"} className={"review-form"}>
         <Form {...formItemLayout} onSubmit={this.submitHandler}>
           <Form.Item label={"Name"} {...formItemLayout}>
-            <Input name={"name"} onChange={this.nameChangeHandler} />
+            <Input
+              name={"name"}
+              onChange={this.nameChangeHandler}
+              value={name}
+            />
           </Form.Item>
           <Form.Item label={"Rate"} {...formItemLayout}>
-            <Rate name={"rate"} onChange={this.rateChangeHandler} />
+            <Rate
+              name={"rate"}
+              onChange={this.rateChangeHandler}
+              value={rating}
+            />
           </Form.Item>
           <Form.Item label={"Description"} {...formItemLayout}>
             <Input.TextArea
               rows={2}
               name={"description"}
               onChange={this.descriptionChangeHandler}
+              value={text}
             />
           </Form.Item>
           <Form.Item {...tailFormItemLayout}>

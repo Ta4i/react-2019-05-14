@@ -67,7 +67,9 @@ class Restaurant extends PureComponent {
           />
         </List.Item>
         {isReviewOpen ? <ReviewList arrId={reviews} /> : null}
-        {isFormOpen ? <ReviewForm id={id} /> : null}
+        {isFormOpen ? (
+          <ReviewForm id={id} closeForm={toggleVisibility2} />
+        ) : null}
         {isMenuOpen ? <RestaurantMenu menu={menu} /> : null}
       </>
     );

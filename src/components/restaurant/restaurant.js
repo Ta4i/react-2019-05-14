@@ -36,7 +36,7 @@ class Restaurant extends PureComponent {
         <List.Item
           className="restaurant-list-item"
           actions={[
-            <AverageRating reviews={reviews} />,
+            <AverageRating arrId={reviews} />,
             <Button
               data-automation-id={`toggle-review-list-${id}`}
               onClick={toggleVisibility}
@@ -56,7 +56,7 @@ class Restaurant extends PureComponent {
             title={name}
           />
         </List.Item>
-        {isReviewOpen ? <ReviewList reviews={reviews} /> : null}
+        {isReviewOpen ? <ReviewList arrId={reviews} /> : null}
         {isMenuOpen ? <RestaurantMenu menu={menu} /> : null}
       </>
     );
@@ -72,7 +72,7 @@ Restaurant.propTypes = {
   image: PropTypes.string.isRequired,
   name: PropTypes.string.isRequired,
   menu: RestaurantMenu.propTypes.menu,
-  reviews: ReviewList.propTypes.reviews,
+  reviews: PropTypes.arrayOf(PropTypes.string),
 
   isMenuOpen: PropTypes.bool,
   toggleOpenMenu: PropTypes.func.isRequired,

@@ -1,3 +1,6 @@
+import { LOAD_USERS } from "../constants/users";
+import { LOAD_DISHES } from "../constants/dishes";
+import { LOAD_REVIEWS } from "../constants/reviews";
 import {
   INCREMENT,
   DECREMENT,
@@ -47,4 +50,19 @@ export const addReview = (userName, rating, text, restaurantId) => ({
 export const loadRestaurants = () => ({
   type: LOAD_RESTAURANTS,
   callAPI: "http://localhost:3001/api/restaurants"
+});
+
+export const loadUsers = () => ({
+  type: LOAD_USERS,
+  callAPI: "http://localhost:3001/api/users"
+});
+
+export const loadReviews = () => ({
+  type: LOAD_REVIEWS,
+  callAPI: "http://localhost:3001/api/reviews"
+});
+
+export const loadDishes = () => ({
+  type: LOAD_DISHES,
+  callAPI: "http://localhost:3001/api/dishes"
 });

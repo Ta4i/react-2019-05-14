@@ -19,7 +19,7 @@ class RestaurantList extends Component {
       openItemId,
       toggleOpenItem
     } = this.props;
-
+    console.log("resta", restaurants);
     return (
       <List>
         {restaurants.map(restaurant => (

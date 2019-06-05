@@ -55,7 +55,7 @@ const initMapStateToProps = () => {
 
   return (state, ownProps) => {
     return {
-      amount: state.cart[ownProps.id] || 0,
+      amount: state.cart.get(ownProps.id) || 0, // could be moved to selectors, but and reused in Price component
       ...dishSelector(state, ownProps)
     };
   };

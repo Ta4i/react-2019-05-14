@@ -27,7 +27,7 @@ class Restaurant extends PureComponent {
       isOpen: isReviewOpen,
       toggleVisibility
     } = this.props;
-
+    console.log("render", name);
     return this.state.error ? (
       "Not available"
     ) : (

@@ -9,7 +9,7 @@ import CartBadge from "./components/cart-badge";
 // import Counter from "./components/counter";
 import OrderList from "./components/order-list";
 import { loadingSelector, restaurantsSelector } from "./selectors";
-import { loadRestaurants } from "./ac";
+import { loadRestaurants, loadDishes, loadReviews, loadUsers } from "./ac";
 const { Header, Content, Footer } = Layout;
 
 function App(props) {
@@ -24,7 +24,12 @@ function App(props) {
         ) : (
           <RestaurantList
             restaurants={props.restaurants}
-            fetchData={props.loadRestaurants}
+            fetchData={[
+              props.loadUsers,
+              props.loadReviews,
+              props.loadDishes,
+              props.loadRestaurants
+            ]}
           />
         )}
         {/* temporary turn Map off */}
@@ -43,6 +48,9 @@ export default connect(
     loading: loadingSelector(store)
   }),
   {
+    loadUsers,
+    loadReviews,
+    loadDishes,
     loadRestaurants
   }
 )(App);

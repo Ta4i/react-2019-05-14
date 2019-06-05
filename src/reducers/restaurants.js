@@ -5,23 +5,23 @@ import {
   START,
   SUCCESS
 } from "../constants";
-import { fromJS } from "immutable";
+import { Record } from "immutable";
 
-const initialState = {
+const initialState = Record({
   loaded: false,
   loading: false,
   error: null,
   entities: []
-};
+})();
 
-export default (restaurantsState = fromJS(initialState), action) => {
+export default (restaurantsState = initialState, action) => {
   switch (action.type) {
     case LOAD_RESTAURANTS + START: {
       return restaurantsState.set("loading", true);
     }
     case LOAD_RESTAURANTS + SUCCESS: {
       return restaurantsState
-        .set("entities", fromJS(action.response))
+        .set("entities", action.response)
         .set("loading", false)
         .set("loaded", true);
     }
@@ -33,7 +33,7 @@ export default (restaurantsState = fromJS(initialState), action) => {
     }
     case ADD_REVIEW: {
       const targetRestaurant = restaurantsState.find(
-        restaurant => restaurant.get("id") === action.payload.restaurantId
+        restaurant => restaurant.id === action.payload.restaurantId
       );
       const targetIndex = restaurantsState.indexOf(targetRestaurant);
 

@@ -2,12 +2,11 @@ import { createSelector } from "reselect";
 
 export const idSelector = (_, ownProps) => ownProps.id;
 export const cartSelector = state => state.cart;
-export const restaurantsSelector = state =>
-  state.restaurants.get("entities").toJS();
-export const dishesSelector = state => state.dishes;
-export const reviewsSelector = state => state.reviews;
-export const usersSelector = state => state.users;
-export const loadingSelector = state => state.restaurants.get("loading");
+export const restaurantsSelector = state => state.restaurants.entities;
+export const dishesSelector = state => state.dishes.entities;
+export const reviewsSelector = state => state.reviews.entities;
+export const usersSelector = state => state.users.entities;
+export const loadingSelector = state => state.restaurants.loading;
 
 export const createDishSelector = () =>
   createSelector(
@@ -66,7 +65,6 @@ export const createReviewsSelector = () =>
     reviewsSelector,
     restaurantSelector,
     (reviews, restaurant) => {
-      // console.log(restaurant);
       return restaurant.reviews.map(reviewId =>
         reviews.find(review => review.id === reviewId)
       );
@@ -78,6 +76,7 @@ export const createRatingSelector = () => {
   return createSelector(
     reviewsSelector,
     reviews => {
+      console.log("reviews", reviews);
       const rawRating =
         reviews.reduce((acc, { rating }) => {
           return acc + rating;

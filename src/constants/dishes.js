@@ -1,0 +1,7 @@
+export const LOAD_DISHES = "LOAD_DISHES";
+
+export const LOAD_DISHES_START = "LOAD_DISHES_START";
+
+export const LOAD_DISHES_SUCCESS = "LOAD_DISHES_SUCCESS";
+
+export const LOAD_DISHES_FAIL = "LOAD_DISHES_FAIL";

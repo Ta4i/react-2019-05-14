@@ -9,7 +9,7 @@ function Review({ review, user }) {
   return (
     <Comment
       className="review"
-      author={user.name}
+      author={user ? user.name : "*********"}
       content={review.text}
       actions={[
         <Rate

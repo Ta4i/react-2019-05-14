@@ -5,14 +5,16 @@ import {
   START,
   SUCCESS
 } from "../constants";
-import { Record } from "immutable";
+import { fromJS } from "immutable";
 
-const initialState = Record({
+import _ from "lodash";
+
+const initialState = fromJS({
   loaded: false,
   loading: false,
   error: null,
   entities: []
-})();
+});
 
 export default (restaurantsState = initialState, action) => {
   switch (action.type) {
@@ -21,7 +23,7 @@ export default (restaurantsState = initialState, action) => {
     }
     case LOAD_RESTAURANTS + SUCCESS: {
       return restaurantsState
-        .set("entities", action.response)
+        .set("entities", fromJS(action.response))
         .set("loading", false)
         .set("loaded", true);
     }
@@ -32,23 +34,30 @@ export default (restaurantsState = initialState, action) => {
         .set("error", action.error);
     }
     case ADD_REVIEW: {
-      const targetRestaurant = restaurantsState.find(
-        restaurant => restaurant.id === action.payload.restaurantId
+      const targetIndex = _.findIndex(
+        restaurantsState.get("entities").toJS(),
+        r => r.id === action.payload.restaurantId
       );
-      const targetIndex = restaurantsState.indexOf(targetRestaurant);
-
-      return restaurantsState.update(targetIndex, restaurant => {
-        return restaurant.update("reviews", reviews => {
-          return reviews.push(action.generatedId);
+      if (targetIndex >= 0) {
+        return restaurantsState.update("entities", e => {
+          return e.update(targetIndex, restaurant => {
+            return restaurant.update("reviews", reviews => {
+              return reviews.push(action.generatedId);
+            });
+          });
         });
-        // return {
-        //   ...restaurant,
-        //   reviews: [
-        //     ...restaurant.reviews,
-        //     action.generatedId
-        //   ]
-        // }
-      });
+      }
+
+      return restaurantsState;
+
+      // return {
+      //   ...restaurant,
+      //   reviews: [
+      //     ...restaurant.reviews,
+      //     action.generatedId
+      //   ]
+      // }
+      // });
     }
     default:
       return restaurantsState;

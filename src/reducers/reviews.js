@@ -4,14 +4,14 @@ import {
   LOAD_REVIEWS_SUCCESS,
   LOAD_REVIEWS_FAIL
 } from "../constants/reviews";
-import { Record } from "immutable";
+import { fromJS } from "immutable";
 
-const initialState = Record({
+const initialState = fromJS({
   isLoading: false,
   isLoaded: false,
   entities: [],
   error: null
-})();
+});
 
 export default (reviewsState = initialState, action) => {
   switch (action.type) {
@@ -25,7 +25,7 @@ export default (reviewsState = initialState, action) => {
       return reviewsState
         .set("isLoading", false)
         .set("isLoaded", true)
-        .set("entities", action.response);
+        .set("entities", fromJS(action.response));
     }
     case LOAD_REVIEWS_FAIL: {
       return reviewsState
@@ -34,14 +34,14 @@ export default (reviewsState = initialState, action) => {
         .set("error", action.error);
     }
     case ADD_REVIEW: {
-      return reviewsState.update("entities", e =>
-        e.push({
+      return reviewsState.update("entities", e => {
+        return e.push({
           id: action.generatedId,
           userId: action.userId,
           text: action.payload.text,
           rating: action.payload.rating
-        })
-      );
+        });
+      });
     }
     default:
       return reviewsState;

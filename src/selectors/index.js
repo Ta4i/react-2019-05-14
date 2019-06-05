@@ -2,11 +2,12 @@ import { createSelector } from "reselect";
 
 export const idSelector = (_, ownProps) => ownProps.id;
 export const cartSelector = state => state.cart;
-export const restaurantsSelector = state => state.restaurants.entities;
-export const dishesSelector = state => state.dishes.entities;
-export const reviewsSelector = state => state.reviews.entities;
-export const usersSelector = state => state.users.entities;
-export const loadingSelector = state => state.restaurants.loading;
+export const restaurantsSelector = state =>
+  state.restaurants.get("entities").toJS();
+export const dishesSelector = state => state.dishes.get("entities").toJS();
+export const reviewsSelector = state => state.reviews.get("entities").toJS();
+export const usersSelector = state => state.users.get("entities").toJS();
+export const loadingSelector = state => state.restaurants.get("loading");
 
 export const createDishSelector = () =>
   createSelector(

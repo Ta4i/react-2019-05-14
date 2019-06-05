@@ -23,7 +23,7 @@ export const selectAllDishesAndTotalPrice = createSelector(
   (cart, dishes) => {
     let totalPrice = 0;
     const allDishes = dishes.reduce((dishesInOrder, dish) => {
-      const amount = cart[dish.id];
+      const amount = cart.get(dish.id);
       if (amount) {
         const totalDishPrice = amount * dish.price;
         totalPrice += totalDishPrice;

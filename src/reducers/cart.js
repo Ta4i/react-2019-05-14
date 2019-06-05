@@ -4,36 +4,27 @@ import {
   SUBTRACT_FROM_CART
 } from "../constants";
 
-export default (cartState = {}, action) => {
+import { Map } from "immutable";
+
+const initialState = Map({});
+
+export default (cartState = initialState, action) => {
   switch (action.type) {
     case ADD_TO_CART: {
       const id = action.payload.id;
-      return {
-        ...cartState,
-        [id]: cartState[id] ? cartState[id] + 1 : 1
-      };
+      return cartState.get(id)
+        ? cartState.set(id, cartState.get(id) + 1)
+        : cartState.set(id, 1);
     }
     case SUBTRACT_FROM_CART: {
       const id = action.payload.id;
-      const newCartState = {
-        ...cartState
-      };
-      if (cartState[id] === 1) {
-        delete newCartState[id];
-      } else if (cartState[id]) {
-        newCartState[id] = newCartState[id] - 1;
-      }
-      return newCartState;
+      return cartState.get(id) === 1
+        ? cartState.delete(id)
+        : cartState.set(id, cartState.get(id) - 1);
     }
     case DELETE_FROM_CART: {
       const id = action.payload.id;
-      const newCartState = {
-        ...cartState
-      };
-      if (newCartState[id] !== undefined) {
-        delete newCartState[id];
-      }
-      return newCartState;
+      return cartState.delete(id);
     }
     default:
       return cartState;

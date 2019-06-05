@@ -65,8 +65,6 @@ export const createReviewsSelector = () =>
     reviewsSelector,
     restaurantSelector,
     (reviews, restaurant) => {
-      console.log("createReviewsSelector", reviews);
-      console.log("createReviewsSelector", restaurant);
       return restaurant.reviews
         .map(reviewId => reviews.find(review => review.id === reviewId))
         .filter(i => i); // so if there are no review in restaurant, it returns empty array, not [ null, null ]
@@ -78,7 +76,6 @@ export const createRatingSelector = () => {
   return createSelector(
     reviewsSelector,
     reviews => {
-      console.log("reviews", reviews);
       const rawRating =
         reviews.reduce((acc, { rating }) => {
           return acc + rating;

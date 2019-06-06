@@ -7,7 +7,9 @@ export default store => next => action => {
   } else {
     const user = store
       .getState()
-      .users.find(user => user.name === rest.payload.userName);
+      // .users.get("entities").toJS().find(user => user.name === rest.payload.userName);
+      .users.get("entities")
+      .find(user => user.get("name") === rest.payload.userName);
     next({
       ...rest,
       userId: user ? user.id : uuid()

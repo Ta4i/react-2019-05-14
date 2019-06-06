@@ -10,7 +10,8 @@ class RestaurantList extends Component {
       this.props.fetchRestaurants &&
       this.props.fetchRestaurants();
 
-    !this.props.isReviewsLoaded &&
+    this.props.restaurants.length > 0 &&
+      !this.props.isReviewsLoaded &&
       this.props.fetchReviews &&
       this.props.fetchReviews();
   }

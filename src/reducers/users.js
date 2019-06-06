@@ -9,19 +9,22 @@ const initialState = {
 
 export default (usersState = initialState, action) => {
   switch (action.type) {
-    /*case ADD_REVIEW: {
-      if (!usersState.find(user => user.id === action.userId)) {
-        return [
+    case ADD_REVIEW: {
+      if (!usersState.entities.find(user => user.id === action.userId)) {
+        return {
           ...usersState,
-          {
-            id: action.userId,
-            name: action.payload.userName
-          }
-        ];
+          entities: [
+            ...usersState.entities,
+            {
+              id: action.userId,
+              name: action.payload.userName
+            }
+          ]
+        };
       } else {
         return usersState;
       }
-    }*/
+    }
 
     case LOAD_USERS + START: {
       return {

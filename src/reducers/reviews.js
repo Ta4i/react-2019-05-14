@@ -9,17 +9,20 @@ const initialState = {
 
 export default (reviewsState = initialState, action) => {
   switch (action.type) {
-    /*case ADD_REVIEW: {
-      return [
+    case ADD_REVIEW: {
+      return {
         ...reviewsState,
-        {
-          id: action.generatedId,
-          userId: action.userId,
-          text: action.payload.text,
-          rating: action.payload.rating
-        }
-      ];
-    }*/
+        entities: [
+          ...reviewsState.entities,
+          {
+            id: action.generatedId,
+            userId: action.userId,
+            text: action.payload.text,
+            rating: action.payload.rating
+          }
+        ]
+      };
+    }
 
     case LOAD_REVIEWS + START: {
       return {

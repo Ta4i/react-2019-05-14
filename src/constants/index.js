@@ -17,3 +17,9 @@ export const START = "_START";
 export const SUCCESS = "_SUCCESS";
 
 export const FAIL = "_FAIL";
+
+export const LOAD_USERS = "LOAD_USERS";
+
+export const LOAD_REVIEWS = "LOAD_REVIEWS";
+
+export const LOAD_DISHES = "LOAD_DISHES";

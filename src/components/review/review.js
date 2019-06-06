@@ -9,7 +9,7 @@ function Review({ review, user }) {
   return (
     <Comment
       className="review"
-      author={user.name}
+      author={user ? user.name : "*********"}
       content={review.text}
       actions={[
         <Rate
@@ -32,7 +32,7 @@ export const ReviewPropType = {
 Review.propTypes = {
   user: PropTypes.shape({
     name: PropTypes.string.isRequired
-  }).isRequired,
+  }),
   review: PropTypes.shape(ReviewPropType)
 };
 

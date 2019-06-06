@@ -8,8 +8,12 @@ import { Layout } from "antd";
 import CartBadge from "./components/cart-badge";
 // import Counter from "./components/counter";
 import OrderList from "./components/order-list";
-import { loadingSelector, restaurantsSelector } from "./selectors";
-import { loadRestaurants } from "./ac";
+import {
+  loadingSelector,
+  restaurantsSelector,
+  reviewsSelector
+} from "./selectors";
+import { loadRestaurants, loadReviews } from "./ac";
 const { Header, Content, Footer } = Layout;
 
 function App(props) {
@@ -24,7 +28,9 @@ function App(props) {
         ) : (
           <RestaurantList
             restaurants={props.restaurants}
-            fetchData={props.loadRestaurants}
+            fetchRestaurants={props.loadRestaurants}
+            isReviewsLoaded={props.isReviewsLoaded}
+            fetchReviews={props.loadReviews}
           />
         )}
         {/* temporary turn Map off */}
@@ -40,9 +46,11 @@ function App(props) {
 export default connect(
   store => ({
     restaurants: restaurantsSelector(store),
-    loading: loadingSelector(store)
+    loading: loadingSelector(store),
+    isReviewsLoaded: reviewsSelector(store).length > 0
   }),
   {
-    loadRestaurants
+    loadRestaurants,
+    loadReviews
   }
 )(App);

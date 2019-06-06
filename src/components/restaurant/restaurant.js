@@ -27,6 +27,7 @@ class Restaurant extends PureComponent {
       isOpen: isReviewOpen,
       toggleVisibility
     } = this.props;
+    console.log("render", name);
 
     return this.state.error ? (
       "Not available"
@@ -70,7 +71,7 @@ Restaurant.propTypes = {
   id: PropTypes.string.isRequired,
   image: PropTypes.string.isRequired,
   name: PropTypes.string.isRequired,
-  menu: RestaurantMenu.propTypes.menu,
+  // menu: RestaurantMenu.propTypes.menu,
   reviews: PropTypes.arrayOf(PropTypes.string),
 
   isMenuOpen: PropTypes.bool,

@@ -1,12 +1,18 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { List } from "antd";
 import Review, { ReviewPropType } from "../review";
 import PropTypes from "prop-types";
-import { createReviewsSelector } from "../../selectors";
+import { createReviewsSelector, usersLoadedSelector } from "../../selectors";
 import { connect } from "react-redux";
 import AddReview from "../add-review";
+import { loadUsers } from "../../ac";
+//import { stringLiteral } from "@babel/types";
 
-function ReviewList({ reviews, id }) {
+function ReviewList({ reviews, id, usersLoaded, fetchUsers }) {
+  useEffect(() => {
+    if (!usersLoaded) fetchUsers();
+  });
+
   return (
     <List data-automation-id="review-list">
       {reviews.map(review => (
@@ -26,9 +32,13 @@ const initMapStateToProps = () => {
   const reviewsSelector = createReviewsSelector();
   return (state, ownProps) => {
     return {
-      reviews: reviewsSelector(state, ownProps)
+      reviews: reviewsSelector(state, ownProps),
+      usersLoaded: usersLoadedSelector(state)
     };
   };
 };
 
-export default connect(initMapStateToProps)(ReviewList);
+export default connect(
+  initMapStateToProps,
+  { fetchUsers: loadUsers }
+)(ReviewList);

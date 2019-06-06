@@ -8,7 +8,8 @@ import Price from "../price";
 import { createDishSelector } from "../../selectors";
 
 function Dish(props) {
-  const { id, amount, increase, decrease, price } = props;
+  const { id, amount, ingredients = [], increase, decrease, price } = props;
+
   return (
     <Card
       bordered
@@ -33,10 +34,7 @@ function Dish(props) {
         </>
       ]}
     >
-      <Card.Meta
-        title={props.name}
-        description={props.ingredients.join(", ")}
-      />
+      <Card.Meta title={props.name} description={ingredients.join(", ")} />
     </Card>
   );
 }
@@ -45,8 +43,8 @@ Dish.propTypes = {
   id: PropTypes.string.isRequired,
 
   // from connect
-  name: PropTypes.string.isRequired,
-  price: PropTypes.number.isRequired,
+  name: PropTypes.string,
+  price: PropTypes.number,
   ingredients: PropTypes.arrayOf(PropTypes.string)
 };
 

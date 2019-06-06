@@ -1,4 +1,4 @@
-import { normalizedUsers } from "../fixtures";
+//import { normalizedUsers } from "../fixtures";
 import { ADD_REVIEW, LOAD_USERS, FAIL, SUCCESS } from "../constants";
 
 const initialState = {

@@ -67,9 +67,8 @@ export const createReviewsSelector = () =>
     reviewsSelector,
     restaurantSelector,
     (reviews, restaurant) => {
-      // console.log(restaurant);
-      return restaurant.reviews.map(reviewId =>
-        reviews.find(review => review.id === reviewId)
+      return restaurant.reviews.map(
+        reviewId => reviews.find(review => review.id === reviewId) || []
       );
     }
   );

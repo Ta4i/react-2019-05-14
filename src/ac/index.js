@@ -6,7 +6,9 @@ import {
   DELETE_FROM_CART,
   ADD_REVIEW,
   LOAD_RESTAURANTS,
-  LOAD_USERS
+  LOAD_USERS,
+  LOAD_REVIEWS,
+  LOAD_DISHES
 } from "../constants";
 
 export const increase = () => ({
@@ -53,4 +55,14 @@ export const loadRestaurants = () => ({
 export const loadUsers = () => ({
   type: LOAD_USERS,
   callAPI: "http://localhost:3001/api/users"
+});
+
+export const loadReviews = () => ({
+  type: LOAD_REVIEWS,
+  callAPI: "http://localhost:3001/api/reviews"
+});
+
+export const loadDishes = () => ({
+  type: LOAD_DISHES,
+  callAPI: "http://localhost:3001/api/dishes"
 });

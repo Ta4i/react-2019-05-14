@@ -1,7 +1,7 @@
-import { normalizedReviews } from "../fixtures";
-import { ADD_REVIEW } from "../constants";
+//import { normalizedReviews } from "../fixtures";
+import { ADD_REVIEW, LOAD_REVIEWS, FAIL, SUCCESS } from "../constants";
 
-export default (reviewsState = normalizedReviews, action) => {
+export default (reviewsState = [], action) => {
   switch (action.type) {
     case ADD_REVIEW: {
       return [
@@ -13,6 +13,12 @@ export default (reviewsState = normalizedReviews, action) => {
           rating: action.payload.rating
         }
       ];
+    }
+    case LOAD_REVIEWS + SUCCESS: {
+      return [...action.response];
+    }
+    case LOAD_REVIEWS + FAIL: {
+      return [];
     }
     default:
       return reviewsState;

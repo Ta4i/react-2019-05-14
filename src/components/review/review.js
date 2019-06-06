@@ -32,7 +32,7 @@ export const ReviewPropType = {
 Review.propTypes = {
   user: PropTypes.shape({
     name: PropTypes.string.isRequired
-  }).isRequired,
+  }),
   review: PropTypes.shape(ReviewPropType)
 };
 

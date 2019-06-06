@@ -7,8 +7,12 @@ import * as PropTypes from "prop-types";
 class RestaurantList extends Component {
   componentDidMount() {
     this.props.restaurants.length === 0 &&
-      this.props.fetchData &&
-      this.props.fetchData();
+      this.props.fetchRestaurants &&
+      this.props.fetchRestaurants();
+
+    !this.props.isReviewsLoaded &&
+      this.props.fetchReviews &&
+      this.props.fetchReviews();
   }
 
   render() {

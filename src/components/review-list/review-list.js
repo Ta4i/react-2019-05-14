@@ -6,9 +6,9 @@ import { createReviewsSelector, usersLoadedSelector } from "../../selectors";
 import { connect } from "react-redux";
 import AddReview from "../add-review";
 import { loadUsers } from "../../ac";
+//import { stringLiteral } from "@babel/types";
 
 function ReviewList({ reviews, id, usersLoaded, fetchUsers }) {
-  console.log("usersLoaded-------", usersLoaded);
   useEffect(() => {
     if (!usersLoaded) fetchUsers();
   });

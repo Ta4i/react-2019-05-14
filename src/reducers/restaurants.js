@@ -32,23 +32,15 @@ export default (restaurantsState = fromJS(initialState), action) => {
         .set("error", action.error);
     }
     case ADD_REVIEW: {
-      const targetRestaurant = restaurantsState.find(
+      const targetRestaurant = restaurantsState.get("entities").find(
         restaurant => restaurant.get("id") === action.payload.restaurantId
       );
-      const targetIndex = restaurantsState.indexOf(targetRestaurant);
+      const targetIndex = restaurantsState.get("entities").indexOf(targetRestaurant);
 
-      return restaurantsState.update(targetIndex, restaurant => {
-        return restaurant.update("reviews", reviews => {
-          return reviews.push(action.generatedId);
-        });
-        // return {
-        //   ...restaurant,
-        //   reviews: [
-        //     ...restaurant.reviews,
-        //     action.generatedId
-        //   ]
-        // }
-      });
+      return restaurantsState.updateIn(
+        ["entities", targetIndex, "reviews"],
+        reviews => reviews.push(action.generatedId)
+      );
     }
     default:
       return restaurantsState;

@@ -11,6 +11,7 @@ class Restaurant extends PureComponent {
   state = {
     error: null
   };
+
   componentDidCatch(error) {
     this.setState({
       error

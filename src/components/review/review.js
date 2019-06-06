@@ -23,6 +23,12 @@ function Review({ review, user }) {
   );
 }
 
+Review.defaultProps = {
+  user: {
+    name: '',
+  }
+};
+
 export const ReviewPropType = {
   userId: PropTypes.string.isRequired,
   text: PropTypes.string.isRequired,

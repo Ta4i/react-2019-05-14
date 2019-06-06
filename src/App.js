@@ -1,5 +1,4 @@
 import React from "react";
-import { connect } from "react-redux";
 import "./App.css";
 import RestaurantList from "./components/restaurant-list";
 import UserForm from "./components/user-form";
@@ -8,8 +7,6 @@ import { Layout } from "antd";
 import CartBadge from "./components/cart-badge";
 // import Counter from "./components/counter";
 import OrderList from "./components/order-list";
-import { loadingSelector, restaurantsSelector } from "./selectors";
-import { loadRestaurants } from "./ac";
 const { Header, Content, Footer } = Layout;
 
 function App(props) {
@@ -22,10 +19,7 @@ function App(props) {
         {props.loading ? (
           <h1>Loading</h1>
         ) : (
-          <RestaurantList
-            restaurants={props.restaurants}
-            fetchData={props.loadRestaurants}
-          />
+          <RestaurantList/>
         )}
         {/* temporary turn Map off */}
         {/*{<RestaurantsMap restaurants={props.restaurants} />}*/}
@@ -37,12 +31,4 @@ function App(props) {
   );
 }
 
-export default connect(
-  store => ({
-    restaurants: restaurantsSelector(store),
-    loading: loadingSelector(store)
-  }),
-  {
-    loadRestaurants
-  }
-)(App);
+export default App;

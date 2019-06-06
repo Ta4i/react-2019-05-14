@@ -3,12 +3,32 @@ import Restaurant from "../restaurant";
 import { accordion } from "../../decorators/accordion";
 import { List } from "antd";
 import * as PropTypes from "prop-types";
+import { connect } from "react-redux";
+import { loadingSelector, restaurantsSelector, reviewsSelector, dishesSelector } from "../../selectors";
+import { loadRestaurants, loadReviews, loadDishes } from "../../ac";
 
 class RestaurantList extends Component {
   componentDidMount() {
-    this.props.restaurants.length === 0 &&
-      this.props.fetchData &&
-      this.props.fetchData();
+    const {
+      restaurants,
+      reviews,
+      fetchRestaurants,
+      fetchReviews,
+      fetchDishes,
+      dishes,
+    } = this.props;
+
+    if (!restaurants.length) {
+      fetchRestaurants && fetchRestaurants();
+    }
+
+    if (!reviews.length) {
+      fetchReviews && fetchReviews();
+    }
+
+    if (!dishes.length) {
+      fetchDishes && fetchDishes();
+    }
   }
 
   render() {
@@ -45,8 +65,22 @@ RestaurantList.propTypes = {
     })
   ).isRequired,
 
+  dishes: PropTypes.array.isRequired,
+  reviews: PropTypes.array.isRequired,
   openItemId: PropTypes.string,
   toggleOpenItem: PropTypes.func.isRequired
 };
 
-export default accordion(RestaurantList);
+export default connect(
+  store => ({
+    restaurants: restaurantsSelector(store),
+    reviews: reviewsSelector(store),
+    dishes: dishesSelector(store),
+    loading: loadingSelector(store)
+  }),
+  {
+    fetchRestaurants: loadRestaurants,
+    fetchReviews: loadReviews,
+    fetchDishes: loadDishes,
+  }
+)(accordion(RestaurantList));

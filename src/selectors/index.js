@@ -4,10 +4,15 @@ export const idSelector = (_, ownProps) => ownProps.id;
 export const cartSelector = state => state.cart;
 export const restaurantsSelector = state =>
   state.restaurants.get("entities").toJS();
-export const dishesSelector = state => state.dishes;
-export const reviewsSelector = state => state.reviews;
-export const usersSelector = state => state.users;
-export const loadingSelector = state => state.restaurants.get("loading");
+export const dishesSelector = state => state.dishes.entities;
+export const reviewsSelector = state => state.reviews.entities;
+export const usersSelector = state => state.users.entities;
+
+export const loadingRestaurantsSelector = state =>
+  state.restaurants.get("loading");
+export const loadingDishesSelector = state => state.dishes.loading;
+export const loadingReviewsSelector = state => state.reviews.loading;
+export const loadingUsersSelector = state => state.users.loading;
 
 export const createDishSelector = () =>
   createSelector(
@@ -79,9 +84,11 @@ export const createRatingSelector = () => {
     reviewsSelector,
     reviews => {
       const rawRating =
-        reviews.reduce((acc, { rating }) => {
-          return acc + rating;
-        }, 0) / reviews.length;
+        reviews
+          .filter(review => typeof review !== "undefined")
+          .reduce((acc, { rating }) => {
+            return acc + rating;
+          }, 0) / reviews.length;
       return Math.floor(rawRating * 2) / 2;
     }
   );

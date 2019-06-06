@@ -8,23 +8,48 @@ import { Layout } from "antd";
 import CartBadge from "./components/cart-badge";
 // import Counter from "./components/counter";
 import OrderList from "./components/order-list";
-import { loadingSelector, restaurantsSelector } from "./selectors";
-import { loadRestaurants } from "./ac";
+import {
+  loadingRestaurantsSelector,
+  restaurantsSelector,
+  dishesSelector,
+  loadingDishesSelector,
+  loadingUsersSelector,
+  loadingReviewsSelector,
+  usersSelector,
+  reviewsSelector
+} from "./selectors";
+import { loadRestaurants, loadDishes, loadUsers, loadReviews } from "./ac";
 const { Header, Content, Footer } = Layout;
 
 function App(props) {
+  const {
+    loadingMenu,
+    loadingRestaurants,
+    loadingUsers,
+    loadingReviews
+  } = props;
+
+  const isLoading =
+    loadingMenu && loadingRestaurants && loadingUsers && loadingReviews;
+
   return (
     <Layout className="App">
       <Header className="header">
         <CartBadge />
       </Header>
       <Content>
-        {props.loading ? (
+        {isLoading ? (
           <h1>Loading</h1>
         ) : (
           <RestaurantList
             restaurants={props.restaurants}
-            fetchData={props.loadRestaurants}
+            menu={props.menu}
+            reviews={props.reviews}
+            users={props.users}
+            fetchRestaurants={props.loadRestaurants}
+            fetchMenu={props.loadDishes}
+            fetchUsers={props.loadUsers}
+            fetchReviews={props.loadReviews}
           />
         )}
         {/* temporary turn Map off */}
@@ -40,9 +65,18 @@ function App(props) {
 export default connect(
   store => ({
     restaurants: restaurantsSelector(store),
-    loading: loadingSelector(store)
+    menu: dishesSelector(store),
+    users: usersSelector(store),
+    reviews: reviewsSelector(store),
+    loadingMenu: loadingDishesSelector(store),
+    loadingRestaurants: loadingRestaurantsSelector(store),
+    loadingUsers: loadingUsersSelector(store),
+    loadingReviews: loadingReviewsSelector(store)
   }),
   {
-    loadRestaurants
+    loadRestaurants,
+    loadDishes,
+    loadUsers,
+    loadReviews
   }
 )(App);

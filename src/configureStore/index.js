@@ -1,13 +1,14 @@
 import { applyMiddleware, createStore } from 'redux';
 import { composeWithDevTools } from 'redux-devtools-extension';
 
+import apiMiddleware from '../middleware/api';
 import loggerMiddleware from '../middleware/logger';
 import modifierMiddleware from '../middleware/modifier';
 import rootReducer from '../reducers';
 
 export default function configureStore(preloadedState) {
-  const middlewares = [];
-  middlewares.push(modifierMiddleware);
+  const middlewares = [apiMiddleware, modifierMiddleware];
+
   if (process.env.NODE_ENV === 'development') {
     middlewares.push(loggerMiddleware);
   }

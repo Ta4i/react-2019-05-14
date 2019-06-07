@@ -1,6 +1,14 @@
 /*
+Rest actions
+ */
+export const START = '_START';
+export const SUCCESS = '_SUCCESS';
+export const FAIL = '_FAIL';
+
+/*
 Restaurant actions
  */
+export const LOAD_RESTAURANTS = 'LOAD_RESTAURANTS';
 export const ADD_REVIEW_TO_RESTAURANT = 'ADD_REVIEW_TO_RESTAURANT';
 
 /*
@@ -29,6 +37,7 @@ export const DELETE_REVIEW = 'DELETE_REVIEW';
 /*
 User actions
  */
+export const LOAD_USERS = 'LOAD_USERS';
 export const GET_CURRENT_USER = 'GET_URRENT_USER';
 export const SET_CURRENT_USER = 'SET_CURRENT_USER';
 export const GET_USER = 'GET_USER';

@@ -1,9 +1,11 @@
 {
   "name": "react-2019-05-14",
   "version": "0.1.0",
+  "proxy": "http://localhost:3001/",
   "private": true,
   "dependencies": {
     "antd": "^3.19.0",
+    "immutable": "^4.0.0-rc.12",
     "leaflet": "^1.5.1",
     "prop-types": "^15.7.2",
     "react": "^16.8.6",
@@ -15,7 +17,8 @@
     "uuid": "^3.3.2"
   },
   "scripts": {
-    "start": "react-scripts start --mode=development",
+    "start": "concurrently --kill-others \"react-scripts start --mode=development\" \"npm run api\"",
+    "api": "node simple_api/server.js",
     "build": "react-scripts build",
     "test": "jest",
     "eject": "react-scripts eject",
@@ -51,6 +54,7 @@
     "babel-loader": "^8.0.6",
     "babel-preset-airbnb": "^3.2.1",
     "babel-preset-jest": "^24.6.0",
+    "concurrently": "^4.1.0",
     "enzyme": "^3.9.0",
     "enzyme-adapter-react-16": "^1.13.1",
     "eslint-config-airbnb-base": "13.1.0",

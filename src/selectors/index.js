@@ -2,11 +2,12 @@ import { createSelector } from 'reselect';
 
 export const idSelector = (_, ownProps) => ownProps.id;
 export const restaurantIdSelector = (_, ownProps) => ownProps.restaurantId;
-export const restaurantsSelector = state => state.restaurants;
+export const restaurantsSelector = state => state.restaurants.get('entities').toJS();
+export const loadingSelector = state => state.restaurants.get('loading');
 export const dishesSelector = state => state.dishes;
 export const reviewsSelector = state => state.reviews;
 export const currentUserSelector = state => state.user;
-export const usersSelector = state => state.users;
+export const usersSelector = state => state.users.get('entities').toJS();
 export const restarauntReviewsSelector = (_, ownProps) => ownProps.reviews;
 
 export const cartSelector = state => state.cart;
@@ -41,11 +42,13 @@ export const createCartDishesSelector = () =>
     }
   );
 
-export const createOrderTotalSelector = () =>
-  createSelector(
-    createCartDishesSelector(),
+export const createOrderTotalSelector = () => {
+  const cartDishesSelector = createCartDishesSelector();
+  return createSelector(
+    cartDishesSelector,
     dishes => dishes.reduce((sum, item) => sum + item.price * item.value, 0)
   );
+};
 
 export const createAvarageRateSelector = () =>
   createSelector(
@@ -55,7 +58,7 @@ export const createAvarageRateSelector = () =>
       const rate = restarauntReviews.length
         ? restarauntReviews
             .map(id => reviews.find(review => review.id === id))
-            .reduce((sum, item) => sum + item.rating, 0) / restarauntReviews.length
+            .reduce((sum, item) => (item ? sum + item.rating : sum), 0) / restarauntReviews.length
         : 0;
       return Math.floor(rate) === rate ? rate : Math.floor(rate) + 0.5;
     }

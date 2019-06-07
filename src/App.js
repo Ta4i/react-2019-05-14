@@ -7,6 +7,8 @@ import CartBadge from './components/cart-badge';
 import RestaurantList from './components/restaurant-list';
 import RestaurantsMap from './components/restaurants-map';
 import Cart from './components/cart';
+import { loadingSelector, restaurantsSelector } from './selectors';
+import { loadRestaurants, loadUsers } from './actions';
 
 const { Title } = Typography;
 const { Header, Footer, Content } = Layout;
@@ -31,7 +33,15 @@ export function App(props) {
           <div style={{ background: '#fff', padding: 12, minHeight: 280 }}>
             <Row>
               <Col span={14} style={{ padding: 24 }}>
-                <RestaurantList restaurants={props.restaurants} />
+                {props.loading ? (
+                  <h1>Loading</h1>
+                ) : (
+                  <RestaurantList
+                    restaurants={props.restaurants}
+                    fetchData={props.loadRestaurants}
+                  />
+                )}
+                {/*<RestaurantList restaurants={props.restaurants} />*/}
               </Col>
               <Col span={8} style={{ padding: 24 }}>
                 <Row style={{ padding: 24 }}>
@@ -49,9 +59,24 @@ export function App(props) {
 }
 
 App.propTypes = {
-  restaurants: PropTypes.array
+  restaurants: PropTypes.array,
+  loading: PropTypes.bool,
+  loadRestaurants: PropTypes.func
 };
 
-export default connect(state => ({
-  restaurants: state.restaurants
-}))(App);
+const initMapDispatchToProps = () => {
+  return dispatch => {
+    dispatch(loadUsers());
+    return {
+      loadRestaurants: () => dispatch(loadRestaurants())
+    };
+  };
+};
+
+export default connect(
+  store => ({
+    restaurants: restaurantsSelector(store),
+    loading: loadingSelector(store)
+  }),
+  initMapDispatchToProps
+)(App);

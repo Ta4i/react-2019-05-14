@@ -5,8 +5,10 @@ export default (reviewsState = normalizedReviews, action) => {
   const { type, payload: review } = action;
   switch (type) {
     case CREATE_REVIEW: {
-      reviewsState.push(review);
-      break;
+      return {
+        ...reviewsState,
+        reviews: [...reviewsState.reviews, review]
+      };
     }
     case PATCH_REVIEW: {
       const patchedReview = reviewsState.find(item => item.id === review.id);

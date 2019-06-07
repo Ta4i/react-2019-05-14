@@ -5,7 +5,7 @@ import accordion from '../../decorators/accordion';
 
 class RestaurantList extends Component {
   componentDidMount() {
-    if (this.props.fetchData) {
+    if (this.props.restaurants.length === 0 && this.props.fetchData) {
       this.props.fetchData();
     }
   }

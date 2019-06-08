@@ -1,6 +1,8 @@
 import React, { Component } from "react";
 import { Form, Input, Button } from "antd";
 import "./user-form.css";
+import { connect } from "react-redux";
+import { selectAllDishesAndTotalPrice } from "../../selectors/index";
 
 class UserForm extends Component {
   state = {
@@ -10,6 +12,7 @@ class UserForm extends Component {
   };
   render() {
     const { name, phone, address } = this.state;
+    const { dishes } = this.props;
     return (
       <Form className="user-form">
         <Form.Item
@@ -34,7 +37,12 @@ class UserForm extends Component {
           <Input.TextArea value={address} onChange={this.handleAddressChange} />
         </Form.Item>
         <Form.Item className="user-form-submit-section">
-          <Button type="primary" htmlType="submit" onClick={this.submit}>
+          <Button
+            type="primary"
+            htmlType="submit"
+            onClick={this.submit}
+            disabled={dishes.length === 0}
+          >
             Send order
           </Button>
         </Form.Item>
@@ -66,4 +74,4 @@ class UserForm extends Component {
   };
 }
 
-export default UserForm;
+export default connect(selectAllDishesAndTotalPrice)(UserForm);

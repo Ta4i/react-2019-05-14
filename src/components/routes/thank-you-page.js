@@ -16,7 +16,7 @@ function ThankYouPage() {
           </Title>
 
           <Button>
-            <Link to="/restaurants">Explore more</Link>
+            <Link to="/restaurants">Visit more restaurants</Link>
           </Button>
         </Col>
       </Row>

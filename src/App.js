@@ -11,6 +11,8 @@ import ListPage from "./components/routes/list";
 import MapPage from "./components/routes/map";
 import MenuPage from "./components/routes/menu";
 import Counter from "./components/counter";
+import ThankYouPage from "./components/routes/thank-you-page";
+import OrderPage from "./components/routes/order-page";
 
 const { Header, Content, Footer } = Layout;
 
@@ -33,22 +35,28 @@ function App() {
                 Map
               </NavLink>
             </Menu.Item>
-            <CartBadge />
+            <Menu.Item>
+              <NavLink to={"/order"} activeStyle={{ color: "lightgrey" }}>
+                <CartBadge />
+              </NavLink>
+            </Menu.Item>
           </Menu>
         </Header>
         <Content>
           <Switch>
-            <Route path={"/restaurants"} component={ListPage} />
-            <Route path={"/restaurants/counter"} component={Counter} />
-            <Route path={"/restaurant-map"} component={MapPage} />
+            <Route path={"/restaurants"} exact component={ListPage} />
+            <Route path={"/restaurants/counter"} exact component={Counter} />
+            <Route path={"/restaurant-map"} exact component={MapPage} />
             <Route
               path={"/restaurant-menu/:restaurantId"}
+              exact
               component={MenuPage}
             />
-            <Route path={"/"} render={() => <h2>Page not found</h2>} />
+            <Route path={"/restaurant-map/:restaurantId"} component={MapPage} />
+            <Route path={"/order"} exact component={OrderPage} />
+            <Route path={"/thank-you"} exact component={ThankYouPage} />
+            <Route path={"/"} exact component={ListPage} />
           </Switch>
-          <OrderList />
-          <UserForm />
         </Content>
         <Footer>{/*<Counter />*/}</Footer>
       </Layout>

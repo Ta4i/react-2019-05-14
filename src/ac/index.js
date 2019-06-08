@@ -50,10 +50,15 @@ export const addReview = (userName, rating, text, restaurantId) => ({
   provideUserId: true
 });
 
-export const loadRestaurants = () => ({
-  type: LOAD_RESTAURANTS,
-  callAPI: "http://localhost:3001/api/restaurants"
-});
+export const loadRestaurants = () => (dispatch, getState) => {
+  let state = getState();
+  if (!state.reviews.loaded && !state.reviews.loading) {
+    dispatch({
+      type: LOAD_RESTAURANTS,
+      callAPI: "http://localhost:3001/api/restaurants"
+    });
+  }
+};
 
 export const loadReviews = () => ({
   type: LOAD_REVIEWS,

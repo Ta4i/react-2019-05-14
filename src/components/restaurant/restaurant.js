@@ -1,6 +1,5 @@
 import React, { PureComponent } from "react";
-import RestaurantMenu from "../restaurant-menu";
-import { List, Avatar, Button } from "antd";
+import { List, Avatar, Button, Icon } from "antd";
 import AverageRating from "../average-rating";
 import ReviewList from "../review-list";
 import { toggleVisibility } from "../../decorators/toggleVisibility";
@@ -53,6 +52,11 @@ class Restaurant extends PureComponent {
           <List.Item.Meta
             avatar={<Avatar shape="square" src={image} />}
             title={name}
+            description={
+              <NavLink to={`/restaurant-map/${id}`}>
+                <Icon type="environment" />
+              </NavLink>
+            }
           />
         </List.Item>
         {isReviewOpen ? <ReviewList id={id} /> : null}

@@ -1,5 +1,8 @@
 import React, { Component } from "react";
 import { Form, Input, Button } from "antd";
+import { Link } from "react-router-dom";
+import { connect } from "react-redux";
+import { selectAllDishesAndTotalPrice } from "../../selectors/index";
 import "./user-form.css";
 
 class UserForm extends Component {
@@ -10,6 +13,7 @@ class UserForm extends Component {
   };
   render() {
     const { name, phone, address } = this.state;
+    const { dishes } = this.props;
     return (
       <Form className="user-form">
         <Form.Item
@@ -34,8 +38,13 @@ class UserForm extends Component {
           <Input.TextArea value={address} onChange={this.handleAddressChange} />
         </Form.Item>
         <Form.Item className="user-form-submit-section">
-          <Button type="primary" htmlType="submit" onClick={this.submit}>
-            Send order
+          <Button
+            type="primary"
+            htmlType="submit"
+            onClick={this.submit}
+            disabled={dishes.length === 0}
+          >
+            <Link to="/thank-you">Send order</Link>
           </Button>
         </Form.Item>
       </Form>
@@ -66,4 +75,4 @@ class UserForm extends Component {
   };
 }
 
-export default UserForm;
+export default connect(selectAllDishesAndTotalPrice)(UserForm);

@@ -52,7 +52,7 @@ function App() {
               exact
               component={MenuPage}
             />
-            <Route path={"/restaurant-map"} exact component={MapPage} />
+            <Route path={"/restaurant-map/:restaurantId"} component={MapPage} />
             <Route path={"/order"} exact component={OrderPage} />
             <Route path={"/thank-you"} exact component={ThankYouPage} />
             <Route path={"/"} exact component={ListPage} />

@@ -1,6 +1,6 @@
 import React from "react";
 import { Typography, Row, Col } from "antd";
-import { Link } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 import { Button } from "antd/lib/radio";
 
 const { Title } = Typography;
@@ -16,7 +16,7 @@ function ThankYouPage() {
           </Title>
 
           <Button>
-            <Link to="/restaurants">Visit more restaurants</Link>
+            <NavLink to="/restaurants">Visit more restaurants</NavLink>
           </Button>
         </Col>
       </Row>

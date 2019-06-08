@@ -1,8 +1,9 @@
 import React, { Component } from "react";
 import { Form, Input, Button } from "antd";
-import "./user-form.css";
+import { Link } from "react-router-dom";
 import { connect } from "react-redux";
 import { selectAllDishesAndTotalPrice } from "../../selectors/index";
+import "./user-form.css";
 
 class UserForm extends Component {
   state = {
@@ -43,7 +44,7 @@ class UserForm extends Component {
             onClick={this.submit}
             disabled={dishes.length === 0}
           >
-            Send order
+            <Link to="/thank-you">Send order</Link>
           </Button>
         </Form.Item>
       </Form>

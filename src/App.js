@@ -1,16 +1,20 @@
 import React from "react";
 import "./App.css";
-import UserForm from "./components/user-form";
-// import RestaurantsMap from "./components/restaurants-map";
 import { Layout, Menu } from "antd";
 import CartBadge from "./components/cart-badge";
-// import Counter from "./components/counter";
 import OrderList from "./components/order-list";
-import { BrowserRouter, Route, NavLink, Switch } from "react-router-dom";
+import {
+  BrowserRouter,
+  Route,
+  NavLink,
+  Switch,
+  Redirect
+} from "react-router-dom";
 import ListPage from "./components/routes/list";
 import MapPage from "./components/routes/map";
 import MenuPage from "./components/routes/menu";
 import Counter from "./components/counter";
+import OrderComplete from "./components/order-complete";
 
 const { Header, Content, Footer } = Layout;
 
@@ -33,22 +37,32 @@ function App() {
                 Map
               </NavLink>
             </Menu.Item>
-            <CartBadge />
+            <Menu.Item>
+              <NavLink to={"/cart"}>
+                <CartBadge />
+              </NavLink>
+            </Menu.Item>
           </Menu>
         </Header>
         <Content>
           <Switch>
-            <Route path={"/restaurants"} component={ListPage} />
+            <Route
+              path={"/"}
+              exact
+              render={() => <Redirect to="/restaurants" />}
+            />
+            <Route path={"/restaurants"} exact component={ListPage} />
             <Route path={"/restaurants/counter"} component={Counter} />
+            <Route path={"/restaurant-map/:restaurantId"} component={MapPage} />
             <Route path={"/restaurant-map"} component={MapPage} />
+            <Route path={"/cart"} component={OrderList} />
+            <Route path={"/order-complete"} component={OrderComplete} />
             <Route
               path={"/restaurant-menu/:restaurantId"}
               component={MenuPage}
             />
             <Route path={"/"} render={() => <h2>Page not found</h2>} />
           </Switch>
-          <OrderList />
-          <UserForm />
         </Content>
         <Footer>{/*<Counter />*/}</Footer>
       </Layout>

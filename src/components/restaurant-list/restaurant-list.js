@@ -17,6 +17,7 @@ class RestaurantList extends Component {
   componentDidMount() {
     if (!this.props.loading && !this.props.loaded) {
       this.props.loadRestaurants();
+      console.log("RestaurantList", this.props.loading);
     }
     if (!this.props.isReviewsLoading && !this.props.isReviewsLoaded) {
       this.props.loadReviews();

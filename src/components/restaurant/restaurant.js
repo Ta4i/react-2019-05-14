@@ -1,6 +1,6 @@
 import React, { PureComponent } from "react";
 import RestaurantMenu from "../restaurant-menu";
-import { List, Avatar, Button } from "antd";
+import { List, Avatar, Button, Icon } from "antd";
 import AverageRating from "../average-rating";
 import ReviewList from "../review-list";
 import { toggleVisibility } from "../../decorators/toggleVisibility";
@@ -25,8 +25,20 @@ class Restaurant extends PureComponent {
       name,
       isMenuOpen,
       isOpen: isReviewOpen,
-      toggleVisibility
+      toggleVisibility,
+      location
     } = this.props;
+
+    let params =
+      id +
+      "::" +
+      image +
+      "::" +
+      name +
+      "::" +
+      location.lat +
+      "::" +
+      location.lng;
 
     return this.state.error ? (
       "Not available"
@@ -47,6 +59,20 @@ class Restaurant extends PureComponent {
               onClick={this.handleToggleOpenClick}
             >
               <NavLink to={`/restaurant-menu/${id}`}>Go to menu</NavLink>
+            </Button>,
+
+            <Button>
+              <NavLink
+                to={{
+                  pathname: `/restaurant-map/${id}`,
+                  state: { name: name, image: image, location: location }
+                }}
+              >
+                <Icon
+                  type="global"
+                  style={{ fontSize: "20px", color: "green" }}
+                />
+              </NavLink>
             </Button>
           ]}
         >

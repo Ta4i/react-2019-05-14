@@ -12,8 +12,10 @@ import { loadRestaurants } from "../../ac";
 
 class RestaurantsMap extends Component {
   render() {
+    console.log(this.props);
     return <div ref={this.setEl} className="map" />;
   }
+
   setEl = ref => {
     this.div = ref;
   };
@@ -21,6 +23,7 @@ class RestaurantsMap extends Component {
     if (!this.props.isRestaurantLoading && !this.props.isRestaurantLoaded) {
       this.props.loadRestaurants();
     }
+
     this.map = Leaflet.map(this.div, {
       center: [51.51847684708113, -0.13999606534701844],
       zoom: 12
@@ -30,26 +33,31 @@ class RestaurantsMap extends Component {
       attribution:
         '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
     }).addTo(this.map);
+
+    this.renderTiles();
   }
   componentDidUpdate() {
     this.renderTiles();
   }
   renderTiles = () => {
-    this.props.restaurants.forEach(({ location: { lat, lng } }) => {
+    if (this.props.restaurantItem) {
+      let { lat, lng } = this.props.restaurantItem;
       Leaflet.marker([lat, lng]).addTo(this.map);
-    });
+    } else {
+      this.props.restaurants.forEach(({ location: { lat, lng } }) => {
+        Leaflet.marker([lat, lng]).addTo(this.map);
+      });
+    }
   };
 }
 
 export default connect(
-  state => (
-    {
-      restaurants: restaurantsSelector(state),
-      isRestaurantLoading: restaurantsLoadingSelector(state),
-      isRestaurantLoaded: restaurantsLoadedSelector(state)
-    },
-    {
-      loadRestaurants
-    }
-  )
+  state => ({
+    restaurants: restaurantsSelector(state),
+    isRestaurantLoading: restaurantsLoadingSelector(state),
+    isRestaurantLoaded: restaurantsLoadedSelector(state)
+  }),
+  {
+    loadRestaurants
+  }
 )(RestaurantsMap);

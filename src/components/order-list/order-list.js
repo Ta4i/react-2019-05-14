@@ -16,7 +16,7 @@ class OrderList extends Component {
       deleteFromCart
     } = this.props;
     if (dishes.length === 0) {
-      return null;
+      return <h1>No orders yet!!!</h1>;
     }
     return (
       <div className="order">

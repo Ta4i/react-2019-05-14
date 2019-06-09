@@ -5,6 +5,7 @@ import restaurantsReducer from "./restaurants";
 import dishesReducer from "./dishes";
 import reviewsReducer from "./reviews";
 import usersReducer from "./users";
+import orderInfoReducer from "./order-info";
 
 export default combineReducers({
   count: counterReducer,
@@ -12,5 +13,6 @@ export default combineReducers({
   cart: cartReducer,
   dishes: dishesReducer,
   reviews: reviewsReducer,
-  users: usersReducer
+  users: usersReducer,
+  orderInfo: orderInfoReducer
 });

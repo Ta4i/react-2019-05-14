@@ -1,0 +1,42 @@
+.order-info {
+  display: flex;
+  justify-content: space-between;
+  padding: 20px;
+}
+
+.left,
+.right {
+  width: 49%;
+  padding: 10px;
+  border: 2px solid transparent;
+  border-radius: 10px;
+}
+
+.left {
+  font-size: 18px;
+  color: black;
+  background-color: #727273;
+}
+
+.left p {
+  margin-bottom: 20px;
+  word-wrap: break-word;
+}
+
+.left p span {
+  font-size: 22px;
+  color: #fff;
+}
+
+.right {
+  background-color: #656565;
+}
+
+.right li {
+  color: #fff;
+}
+
+.total-price {
+  font-size: 24px;
+  border-top: 2px solid black;
+}

@@ -1,6 +1,9 @@
 import React, { Component } from "react";
 import { Form, Input, Button } from "antd";
 import "./user-form.css";
+import { NavLink } from "react-router-dom";
+import { connect } from "react-redux";
+import { addOrderInfo } from "../../ac";
 
 class UserForm extends Component {
   state = {
@@ -34,8 +37,12 @@ class UserForm extends Component {
           <Input.TextArea value={address} onChange={this.handleAddressChange} />
         </Form.Item>
         <Form.Item className="user-form-submit-section">
-          <Button type="primary" htmlType="submit" onClick={this.submit}>
-            Send order
+          <Button
+            type="primary"
+            htmlType="submit"
+            onClick={() => this.props.addOrder(this.state)}
+          >
+            <NavLink to={"/order-complete"}>Send order</NavLink>
           </Button>
         </Form.Item>
       </Form>
@@ -61,9 +68,16 @@ class UserForm extends Component {
   };
 
   submit = e => {
+    addOrderInfo(this.state);
+
     e.preventDefault();
     console.log(this.state);
   };
 }
 
-export default UserForm;
+export default connect(
+  null,
+  {
+    addOrder: addOrderInfo
+  }
+)(UserForm);

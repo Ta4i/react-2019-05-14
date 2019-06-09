@@ -11,8 +11,14 @@ import {
   LOAD_DISHES,
   START,
   SUCCESS,
-  FAIL
+  FAIL,
+  ADD_ORDER_INFO
 } from "../constants";
+
+export const addOrderInfo = orderInfo => ({
+  type: ADD_ORDER_INFO,
+  payload: orderInfo
+});
 
 export const increase = () => ({
   type: INCREMENT

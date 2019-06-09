@@ -1,5 +1,5 @@
 import React from "react";
-import RestaurantMenu from "../restaurant-menu/restaurant-menu";
+import RestaurantMenu from "../restaurant-menu";
 
 function MenuPage(props) {
   return <RestaurantMenu id={props.match.params.restaurantId} />;

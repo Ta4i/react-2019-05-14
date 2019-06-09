@@ -1,5 +1,9 @@
 import React, { Component } from "react";
+import { connect } from "react-redux";
 import { Form, Input, Button } from "antd";
+import { orderComplete } from "../../ac";
+import { orderSelector } from "../../selectors";
+import uuid from "uuid/v4";
 import "./user-form.css";
 
 class UserForm extends Component {
@@ -16,6 +20,7 @@ class UserForm extends Component {
           label="Name"
           labelCol={{ span: 4 }}
           wrapperCol={{ span: 14 }}
+          required
         >
           <Input value={name} onChange={this.handleNameChange} />
         </Form.Item>
@@ -23,6 +28,7 @@ class UserForm extends Component {
           label="Phone Number"
           labelCol={{ span: 4 }}
           wrapperCol={{ span: 14 }}
+          required
         >
           <Input value={phone} onChange={this.handlePhoneChange} />
         </Form.Item>
@@ -30,6 +36,7 @@ class UserForm extends Component {
           label="Address"
           labelCol={{ span: 4 }}
           wrapperCol={{ span: 14 }}
+          required
         >
           <Input.TextArea value={address} onChange={this.handleAddressChange} />
         </Form.Item>
@@ -61,9 +68,23 @@ class UserForm extends Component {
   };
 
   submit = e => {
+    const { name, address, phone } = this.state;
+    const id = uuid();
     e.preventDefault();
-    console.log(this.state);
+    this.props.orderComplete({
+      id,
+      name,
+      address,
+      phone
+    });
   };
 }
 
-export default UserForm;
+export default connect(
+  store => ({
+    order: orderSelector(store)
+  }),
+  {
+    orderComplete
+  }
+)(UserForm);

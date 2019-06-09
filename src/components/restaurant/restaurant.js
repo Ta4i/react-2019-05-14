@@ -1,5 +1,4 @@
 import React, { PureComponent } from "react";
-import RestaurantMenu from "../restaurant-menu";
 import { List, Avatar, Button } from "antd";
 import AverageRating from "../average-rating";
 import ReviewList from "../review-list";
@@ -23,7 +22,6 @@ class Restaurant extends PureComponent {
       id,
       image,
       name,
-      isMenuOpen,
       isOpen: isReviewOpen,
       toggleVisibility
     } = this.props;
@@ -36,16 +34,16 @@ class Restaurant extends PureComponent {
           className="restaurant-list-item"
           actions={[
             <AverageRating id={id} />,
+            <Button>
+              <NavLink to={`/restaurant-map/${id}`}>On Map</NavLink>
+            </Button>,
             <Button
               data-automation-id={`toggle-review-list-${id}`}
               onClick={toggleVisibility}
             >
               {isReviewOpen ? "Hide reviews" : "Show reviews"}
             </Button>,
-            <Button
-              data-automation-id={`toggle-menu-${id}`}
-              onClick={this.handleToggleOpenClick}
-            >
+            <Button data-automation-id={`toggle-menu-${id}`}>
               <NavLink to={`/restaurant-menu/${id}`}>Go to menu</NavLink>
             </Button>
           ]}
@@ -59,10 +57,6 @@ class Restaurant extends PureComponent {
       </>
     );
   }
-
-  handleToggleOpenClick = () => {
-    this.props.toggleOpenMenu(this.props.id);
-  };
 }
 
 Restaurant.propTypes = {

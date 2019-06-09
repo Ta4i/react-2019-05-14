@@ -11,7 +11,8 @@ import {
   LOAD_DISHES,
   START,
   SUCCESS,
-  FAIL
+  FAIL,
+  ORDER_COMPLETE
 } from "../constants";
 
 export const increase = () => ({
@@ -93,3 +94,13 @@ export const loadAllDataForReviews = () => (dispatch, getState) => {
       .catch(e => dispatch({ type: LOAD_USERS + FAIL, error: e }));
   }
 };
+
+export const orderComplete = ({ id, name, phone, address }) => ({
+  type: ORDER_COMPLETE,
+  payload: {
+    id,
+    name,
+    phone,
+    address
+  }
+});

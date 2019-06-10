@@ -6,7 +6,7 @@ import ReviewList from "../review-list";
 import { toggleVisibility } from "../../decorators/toggleVisibility";
 import * as PropTypes from "prop-types";
 import "./restaurant.css";
-import { NavLink } from "react-router-dom";
+import { NavLink, Link } from "react-router-dom";
 
 class Restaurant extends PureComponent {
   state = {
@@ -52,7 +52,7 @@ class Restaurant extends PureComponent {
         >
           <List.Item.Meta
             avatar={<Avatar shape="square" src={image} />}
-            title={name}
+            title={<Link to={`/restaurant-map/${id}`}>{name}</Link>}
           />
         </List.Item>
         {isReviewOpen ? <ReviewList id={id} /> : null}

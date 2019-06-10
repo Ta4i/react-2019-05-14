@@ -63,6 +63,7 @@ class UserForm extends Component {
   submit = e => {
     e.preventDefault();
     console.log(this.state);
+    this.props.historyPush("/order-complete");
   };
 }
 

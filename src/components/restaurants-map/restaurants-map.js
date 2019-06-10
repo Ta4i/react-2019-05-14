@@ -21,35 +21,55 @@ class RestaurantsMap extends Component {
     if (!this.props.isRestaurantLoading && !this.props.isRestaurantLoaded) {
       this.props.loadRestaurants();
     }
+
     this.map = Leaflet.map(this.div, {
       center: [51.51847684708113, -0.13999606534701844],
       zoom: 12
     });
+
     Leaflet.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
       maxZoom: 19,
       attribution:
         '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
     }).addTo(this.map);
+
+    if (this.props.isRestaurantLoaded) {
+      this.renderTiles();
+    }
   }
   componentDidUpdate() {
+    const { isRestaurantLoaded } = this.props;
+
+    if (!isRestaurantLoaded) {
+      return;
+    }
+
     this.renderTiles();
   }
   renderTiles = () => {
-    this.props.restaurants.forEach(({ location: { lat, lng } }) => {
+    const { id, restaurants } = this.props;
+
+    if (id) {
+      const currentRestaurant = restaurants.find(
+        restaurant => restaurant.id === id
+      );
+      const { lat, lng } = currentRestaurant.location;
       Leaflet.marker([lat, lng]).addTo(this.map);
-    });
+    } else {
+      restaurants.forEach(({ location: { lat, lng } }) => {
+        Leaflet.marker([lat, lng]).addTo(this.map);
+      });
+    }
   };
 }
 
 export default connect(
-  state => (
-    {
-      restaurants: restaurantsSelector(state),
-      isRestaurantLoading: restaurantsLoadingSelector(state),
-      isRestaurantLoaded: restaurantsLoadedSelector(state)
-    },
-    {
-      loadRestaurants
-    }
-  )
+  state => ({
+    restaurants: restaurantsSelector(state),
+    isRestaurantLoading: restaurantsLoadingSelector(state),
+    isRestaurantLoaded: restaurantsLoadedSelector(state)
+  }),
+  {
+    loadRestaurants
+  }
 )(RestaurantsMap);

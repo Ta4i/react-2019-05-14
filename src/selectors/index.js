@@ -35,7 +35,9 @@ export const cartAmountSelector = createSelector(
 
 export const restaurantsSelector = createSelector(
   restaurantsListSelector,
-  restaurantsList => restaurantsList.toJS()
+  restaurantsList => {
+    return restaurantsList.toJS();
+  }
 );
 
 export const reviewsArraySelector = createSelector(

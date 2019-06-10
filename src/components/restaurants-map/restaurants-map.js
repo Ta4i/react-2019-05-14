@@ -6,7 +6,8 @@ import { connect } from "react-redux";
 import {
   restaurantsLoadedSelector,
   restaurantsLoadingSelector,
-  restaurantsSelector
+  restaurantsSelector,
+  restaurantSelector
 } from "../../selectors";
 import { loadRestaurants } from "../../ac";
 
@@ -31,25 +32,28 @@ class RestaurantsMap extends Component {
         '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
     }).addTo(this.map);
   }
+
   componentDidUpdate() {
     this.renderTiles();
   }
   renderTiles = () => {
-    this.props.restaurants.forEach(({ location: { lat, lng } }) => {
-      Leaflet.marker([lat, lng]).addTo(this.map);
-    });
+    if (this.props.id && this.props.restaurant) {
+      const { lat, lng } = this.props.restaurant.location;
+      Leaflet.marker([lat || 0, lng || 0]).addTo(this.map);
+    } else {
+      this.props.restaurants.forEach(({ location: { lat, lng } }) => {
+        Leaflet.marker([lat, lng]).addTo(this.map);
+      });
+    }
   };
 }
 
 export default connect(
-  state => (
-    {
-      restaurants: restaurantsSelector(state),
-      isRestaurantLoading: restaurantsLoadingSelector(state),
-      isRestaurantLoaded: restaurantsLoadedSelector(state)
-    },
-    {
-      loadRestaurants
-    }
-  )
+  (state, ownProps) => ({
+    restaurants: !ownProps.id ? restaurantsSelector(state) : [],
+    restaurant: ownProps.id ? restaurantSelector(state, ownProps) : {},
+    isRestaurantLoading: restaurantsLoadingSelector(state),
+    isRestaurantLoaded: restaurantsLoadedSelector(state)
+  }),
+  { loadRestaurants }
 )(RestaurantsMap);

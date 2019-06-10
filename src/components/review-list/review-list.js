@@ -1,20 +1,38 @@
-import React from "react";
+import React, { Component } from "react";
 import { List } from "antd";
 import Review, { ReviewPropType } from "../review";
 import PropTypes from "prop-types";
-import { createReviewsSelector } from "../../selectors";
+import {
+  createReviewsSelector,
+  isLoadReviews,
+  isLoadUsers
+} from "../../selectors";
 import { connect } from "react-redux";
 import AddReview from "../add-review";
+import { loadReviews, loadUsers } from "../../ac";
+import Spinner from "../spinner";
 
-function ReviewList({ reviews, id }) {
-  return (
-    <List data-automation-id="review-list">
-      {reviews.map(review => (
-        <Review key={review.id} review={review} />
-      ))}
-      <AddReview restaurantId={id} />
-    </List>
-  );
+class ReviewList extends Component {
+  componentDidMount() {
+    if (!this.props.isLoadUsers) {
+      this.props.loadUsers();
+    }
+  }
+
+  render() {
+    if (this.props.isLoadUsers) {
+      return (
+        <List data-automation-id="review-list">
+          {this.props.reviews.map(review => (
+            <Review key={review.id} review={review} />
+          ))}
+          <AddReview restaurantId={this.props.id} />
+        </List>
+      );
+    } else {
+      return <Spinner />;
+    }
+  }
 }
 
 ReviewList.propTypes = {
@@ -26,9 +44,15 @@ const initMapStateToProps = () => {
   const reviewsSelector = createReviewsSelector();
   return (state, ownProps) => {
     return {
-      reviews: reviewsSelector(state, ownProps)
+      reviews: reviewsSelector(state, ownProps),
+      isLoadUsers: isLoadUsers(state)
     };
   };
 };
 
-export default connect(initMapStateToProps)(ReviewList);
+export default connect(
+  initMapStateToProps,
+  {
+    loadUsers
+  }
+)(ReviewList);

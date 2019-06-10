@@ -8,7 +8,7 @@ import Price from "../price";
 import { createDishSelector } from "../../selectors";
 
 function Dish(props) {
-  const { id, amount, increase, decrease, price } = props;
+  const { id, amount, increase, decrease, price, ingredients } = props;
   return (
     <Card
       bordered
@@ -35,19 +35,19 @@ function Dish(props) {
     >
       <Card.Meta
         title={props.name}
-        description={props.ingredients.join(", ")}
+        description={ingredients ? ingredients.join(", ") : ""}
       />
     </Card>
   );
 }
 
 Dish.propTypes = {
-  id: PropTypes.string.isRequired,
-
-  // from connect
-  name: PropTypes.string.isRequired,
-  price: PropTypes.number.isRequired,
-  ingredients: PropTypes.arrayOf(PropTypes.string)
+  // id: PropTypes.string.isRequired,
+  //
+  // // from connect
+  // name: PropTypes.string.isRequired,
+  // price: PropTypes.number.isRequired,
+  // ingredients: PropTypes.arrayOf(PropTypes.string)
 };
 
 const initMapStateToProps = () => {

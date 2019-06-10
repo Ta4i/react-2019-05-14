@@ -8,8 +8,9 @@ import { Layout } from "antd";
 import CartBadge from "./components/cart-badge";
 // import Counter from "./components/counter";
 import OrderList from "./components/order-list";
-import { loadingSelector, restaurantsSelector } from "./selectors";
+import { loadingRestaurantsSelector, restaurantsSelector } from "./selectors";
 import { loadRestaurants } from "./ac";
+import Spinner from "./components/spinner";
 const { Header, Content, Footer } = Layout;
 
 function App(props) {
@@ -20,7 +21,7 @@ function App(props) {
       </Header>
       <Content>
         {props.loading ? (
-          <h1>Loading</h1>
+          <Spinner />
         ) : (
           <RestaurantList
             restaurants={props.restaurants}
@@ -38,9 +39,9 @@ function App(props) {
 }
 
 export default connect(
-  store => ({
-    restaurants: restaurantsSelector(store),
-    loading: loadingSelector(store)
+  state => ({
+    restaurants: restaurantsSelector(state),
+    loading: loadingRestaurantsSelector(state)
   }),
   {
     loadRestaurants

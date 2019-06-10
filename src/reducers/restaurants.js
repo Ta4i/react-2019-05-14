@@ -5,6 +5,7 @@ import {
   START,
   SUCCESS
 } from "../constants";
+
 import { fromJS } from "immutable";
 
 const initialState = {
@@ -14,42 +15,58 @@ const initialState = {
   entities: []
 };
 
-export default (restaurantsState = fromJS(initialState), action) => {
+export default (restaurantsState = initialState, action) => {
   switch (action.type) {
     case LOAD_RESTAURANTS + START: {
-      return restaurantsState.set("loading", true);
+      // return restaurantsState.set("loading", true);
+      return {
+        ...restaurantsState,
+        loading: true
+      };
     }
     case LOAD_RESTAURANTS + SUCCESS: {
-      return restaurantsState
-        .set("entities", fromJS(action.response))
-        .set("loading", false)
-        .set("loaded", true);
+      // return restaurantsState
+      //   .set("entities", fromJS(action.response))
+      //   .set("loading", false)
+      //   .set("loaded", true);
+      return {
+        ...restaurantsState,
+        entities: action.response,
+        loading: false,
+        loaded: true
+      };
     }
     case LOAD_RESTAURANTS + FAIL: {
-      return restaurantsState
-        .set("loading", false)
-        .set("loaded", false)
-        .set("error", action.error);
+      // return restaurantsState
+      //   .set("loading", false)
+      //   .set("loaded", false)
+      //   .set("error", action.error);
+      return {
+        ...restaurantsState,
+        loading: false,
+        loaded: false,
+        error: action.error
+      };
     }
-    case ADD_REVIEW: {
-      const targetRestaurant = restaurantsState.find(
-        restaurant => restaurant.get("id") === action.payload.restaurantId
-      );
-      const targetIndex = restaurantsState.indexOf(targetRestaurant);
-
-      return restaurantsState.update(targetIndex, restaurant => {
-        return restaurant.update("reviews", reviews => {
-          return reviews.push(action.generatedId);
-        });
-        // return {
-        //   ...restaurant,
-        //   reviews: [
-        //     ...restaurant.reviews,
-        //     action.generatedId
-        //   ]
-        // }
-      });
-    }
+    // case ADD_REVIEW: {
+    //   const targetRestaurant = restaurantsState.entities.find(
+    //     restaurant => restaurant.id === action.payload.restaurantId
+    //   );
+    //   const targetIndex = restaurantsState.indexOf(targetRestaurant);
+    //
+    //   return restaurantsState.update(targetIndex, restaurant => {
+    //     return restaurant.update("reviews", reviews => {
+    //       return reviews.push(action.generatedId);
+    //     });
+    //     return {
+    //       ...restaurant,
+    //       reviews: [
+    //         ...restaurant.reviews,
+    //         action.generatedId
+    //       ]
+    //     }
+    //   });
+    // }
     default:
       return restaurantsState;
   }

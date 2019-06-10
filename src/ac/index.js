@@ -50,10 +50,19 @@ export const addReview = (userName, rating, text, restaurantId) => ({
   provideUserId: true
 });
 
-export const loadRestaurants = () => ({
-  type: LOAD_RESTAURANTS,
-  callAPI: "http://localhost:3001/api/restaurants"
-});
+export const loadRestaurants = () => (dispatch, getState) => {
+  const state = getState();
+
+  if (!state.restaurants.loaded && !state.restaurants.loading) {
+    dispatch({ type: LOAD_RESTAURANTS + START });
+    fetch("http://localhost:3001/api/restaurants")
+      .then(res => res.json())
+      .then(data => {
+        dispatch({ type: LOAD_RESTAURANTS + SUCCESS, response: data });
+      })
+      .catch(e => dispatch({ type: LOAD_RESTAURANTS + FAIL, error: e }));
+  }
+};
 
 export const loadReviews = () => ({
   type: LOAD_REVIEWS,

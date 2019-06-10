@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import { withRouter } from 'react-router-dom';
 import { Modal, Button } from 'antd';
 import PropTypes from 'prop-types';
 import { openCart } from '../../actions';
@@ -50,6 +51,7 @@ class Cart extends Component {
         confirmLoading: false
       });
       this.props.close();
+      this.props.history.push('/order-complete');
     }, 2000);
   };
 
@@ -78,4 +80,4 @@ export default connect(
   {
     close: openCart
   }
-)(Cart);
+)(withRouter(Cart));

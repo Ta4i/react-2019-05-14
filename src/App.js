@@ -1,82 +1,63 @@
 import React from 'react';
-import PropTypes from 'prop-types';
-import { connect } from 'react-redux';
+import { BrowserRouter as Router, Route, Switch, NavLink } from 'react-router-dom';
+
 import './App.css';
-import { Layout, Typography, Row, Col } from 'antd';
+import { Layout, Menu, Typography, Row, Col } from 'antd';
 import CartBadge from './components/cart-badge';
-import RestaurantList from './components/restaurant-list';
-import RestaurantsMap from './components/restaurants-map';
+import RestaurrantsPage from './components/routes/restaurants-page';
+import MapPage from './components/routes/map-page';
+import OrderCompletePage from './components/routes/order-complete-page';
 import Cart from './components/cart';
-import { loadingSelector, restaurantsSelector } from './selectors';
-import { loadRestaurants, loadUsers } from './actions';
 
 const { Title } = Typography;
 const { Header, Footer, Content } = Layout;
 
-export function App(props) {
+export function App() {
   return (
-    <div className="App">
-      <Layout>
-        <Header>
-          <Row>
-            <Col span={10} offset={2}>
-              <Title className="header-title" style={{ color: 'white' }}>
-                Restaurants
-              </Title>
-            </Col>
-            <Col span={2} offset={10}>
-              <CartBadge />
-            </Col>
-          </Row>
-        </Header>
-        <Content>
-          <div style={{ background: '#fff', padding: 12, minHeight: 280 }}>
+    <Router>
+      <div className="App">
+        <Layout>
+          <Header>
             <Row>
-              <Col span={14} style={{ padding: 24 }}>
-                {props.loading ? (
-                  <h1>Loading</h1>
-                ) : (
-                  <RestaurantList
-                    restaurants={props.restaurants}
-                    fetchData={props.loadRestaurants}
-                  />
-                )}
-                {/*<RestaurantList restaurants={props.restaurants} />*/}
+              <Col span={4} offset={10}>
+                <Title className="header-title" style={{ color: 'white' }}>
+                  Restaurants
+                </Title>
               </Col>
-              <Col span={8} style={{ padding: 24 }}>
-                <Row style={{ padding: 24 }}>
-                  <RestaurantsMap restaurants={props.restaurants} />
-                </Row>
+              <Col span={4} offset={4}>
+                <Menu theme="dark" mode="horizontal" style={{ lineHeight: '64px' }}>
+                  <Menu.Item>
+                    <NavLink to={'/restaurants'} activeStyle={{ color: 'lightgrey' }}>
+                      List
+                    </NavLink>
+                  </Menu.Item>
+                  <Menu.Item>
+                    <NavLink to={'/restaurant-map'} activeStyle={{ color: 'lightgrey' }}>
+                      Map
+                    </NavLink>
+                  </Menu.Item>
+                  <CartBadge />
+                </Menu>
               </Col>
             </Row>
-          </div>
-        </Content>
-        <Footer style={{ textAlign: 'center' }}>All rights reserved</Footer>
-      </Layout>
-      <Cart />
-    </div>
+          </Header>
+          <Content>
+            <div style={{ background: '#fff', padding: 12, minHeight: 280 }}>
+              <Row>
+                <Switch>
+                  <Route path={'/restaurants'} component={RestaurrantsPage} />
+                  <Route path={'/restaurant-map/:id?'} component={MapPage} />
+                  <Route path={'/order-complete'} component={OrderCompletePage} />
+                </Switch>
+              </Row>
+            </div>
+          </Content>
+          <Footer style={{ textAlign: 'center' }}>All rights reserved</Footer>
+        </Layout>
+        <Cart />
+      </div>
+    </Router>
   );
 }
 
-App.propTypes = {
-  restaurants: PropTypes.array,
-  loading: PropTypes.bool,
-  loadRestaurants: PropTypes.func
-};
-
-const initMapDispatchToProps = () => {
-  return dispatch => {
-    dispatch(loadUsers());
-    return {
-      loadRestaurants: () => dispatch(loadRestaurants())
-    };
-  };
-};
-
-export default connect(
-  store => ({
-    restaurants: restaurantsSelector(store),
-    loading: loadingSelector(store)
-  }),
-  initMapDispatchToProps
-)(App);
+export default App;

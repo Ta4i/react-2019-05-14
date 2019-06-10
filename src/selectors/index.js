@@ -4,6 +4,7 @@ export const idSelector = (_, ownProps) => ownProps.id;
 export const restaurantIdSelector = (_, ownProps) => ownProps.restaurantId;
 export const restaurantsSelector = state => state.restaurants.get('entities').toJS();
 export const loadingSelector = state => state.restaurants.get('loading');
+export const loadedSelector = state => state.restaurants.get('loaded');
 export const dishesSelector = state => state.dishes;
 export const reviewsSelector = state => state.reviews;
 export const currentUserSelector = state => state.user;
@@ -17,7 +18,7 @@ export const createRestaurantSelector = () =>
     restaurantIdSelector,
     restaurantsSelector,
     (id, restaurants) => {
-      return restaurants.find(restaurant => restaurant.id === id);
+      return id ? restaurants.find(restaurant => restaurant.id === id) : null;
     }
   );
 

@@ -6,11 +6,15 @@ import { toggleVisibility } from "../../decorators/toggleVisibility";
 import * as PropTypes from "prop-types";
 import "./restaurant.css";
 import { NavLink } from "react-router-dom";
+import { I18nContext } from "../../contexts/translate";
 
 class Restaurant extends PureComponent {
+  static contextType = I18nContext;
+
   state = {
     error: null
   };
+
   componentDidCatch(error) {
     this.setState({
       error
@@ -25,9 +29,10 @@ class Restaurant extends PureComponent {
       isOpen: isReviewOpen,
       toggleVisibility
     } = this.props;
+    const { t } = this.context;
 
     return this.state.error ? (
-      "Not available"
+      t("not_available")
     ) : (
       <>
         <List.Item
@@ -35,19 +40,19 @@ class Restaurant extends PureComponent {
           actions={[
             <AverageRating id={id} />,
             <Button>
-              <NavLink to={`/restaurant-map/${id}`}>On Map</NavLink>
+              <NavLink to={`/restaurant-map/${id}`}>{t("on_map")}</NavLink>
             </Button>,
             <Button
               data-automation-id={`toggle-review-list-${id}`}
               onClick={toggleVisibility}
             >
-              {isReviewOpen ? "Hide reviews" : "Show reviews"}
+              {isReviewOpen ? t("hide_reviews") : t("show_reviews")}
             </Button>,
             <Button data-automation-id={`toggle-menu-${id}`}>
-              <NavLink to={`/restaurant-menu/${id}`}>Go to menu</NavLink>
+              <NavLink to={`/restaurant-menu/${id}`}>{t("go_to_menu")}</NavLink>
             </Button>,
             <Button>
-              <NavLink to={`/restaurant-map/${id}`}>Show on map</NavLink>
+              <NavLink to={`/restaurant-map/${id}`}>{t("show_on_map")}</NavLink>
             </Button>
           ]}
         >

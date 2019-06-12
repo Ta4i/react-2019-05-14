@@ -5,6 +5,7 @@ import restaurantsReducer from "./restaurants";
 import dishesReducer from "./dishes";
 import reviewsReducer from "./reviews";
 import usersReducer from "./users";
+import orderReducer from "./order";
 import { connectRouter } from "connected-react-router";
 import { history } from "../history";
 

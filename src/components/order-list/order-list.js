@@ -7,8 +7,11 @@ import Price from "../price";
 import { selectAllDishesAndTotalPrice } from "../../selectors";
 import UserForm from "../user-form";
 import OrderComplete from "../order-complete";
+import { I18nContext } from "../../contexts/translate";
 
 class OrderList extends Component {
+  static contextType = I18nContext;
+
   render() {
     const {
       dishes,
@@ -18,8 +21,10 @@ class OrderList extends Component {
       deleteFromCart,
       order
     } = this.props;
+    const { t } = this.context;
+
     if (dishes.length === 0) {
-      return <h2 className={"no-items"}>No items in order</h2>;
+      return <h2 className={"no-items"}>{t("no_items")}</h2>;
     }
     return (
       <>

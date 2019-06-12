@@ -1,25 +1,27 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import { Form, Input, Button } from "antd";
-import { orderComplete } from "../../ac";
-import { orderSelector } from "../../selectors";
-import uuid from "uuid/v4";
 import "./user-form.css";
 import { sendOrder } from "../../ac";
-import { connect } from "react-redux";
+import { I18nContext } from "../../contexts/translate";
 
 class UserForm extends Component {
+  static contextType = I18nContext;
+
   state = {
     name: "",
     phone: "",
     address: ""
   };
+
   render() {
     const { name, phone, address } = this.state;
+    const { t } = this.context;
+
     return (
       <Form className="user-form">
         <Form.Item
-          label="Name"
+          label={t("name")}
           labelCol={{ span: 4 }}
           wrapperCol={{ span: 14 }}
           required
@@ -27,7 +29,7 @@ class UserForm extends Component {
           <Input value={name} onChange={this.handleNameChange} />
         </Form.Item>
         <Form.Item
-          label="Phone Number"
+          label={t("phone_number")}
           labelCol={{ span: 4 }}
           wrapperCol={{ span: 14 }}
           required
@@ -35,7 +37,7 @@ class UserForm extends Component {
           <Input value={phone} onChange={this.handlePhoneChange} />
         </Form.Item>
         <Form.Item
-          label="Address"
+          label={t("address")}
           labelCol={{ span: 4 }}
           wrapperCol={{ span: 14 }}
           required
@@ -44,7 +46,7 @@ class UserForm extends Component {
         </Form.Item>
         <Form.Item className="user-form-submit-section">
           <Button type="primary" htmlType="submit" onClick={this.submit}>
-            Send order
+            {t("send_order")}
           </Button>
         </Form.Item>
       </Form>
@@ -74,8 +76,6 @@ class UserForm extends Component {
   };
 
   submit = e => {
-    const { name, address, phone } = this.state;
-    const id = uuid();
     e.preventDefault();
     this.props.sendOrder(this.state);
   };

@@ -45,6 +45,9 @@ class Restaurant extends PureComponent {
             </Button>,
             <Button data-automation-id={`toggle-menu-${id}`}>
               <NavLink to={`/restaurant-menu/${id}`}>Go to menu</NavLink>
+            </Button>,
+            <Button>
+              <NavLink to={`/restaurant-map/${id}`}>Show on map</NavLink>
             </Button>
           ]}
         >

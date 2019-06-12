@@ -19,7 +19,7 @@ class OrderList extends Component {
       order
     } = this.props;
     if (dishes.length === 0) {
-      return <h2>Your cart is empty!</h2>;
+      return <h2 className={"no-items"}>No items in order</h2>;
     }
     return (
       <>

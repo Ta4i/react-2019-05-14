@@ -5,6 +5,8 @@ import { orderComplete } from "../../ac";
 import { orderSelector } from "../../selectors";
 import uuid from "uuid/v4";
 import "./user-form.css";
+import { sendOrder } from "../../ac";
+import { connect } from "react-redux";
 
 class UserForm extends Component {
   state = {
@@ -53,6 +55,10 @@ class UserForm extends Component {
     this.setState({
       name: e.target.value
     });
+    this.props.setUser &&
+      this.props.setUser({
+        name: e.target.value
+      });
   };
 
   handlePhoneChange = e => {
@@ -71,20 +77,11 @@ class UserForm extends Component {
     const { name, address, phone } = this.state;
     const id = uuid();
     e.preventDefault();
-    this.props.orderComplete({
-      id,
-      name,
-      address,
-      phone
-    });
+    this.props.sendOrder(this.state);
   };
 }
 
 export default connect(
-  store => ({
-    order: orderSelector(store)
-  }),
-  {
-    orderComplete
-  }
+  null,
+  { sendOrder }
 )(UserForm);

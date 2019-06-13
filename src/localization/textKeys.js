@@ -32,3 +32,5 @@ export const USER_FORM_INPUT_LABEL__SEND_ORDER =
 export const ORDER_LIST_LABEL__NO_ITEMS = "order-list:label:no-items";
 export const ORDER_LIST_LABEL__YOUR_ORDER = "order-list:label:your-order";
 export const ORDER_LIST_LABEL__TOTAL = "order-list:label:total";
+
+export const THANK_YOU_PAGE__TITLE = "thank-you-page:title";

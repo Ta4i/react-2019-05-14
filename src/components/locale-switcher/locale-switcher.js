@@ -18,24 +18,28 @@ class LocaleSwitcher extends Component {
   };
 
   render() {
-    return (
+    const { onClick } = this.props;
+
+    const menu = (
       <LocaleConsumer>
-        {localeData => {
-          let menu = getMenu(localeData.getLocales(), ({ key }) => {
-            localeData.setLocale(key);
+        {({ getLocales, setLocale }) => {
+          return getMenu(getLocales(), ({ key }) => {
+            setLocale(key);
             this.setState({ locale: key });
+            onClick && onClick();
           });
-          return (
-            <Dropdown overlay={menu}>
-              <a className="ant-dropdown-link" href="#">
-                {localeData.locale}
-                <Icon type="down" />
-              </a>
-            </Dropdown>
-          );
         }}
       </LocaleConsumer>
     );
+
+    return [
+      <Dropdown overlay={menu}>
+        <a className="ant-dropdown-link" href="#">
+          {this.state.locale}
+          <Icon type="down" />
+        </a>
+      </Dropdown>
+    ];
   }
 }
 

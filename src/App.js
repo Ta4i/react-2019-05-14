@@ -23,7 +23,7 @@ const { Header, Content, Footer } = Layout;
 function App() {
   const [user, setUser] = useState({ name: "default name" });
   return (
-    <LocaleProvider value={LocalizationData}>
+    <LocaleProvider value={{ ...LocalizationData }}>
       <UserProvider value={user}>
         <ConnectedRouter history={history}>
           <Layout className="App">

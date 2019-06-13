@@ -15,7 +15,7 @@ import "./restaurant-menu.css";
 
 function RestaurantMenu(props) {
   useEffect(() => {
-    if (!props.isDishesLoading && !props.isDishesLoaded) {
+    if (!props.isDishesLoaded) {
       props.loadDishes(props.id);
     }
     if (!props.isRestaurantLoading && !props.isRestaurantLoaded) {
@@ -52,7 +52,7 @@ const initMapStateToProps = () => {
     return {
       menu: dishSelector(state, ownProps).map(dish => dish.id),
       isDishesLoading: dishesLoadingSelector(state),
-      isDishesLoaded: dishesLoadedSelector(state),
+      isDishesLoaded: dishesLoadedSelector(state, ownProps),
       isRestaurantLoading: restaurantsLoadingSelector(state),
       isRestaurantLoaded: restaurantsLoadedSelector(state)
     };

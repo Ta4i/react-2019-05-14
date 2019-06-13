@@ -30,6 +30,7 @@ class RestaurantsMap extends Component {
       attribution:
         '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
     }).addTo(this.map);
+    if (this.props.isRestaurantLoaded) this.renderTiles();
   }
   componentDidUpdate() {
     this.renderTiles();

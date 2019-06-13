@@ -43,11 +43,11 @@
   },
   "devDependencies": {
     "concurrently": "^4.1.0",
-    "enzyme": "^3.9.0",
-    "enzyme-adapter-react-16": "^1.13.1",
-    "husky": "^2.3.0",
+    "enzyme": "^3.10.0",
+    "enzyme-adapter-react-16": "^1.14.0",
+    "husky": "^2.4.0",
     "prettier": "1.17.1",
-    "pretty-quick": "^1.10.0",
+    "pretty-quick": "^1.11.0",
     "redux-devtools-extension": "^2.13.8"
   },
   "husky": {

@@ -4,8 +4,11 @@ import { toggleVisibility } from "../../decorators/toggleVisibility";
 import "./add-review.css";
 import { connect } from "react-redux";
 import { addReview } from "../../ac";
+import { I18nContext } from "../../contexts/translate";
 
 class AddReview extends Component {
+  static contextType = I18nContext;
+
   state = {
     userName: "",
     rating: 0,
@@ -14,20 +17,21 @@ class AddReview extends Component {
   render() {
     const { userName, rating, text } = this.state;
     const { isOpen, toggleVisibility } = this.props;
+    const { t } = this.context;
 
     return (
       <>
         {isOpen && (
           <Form>
             <Form.Item
-              label="Name"
+              label={t("name")}
               labelCol={{ span: 4 }}
               wrapperCol={{ span: 14 }}
             >
               <Input value={userName} onChange={this.handleNameChange} />
             </Form.Item>
             <Form.Item
-              label="Rating"
+              label={t("rating")}
               labelCol={{ span: 4 }}
               wrapperCol={{ span: 14 }}
             >
@@ -39,7 +43,7 @@ class AddReview extends Component {
               />
             </Form.Item>
             <Form.Item
-              label="Text"
+              label={t("text")}
               labelCol={{ span: 4 }}
               wrapperCol={{ span: 14 }}
             >
@@ -47,10 +51,10 @@ class AddReview extends Component {
             </Form.Item>
             <Form.Item className="user-form-submit-section">
               <Button type="primary" htmlType="submit" onClick={this.submit}>
-                Post review
+                {t("post_review")}
               </Button>{" "}
               <Button type="primary" onClick={this.handleCancel}>
-                Cancel
+                {t("cancel")}
               </Button>
             </Form.Item>
           </Form>
@@ -61,7 +65,7 @@ class AddReview extends Component {
             type="primary"
             onClick={toggleVisibility}
           >
-            Add review
+            {t("add_review")}
           </Button>
         )}
       </>

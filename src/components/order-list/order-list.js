@@ -5,67 +5,78 @@ import { increaseCart, decreaseCart, deleteFromCart } from "../../ac";
 import "./order-list.css";
 import Price from "../price";
 import { selectAllDishesAndTotalPrice } from "../../selectors";
+import UserForm from "../user-form";
+import OrderComplete from "../order-complete";
+import { I18nContext } from "../../contexts/translate";
 
 class OrderList extends Component {
+  static contextType = I18nContext;
+
   render() {
     const {
       dishes,
       totalPrice,
       increaseCart,
       decreaseCart,
-      deleteFromCart
+      deleteFromCart,
+      order
     } = this.props;
+    const { t } = this.context;
+
     if (dishes.length === 0) {
-      return <h2 className={"no-items"}>No items in order</h2>;
+      return <h2 className={"no-items"}>{t("no_items")}</h2>;
     }
     return (
-      <div className="order">
-        <h3>Your order</h3>
-        <List>
-          {dishes.map(dish => (
-            <List.Item
-              key={dish.id}
-              className="order-item"
-              actions={[
-                <>
-                  {`${dish.amount}x`}
-                  <Price className="dish-amount" value={dish.price} />
-                  .....
-                  <Price
-                    className="dish-amount"
-                    value={dish.totalDishPrice}
-                  />{" "}
-                  <Button.Group>
-                    <Button
-                      onClick={() => decreaseCart(dish.id)}
-                      type="primary"
-                      shape="circle"
-                      icon="minus"
-                    />
-                    <Button
-                      onClick={() => increaseCart(dish.id)}
-                      type="primary"
-                      shape="circle"
-                      icon="plus"
-                    />
-                  </Button.Group>
-                </>,
-                <Button
-                  onClick={() => deleteFromCart(dish.id)}
-                  type="danger"
-                  icon="delete"
-                  shape="circle"
-                />
-              ]}
-            >
-              {dish.name}
-            </List.Item>
-          ))}
-        </List>
-        <h3>
-          Total: <Price className="dish-amount" value={totalPrice} />
-        </h3>
-      </div>
+      <>
+        <div className="order">
+          <h3>Your order</h3>
+          <List>
+            {dishes.map(dish => (
+              <List.Item
+                key={dish.id}
+                className="order-item"
+                actions={[
+                  <>
+                    {`${dish.amount}x`}
+                    <Price className="dish-amount" value={dish.price} />
+                    .....
+                    <Price
+                      className="dish-amount"
+                      value={dish.totalDishPrice}
+                    />{" "}
+                    <Button.Group>
+                      <Button
+                        onClick={() => decreaseCart(dish.id)}
+                        type="primary"
+                        shape="circle"
+                        icon="minus"
+                      />
+                      <Button
+                        onClick={() => increaseCart(dish.id)}
+                        type="primary"
+                        shape="circle"
+                        icon="plus"
+                      />
+                    </Button.Group>
+                  </>,
+                  <Button
+                    onClick={() => deleteFromCart(dish.id)}
+                    type="danger"
+                    icon="delete"
+                    shape="circle"
+                  />
+                ]}
+              >
+                {dish.name}
+              </List.Item>
+            ))}
+          </List>
+          <h3>
+            Total: <Price className="dish-amount" value={totalPrice} />
+          </h3>
+        </div>
+        {!order.id ? <UserForm /> : <OrderComplete />}
+      </>
     );
   }
 }

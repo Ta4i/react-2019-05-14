@@ -12,7 +12,8 @@ import {
   START,
   SUCCESS,
   FAIL,
-  SEND_ORDER
+  SEND_ORDER,
+  LOAD_RESTAURANT_DISHES
 } from "../constants";
 import { cartSelector } from "../selectors";
 import { push, replace } from "connected-react-router";
@@ -70,7 +71,11 @@ export const loadUsers = () => ({
 
 export const loadDishes = id => (dispatch, getState) => {
   const state = getState();
-  if (!state.dishes.loaded && !state.dishes.loading) {
+  let restaurants = state.restaurants.get("entities").toJS();
+  if (!restaurants.length) return false;
+  let restaurant = restaurants.find(restaurant => restaurant.id === id);
+  console.log(restaurant);
+  if (!restaurant.dishesLoaded) {
     dispatch({ type: LOAD_DISHES + START });
     fetch(`http://localhost:3001/api/dishes?id=${id}`)
       .then(res => res.json())
@@ -80,6 +85,10 @@ export const loadDishes = id => (dispatch, getState) => {
           dispatch(replace("/error"));
         } else {
           dispatch({ type: LOAD_DISHES + SUCCESS, response: data });
+          dispatch({
+            type: LOAD_RESTAURANT_DISHES,
+            payload: { restaurantId: id }
+          });
         }
       })
       .catch(e => {

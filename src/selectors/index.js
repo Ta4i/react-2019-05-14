@@ -21,8 +21,17 @@ export const usersLoadingSelector = state => state.users.loading;
 export const usersLoadedSelector = state => state.users.loaded;
 
 export const dishesLoadingSelector = state => state.dishes.loading;
-export const dishesLoadedSelector = state => state.dishes.loaded;
 export const dishesErrorSelector = state => state.dishes.error;
+export const dishesLoadedSelector = (state, ownProps) => {
+  let restaurants = state.restaurants.get("entities").toJS();
+  if (!restaurants.length) return false;
+  let restaurant = restaurants.find(
+    restaurant => restaurant.id === ownProps.id
+  );
+  return restaurant.dishesLoaded && state.dishes.loaded;
+};
+
+export const orderSelector = state => state.order.get("order").toJS();
 
 export const cartSelector = createSelector(
   cartMapSelector,
@@ -79,7 +88,8 @@ export const createDishSelector = () =>
 export const selectAllDishesAndTotalPrice = createSelector(
   cartSelector,
   dishesSelector,
-  (cart, dishes) => {
+  orderSelector,
+  (cart, dishes, order) => {
     let totalPrice = 0;
     const allDishes = dishes.reduce((dishesInOrder, dish) => {
       const amount = cart[dish.id];
@@ -96,6 +106,7 @@ export const selectAllDishesAndTotalPrice = createSelector(
     }, []);
 
     return {
+      order,
       dishes: allDishes,
       totalPrice
     };

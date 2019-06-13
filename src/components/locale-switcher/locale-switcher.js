@@ -4,31 +4,33 @@ import { Menu, Dropdown, Icon, message } from "antd";
 import { LOCALE__RU_RU } from "../../localization/textKeys";
 import LocalizedString from "../../localization/LocalizedString";
 
-function getMenu(locales, onClick) {
-  return (
-    <Menu onClick={onClick}>
-      {locales.map(l => (
-        <Menu.Item key={l}>
-          <LocalizedString name={l} />
-        </Menu.Item>
-      ))}
-    </Menu>
-  );
-}
 class LocaleSwitcher extends Component {
   state = {
     locale: LOCALE__RU_RU
   };
 
+  getMenu = function({ getLocales, setLocale }) {
+    return (
+      <Menu
+        onClick={({ key }) => {
+          setLocale(key);
+          this.setState({ locale: key });
+        }}
+      >
+        {getLocales().map(l => (
+          <Menu.Item key={l}>
+            <LocalizedString name={l} />
+          </Menu.Item>
+        ))}
+      </Menu>
+    );
+  };
+
   render() {
     return [
       <LocaleConsumer>
-        {({ getLocales, setLocale }) => {
-          let menu = getMenu(getLocales(), ({ key }) => {
-            setLocale(key);
-            this.setState({ locale: key });
-          });
-
+        {localeContext => {
+          let menu = this.getMenu(localeContext);
           return (
             <Dropdown overlay={menu}>
               <a className="ant-dropdown-link" href="#">
@@ -44,13 +46,3 @@ class LocaleSwitcher extends Component {
 }
 
 export default LocaleSwitcher;
-
-//
-// const onClick = ({ key }) => {
-//     message.info(`Click on item ${key}`);
-// };
-//
-// ReactDOM.render(
-//     ,
-//     mountNode,
-// );

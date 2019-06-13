@@ -27,6 +27,15 @@ import LocalizedString from "./localization/LocalizedString";
 const { Header, Content, Footer } = Layout;
 
 function App() {
+  // So the idea was to change state of the App
+  // to make React re-render the App when locale changes
+  // but without call-back functions, not like it was done with user
+
+  // So I created setLocale() method in context model;
+  // I overrided it here in a way
+  // that setLocale changes App state and updates locale value
+
+  // It's a mess, 'cause state contains both user and locale data
   const [state, setState] = useState({
     localeData: {
       ...LocalizationData
@@ -35,18 +44,17 @@ function App() {
       name: "default name"
     }
   });
-  console.log("after setstate", state);
 
   const setUser = user =>
     setState({
       user: { ...state.user, ...user },
-      localeData: state.localeData
+      localeData: state.localeData // I don't want to change locale at this point
     }); // don't even ask
+
   const setLocale = locale => {
-    console.log("before setstate", state);
     setState({
       localeData: { ...state.localeData, locale: locale },
-      user: state.user
+      user: state.user // I don't want to change user at this point
     });
   };
 

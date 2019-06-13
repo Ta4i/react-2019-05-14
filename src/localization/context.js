@@ -26,7 +26,7 @@ export const NAVBAR_ITEM_LABEL_LIST = "navbar:item:label:list";
 const localizationData = {
   locale: LOCALE__RU_RU,
   setLocale: function(newLocale) {
-    // this.locale = newLocale; // todo mutation alert
+    throw "setLocale(newLocale) method must be overridden before provider creation";
   },
   getLocales: function() {
     return [LOCALE__RU_RU, LOCALE__EN_US];

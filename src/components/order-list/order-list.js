@@ -5,6 +5,13 @@ import { increaseCart, decreaseCart, deleteFromCart } from "../../ac";
 import "./order-list.css";
 import Price from "../price";
 import { selectAllDishesAndTotalPrice } from "../../selectors";
+import {
+  ORDER_LIST_LABEL__NO_ITEMS,
+  ORDER_LIST_LABEL__TOTAL,
+  ORDER_LIST_LABEL__YOUR_ORDER,
+  USER_FORM_INPUT_LABEL__SEND_ORDER
+} from "../../localization/textKeys";
+import LocalizedString from "../../localization/LocalizedString";
 
 class OrderList extends Component {
   render() {
@@ -16,11 +23,17 @@ class OrderList extends Component {
       deleteFromCart
     } = this.props;
     if (dishes.length === 0) {
-      return <h2 className={"no-items"}>No items in order</h2>;
+      return (
+        <h2 className={"no-items"}>
+          <LocalizedString name={ORDER_LIST_LABEL__NO_ITEMS} />
+        </h2>
+      );
     }
     return (
       <div className="order">
-        <h3>Your order</h3>
+        <h3>
+          <LocalizedString name={ORDER_LIST_LABEL__YOUR_ORDER} />
+        </h3>
         <List>
           {dishes.map(dish => (
             <List.Item
@@ -63,7 +76,8 @@ class OrderList extends Component {
           ))}
         </List>
         <h3>
-          Total: <Price className="dish-amount" value={totalPrice} />
+          <LocalizedString name={ORDER_LIST_LABEL__TOTAL} />:{" "}
+          <Price className="dish-amount" value={totalPrice} />
         </h3>
       </div>
     );

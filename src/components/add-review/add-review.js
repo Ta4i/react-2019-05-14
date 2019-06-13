@@ -4,6 +4,14 @@ import { toggleVisibility } from "../../decorators/toggleVisibility";
 import "./add-review.css";
 import { connect } from "react-redux";
 import { addReview } from "../../ac";
+import LocalizedString from "../../localization/LocalizedString";
+import {
+  REVIEW_BUTTON_LABEL__ADD_REVIEW,
+  REVIEW_BUTTON_LABEL__ADD_REVIEW_CANCEL,
+  REVIEW_INPUT_LABEL__RATING,
+  REVIEW_INPUT_LABEL__REVIEW_TEXT,
+  REVIEW_INPUT_LABEL__USER
+} from "../../localization/textKeys";
 
 class AddReview extends Component {
   state = {
@@ -20,14 +28,14 @@ class AddReview extends Component {
         {isOpen && (
           <Form>
             <Form.Item
-              label="Name"
+              label={<LocalizedString name={REVIEW_INPUT_LABEL__USER} />}
               labelCol={{ span: 4 }}
               wrapperCol={{ span: 14 }}
             >
               <Input value={userName} onChange={this.handleNameChange} />
             </Form.Item>
             <Form.Item
-              label="Rating"
+              label={<LocalizedString name={REVIEW_INPUT_LABEL__RATING} />}
               labelCol={{ span: 4 }}
               wrapperCol={{ span: 14 }}
             >
@@ -39,7 +47,7 @@ class AddReview extends Component {
               />
             </Form.Item>
             <Form.Item
-              label="Text"
+              label={<LocalizedString name={REVIEW_INPUT_LABEL__REVIEW_TEXT} />}
               labelCol={{ span: 4 }}
               wrapperCol={{ span: 14 }}
             >
@@ -47,10 +55,12 @@ class AddReview extends Component {
             </Form.Item>
             <Form.Item className="user-form-submit-section">
               <Button type="primary" htmlType="submit" onClick={this.submit}>
-                Post review
+                <LocalizedString name={REVIEW_BUTTON_LABEL__ADD_REVIEW} />
               </Button>{" "}
               <Button type="primary" onClick={this.handleCancel}>
-                Cancel
+                <LocalizedString
+                  name={REVIEW_BUTTON_LABEL__ADD_REVIEW_CANCEL}
+                />
               </Button>
             </Form.Item>
           </Form>
@@ -61,7 +71,7 @@ class AddReview extends Component {
             type="primary"
             onClick={toggleVisibility}
           >
-            Add review
+            <LocalizedString name={REVIEW_BUTTON_LABEL__ADD_REVIEW} />
           </Button>
         )}
       </>

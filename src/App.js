@@ -18,7 +18,7 @@ import {
 } from "./localization/context";
 import LocaleSwitcher from "./components/locale-switcher";
 import {
-  LABEL_BUTTON__RESTAURANT__SHOW_ON_MAP,
+  RESTAURANT_BUTTON_LABEL__SHOW_ON_MAP,
   NAVBAR_ITEM_LABEL_LIST,
   NAVBAR_ITEM_LABEL_MAP
 } from "./localization/textKeys";
@@ -78,7 +78,6 @@ function App() {
                   </NavLink>
                 </Menu.Item>
                 <CartBadge />
-                <LocaleSwitcher />
               </Menu>
             </Header>
             <Content>
@@ -110,7 +109,7 @@ function App() {
                       return (
                         <h2>
                           <LocalizedString
-                            name={LABEL_BUTTON__RESTAURANT__SHOW_ON_MAP}
+                            name={RESTAURANT_BUTTON_LABEL__SHOW_ON_MAP}
                           />
                         </h2>
                       );
@@ -121,7 +120,9 @@ function App() {
                 />
               </Switch>
             </Content>
-            <Footer>{/*<Counter />*/}</Footer>
+            <Footer>
+              <LocaleSwitcher />
+            </Footer>
           </Layout>
         </ConnectedRouter>
       </UserProvider>

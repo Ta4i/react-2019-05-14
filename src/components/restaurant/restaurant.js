@@ -6,6 +6,13 @@ import { toggleVisibility } from "../../decorators/toggleVisibility";
 import * as PropTypes from "prop-types";
 import "./restaurant.css";
 import { NavLink } from "react-router-dom";
+import LocalizedString from "../../localization/LocalizedString";
+import {
+  RESTAURANT_BUTTON_LABEL__GO_TO_MENU,
+  RESTAURANT_BUTTON_LABEL__HIDE_REVIEWS,
+  RESTAURANT_BUTTON_LABEL__SHOW_ON_MAP,
+  RESTAURANT_BUTTON_LABEL__SHOW_REVIEWS
+} from "../../localization/textKeys";
 
 class Restaurant extends PureComponent {
   state = {
@@ -38,16 +45,24 @@ class Restaurant extends PureComponent {
               data-automation-id={`toggle-review-list-${id}`}
               onClick={toggleVisibility}
             >
-              {isReviewOpen ? "Hide reviews" : "Show reviews"}
+              {isReviewOpen ? (
+                <LocalizedString name={RESTAURANT_BUTTON_LABEL__HIDE_REVIEWS} />
+              ) : (
+                <LocalizedString name={RESTAURANT_BUTTON_LABEL__SHOW_REVIEWS} />
+              )}
             </Button>,
             <Button
               data-automation-id={`toggle-menu-${id}`}
               onClick={this.handleToggleOpenClick}
             >
-              <NavLink to={`/restaurant-menu/${id}`}>Go to menu</NavLink>
+              <NavLink to={`/restaurant-menu/${id}`}>
+                <LocalizedString name={RESTAURANT_BUTTON_LABEL__GO_TO_MENU} />
+              </NavLink>
             </Button>,
             <Button>
-              <NavLink to={`/restaurant-map/${id}`}>Show on map</NavLink>
+              <NavLink to={`/restaurant-map/${id}`}>
+                <LocalizedString name={RESTAURANT_BUTTON_LABEL__SHOW_ON_MAP} />
+              </NavLink>
             </Button>
           ]}
         >

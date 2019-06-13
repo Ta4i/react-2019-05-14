@@ -3,6 +3,13 @@ import { Form, Input, Button } from "antd";
 import "./user-form.css";
 import { sendOrder } from "../../ac";
 import { connect } from "react-redux";
+import LocalizedString from "../../localization/LocalizedString";
+import {
+  USER_FORM_INPUT_LABEL__ADDRESS,
+  USER_FORM_INPUT_LABEL__PHONE_NUMBER,
+  USER_FORM_INPUT_LABEL__SEND_ORDER,
+  USER_FORM_INPUT_LABEL__USERNAME
+} from "../../localization/textKeys";
 
 class UserForm extends Component {
   state = {
@@ -15,21 +22,21 @@ class UserForm extends Component {
     return (
       <Form className="user-form">
         <Form.Item
-          label="Name"
+          label={<LocalizedString name={USER_FORM_INPUT_LABEL__USERNAME} />}
           labelCol={{ span: 4 }}
           wrapperCol={{ span: 14 }}
         >
           <Input value={name} onChange={this.handleNameChange} />
         </Form.Item>
         <Form.Item
-          label="Phone Number"
+          label={<LocalizedString name={USER_FORM_INPUT_LABEL__PHONE_NUMBER} />}
           labelCol={{ span: 4 }}
           wrapperCol={{ span: 14 }}
         >
           <Input value={phone} onChange={this.handlePhoneChange} />
         </Form.Item>
         <Form.Item
-          label="Address"
+          label={<LocalizedString name={USER_FORM_INPUT_LABEL__ADDRESS} />}
           labelCol={{ span: 4 }}
           wrapperCol={{ span: 14 }}
         >
@@ -37,7 +44,7 @@ class UserForm extends Component {
         </Form.Item>
         <Form.Item className="user-form-submit-section">
           <Button type="primary" htmlType="submit" onClick={this.submit}>
-            Send order
+            <LocalizedString name={USER_FORM_INPUT_LABEL__SEND_ORDER} />
           </Button>
         </Form.Item>
       </Form>

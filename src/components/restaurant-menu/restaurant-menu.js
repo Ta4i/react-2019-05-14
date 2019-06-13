@@ -5,8 +5,8 @@ import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import {
   createDishesSelector,
-  dishesLoadedSelector,
-  dishesLoadingSelector,
+  restaurantDishesLoadingSelector,
+  restaurantDishesLoadedSelector,
   restaurantsLoadedSelector,
   restaurantsLoadingSelector
 } from "../../selectors";
@@ -51,8 +51,8 @@ const initMapStateToProps = () => {
   return (state, ownProps) => {
     return {
       menu: dishSelector(state, ownProps).map(dish => dish.id),
-      isDishesLoading: dishesLoadingSelector(state),
-      isDishesLoaded: dishesLoadedSelector(state),
+      isDishesLoading: restaurantDishesLoadingSelector(state, ownProps),
+      isDishesLoaded: restaurantDishesLoadedSelector(state, ownProps),
       isRestaurantLoading: restaurantsLoadingSelector(state),
       isRestaurantLoaded: restaurantsLoadedSelector(state)
     };

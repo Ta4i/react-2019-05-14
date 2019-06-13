@@ -24,6 +24,17 @@ export const dishesLoadingSelector = state => state.dishes.loading;
 export const dishesLoadedSelector = state => state.dishes.loaded;
 export const dishesErrorSelector = state => state.dishes.error;
 
+export const restaurantDishesLoadingSelector = createSelector(
+  dishesLoadingSelector,
+  idSelector,
+  (loading, id) => loading[id]
+);
+export const restaurantDishesLoadedSelector = createSelector(
+  dishesLoadedSelector,
+  idSelector,
+  (loaded, id) => loaded[id]
+);
+
 export const cartSelector = createSelector(
   cartMapSelector,
   cartMap => cartMap.toJS()

@@ -6,6 +6,8 @@ import { toggleVisibility } from "../../decorators/toggleVisibility";
 import * as PropTypes from "prop-types";
 import "./restaurant.css";
 import { NavLink } from "react-router-dom";
+import LocalizedString from "../../localization/LocalizedString";
+import { LABEL_BUTTON__SHOW_REVIEWS } from "../../localization/textKeys";
 
 class Restaurant extends PureComponent {
   state = {
@@ -38,7 +40,11 @@ class Restaurant extends PureComponent {
               data-automation-id={`toggle-review-list-${id}`}
               onClick={toggleVisibility}
             >
-              {isReviewOpen ? "Hide reviews" : "Show reviews"}
+              {isReviewOpen ? (
+                "Hide reviews"
+              ) : (
+                <LocalizedString name={LABEL_BUTTON__SHOW_REVIEWS} />
+              )}
             </Button>,
             <Button
               data-automation-id={`toggle-menu-${id}`}

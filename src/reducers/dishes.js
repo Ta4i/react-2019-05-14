@@ -24,7 +24,10 @@ export default (dishesState = new ResourceRecord(), action) => {
           upgradeLoadStatus(loaded, restaurantId, true)
         )
         .set("error", null)
-        .set("entities", arrToMap(action.response));
+        .set(
+          "entities",
+          arrToMap(action.response, dishesState.entities.toJS())
+        );
       return newState;
     }
     case LOAD_DISHES + FAIL: {

@@ -7,11 +7,11 @@ export const ResourceRecord = Record({
   entities: Map({})
 });
 
-export const arrToMap = arr => {
+export const arrToMap = (arr, baseMap) => {
   return Map(
     arr.reduce((map, item) => {
       map[item.id] = item;
       return map;
-    }, {})
+    }, baseMap || {})
   );
 };

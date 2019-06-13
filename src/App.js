@@ -59,6 +59,7 @@ function App() {
   };
 
   return (
+    // here I "override" setLocale method, so it can be used in locale switcher component
     <LocaleProvider value={{ ...state.localeData, setLocale }}>
       <UserProvider value={state.user}>
         <ConnectedRouter history={history}>

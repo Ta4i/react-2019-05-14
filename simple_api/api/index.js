@@ -1,5 +1,8 @@
-var router = require('express').Router();
-var mocks = require('./mock');
+const router = require('express').Router();
+const mocks = require('./mock');
+const I18n = require('./i18n');
+
+let i18n = new I18n().getInstance();
 
 const reply = (res, body, timeout = 1000, status = 200) =>
   setTimeout(() => {
@@ -48,6 +51,14 @@ router.get('/reviews', function(req, res, next) {
 
 router.get('/users', function(req, res, next) {
   reply(res, mocks.users);
+});
+
+router.get('/i18n', function(req, res, next) {
+  const { locale } = req.query;
+  if (locale) {
+    i18n.locale = locale;
+  }
+  reply(res, i18n.localeData);
 });
 
 module.exports = router;

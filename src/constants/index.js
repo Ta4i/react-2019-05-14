@@ -6,6 +6,19 @@ export const SUCCESS = '_SUCCESS';
 export const FAIL = '_FAIL';
 
 /*
+Locales
+ */
+export const LOCALE = {
+  EN: 'en',
+  RU: 'ru'
+};
+
+/*
+Locales actions
+ */
+export const LOAD_LOCALE = 'LOAD_LOCALE';
+
+/*
 Restaurant actions
  */
 export const LOAD_RESTAURANTS = 'LOAD_RESTAURANTS';

@@ -24,6 +24,7 @@ class Restaurant extends Component {
     const { defaultActiveKey } = this.state;
     const {
       id,
+      i18n,
       image,
       name,
       menu,
@@ -49,13 +50,13 @@ class Restaurant extends Component {
           }
         />
         <Tabs defaultActiveKey={defaultActiveKey} size="small" onTabClick={this.handleTabClick}>
-          <TabPane tab="Menu" key="menu">
+          <TabPane tab={i18n.getText(i18n, 'menu')} key="menu">
             {isMenuOpen ? <RestaurantMenu menu={menu} /> : null}
           </TabPane>
           <TabPane
             tab={
               <span>
-                Reviews
+                {i18n.getText(i18n, 'reviews')}
                 <Badge
                   count={reviews.length}
                   style={{

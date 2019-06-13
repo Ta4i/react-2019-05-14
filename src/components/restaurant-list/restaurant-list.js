@@ -16,6 +16,7 @@ class RestaurantList extends Component {
   render() {
     const {
       restaurants,
+      i18n,
 
       // props from accordion decorator
       openItemId,
@@ -27,6 +28,7 @@ class RestaurantList extends Component {
         {restaurants.map(restaurant => (
           <Restaurant
             key={restaurant.id}
+            i18n={i18n}
             {...restaurant}
             isMenuOpen={openItemId === restaurant.id}
             toggleOpenMenu={toggleOpenItem}

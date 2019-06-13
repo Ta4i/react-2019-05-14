@@ -31,6 +31,7 @@ export default (restaurantsState = fromJS(initialState), action) => {
       if (restaurant) {
         restaurant.reviews.push(reviewId);
       }
+      break;
     }
     default: {
       return restaurantsState;

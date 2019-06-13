@@ -1,7 +1,5 @@
 import React from 'react';
 import { Col, Row } from 'antd';
-import RestaurantsMap from '../restaurants-map';
-import PropTypes from 'prop-types';
 
 function OrderCompletePage() {
   return (

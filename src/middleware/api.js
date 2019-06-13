@@ -1,12 +1,13 @@
 import { FAIL, START, SUCCESS } from '../constants';
 
 export default store => next => action => {
-  const { callAPI, ...rest } = action;
+  const { callAPI, params, ...rest } = action;
   if (callAPI) {
     next({
       type: action.type + START
     });
-    fetch(callAPI)
+    const URL = params ? callAPI + params : callAPI;
+    fetch(URL)
       .then(res => res.json())
       .then(data => {
         next({

@@ -17,14 +17,42 @@ import {
   Provider as LocaleProvider
 } from "./localization/context";
 import LocaleSwitcher from "./components/locale-switcher";
+import {
+  LABEL_BUTTON__RESTAURANT__SHOW_ON_MAP,
+  NAVBAR_ITEM_LABEL_LIST,
+  NAVBAR_ITEM_LABEL_MAP
+} from "./localization/textKeys";
+import LocalizedString from "./localization/LocalizedString";
 
 const { Header, Content, Footer } = Layout;
 
 function App() {
-  const [user, setUser] = useState({ name: "default name" });
+  const [state, setState] = useState({
+    localeData: {
+      ...LocalizationData
+    },
+    user: {
+      name: "default name"
+    }
+  });
+  console.log("after setstate", state);
+
+  const setUser = user =>
+    setState({
+      user: { ...state.user, ...user },
+      localeData: state.localeData
+    }); // don't even ask
+  const setLocale = locale => {
+    console.log("before setstate", state);
+    setState({
+      localeData: { ...state.localeData, locale: locale },
+      user: state.user
+    });
+  };
+
   return (
-    <LocaleProvider value={{ ...LocalizationData }}>
-      <UserProvider value={user}>
+    <LocaleProvider value={{ ...state.localeData, setLocale }}>
+      <UserProvider value={state.user}>
         <ConnectedRouter history={history}>
           <Layout className="App">
             <Header className="header">
@@ -38,7 +66,7 @@ function App() {
                     to={"/restaurants"}
                     activeStyle={{ color: "lightgrey" }}
                   >
-                    List
+                    <LocalizedString name={NAVBAR_ITEM_LABEL_LIST} />
                   </NavLink>
                 </Menu.Item>
                 <Menu.Item>
@@ -46,7 +74,7 @@ function App() {
                     to={"/restaurant-map"}
                     activeStyle={{ color: "lightgrey" }}
                   >
-                    Map
+                    <LocalizedString name={NAVBAR_ITEM_LABEL_MAP} />
                   </NavLink>
                 </Menu.Item>
                 <CartBadge />
@@ -79,7 +107,13 @@ function App() {
                   children={props => {
                     if (props.match) {
                       console.log("matched");
-                      return <h2>Page not found</h2>;
+                      return (
+                        <h2>
+                          <LocalizedString
+                            name={LABEL_BUTTON__RESTAURANT__SHOW_ON_MAP}
+                          />
+                        </h2>
+                      );
                     } else {
                       console.log("not matched");
                     }

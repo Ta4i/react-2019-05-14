@@ -7,7 +7,11 @@ import * as PropTypes from "prop-types";
 import "./restaurant.css";
 import { NavLink } from "react-router-dom";
 import LocalizedString from "../../localization/LocalizedString";
-import { LABEL_BUTTON__SHOW_REVIEWS } from "../../localization/textKeys";
+import {
+  LABEL_BUTTON__RESTAURANT__GO_TO_MENU,
+  LABEL_BUTTON__RESTAURANT__SHOW_ON_MAP,
+  LABEL_BUTTON__RESTAURANT__SHOW_REVIEWS
+} from "../../localization/textKeys";
 
 class Restaurant extends PureComponent {
   state = {
@@ -43,17 +47,23 @@ class Restaurant extends PureComponent {
               {isReviewOpen ? (
                 "Hide reviews"
               ) : (
-                <LocalizedString name={LABEL_BUTTON__SHOW_REVIEWS} />
+                <LocalizedString
+                  name={LABEL_BUTTON__RESTAURANT__SHOW_REVIEWS}
+                />
               )}
             </Button>,
             <Button
               data-automation-id={`toggle-menu-${id}`}
               onClick={this.handleToggleOpenClick}
             >
-              <NavLink to={`/restaurant-menu/${id}`}>Go to menu</NavLink>
+              <NavLink to={`/restaurant-menu/${id}`}>
+                <LocalizedString name={LABEL_BUTTON__RESTAURANT__GO_TO_MENU} />
+              </NavLink>
             </Button>,
             <Button>
-              <NavLink to={`/restaurant-map/${id}`}>Show on map</NavLink>
+              <NavLink to={`/restaurant-map/${id}`}>
+                <LocalizedString name={LABEL_BUTTON__RESTAURANT__SHOW_ON_MAP} />
+              </NavLink>
             </Button>
           ]}
         >

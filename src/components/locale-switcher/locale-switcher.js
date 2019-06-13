@@ -2,12 +2,15 @@ import React, { Component } from "react";
 import { Consumer as LocaleConsumer } from "../../localization/context";
 import { Menu, Dropdown, Icon, message } from "antd";
 import { LOCALE__RU_RU } from "../../localization/textKeys";
+import LocalizedString from "../../localization/LocalizedString";
 
 function getMenu(locales, onClick) {
   return (
     <Menu onClick={onClick}>
       {locales.map(l => (
-        <Menu.Item key={l}>{l}</Menu.Item>
+        <Menu.Item key={l}>
+          <LocalizedString name={l} />
+        </Menu.Item>
       ))}
     </Menu>
   );
@@ -18,27 +21,24 @@ class LocaleSwitcher extends Component {
   };
 
   render() {
-    const { onClick } = this.props;
-
-    const menu = (
+    return [
       <LocaleConsumer>
         {({ getLocales, setLocale }) => {
-          return getMenu(getLocales(), ({ key }) => {
+          let menu = getMenu(getLocales(), ({ key }) => {
             setLocale(key);
             this.setState({ locale: key });
-            onClick && onClick();
           });
+
+          return (
+            <Dropdown overlay={menu}>
+              <a className="ant-dropdown-link" href="#">
+                <LocalizedString name={this.state.locale} />
+                <Icon type="down" />
+              </a>
+            </Dropdown>
+          );
         }}
       </LocaleConsumer>
-    );
-
-    return [
-      <Dropdown overlay={menu}>
-        <a className="ant-dropdown-link" href="#">
-          {this.state.locale}
-          <Icon type="down" />
-        </a>
-      </Dropdown>
     ];
   }
 }

@@ -3,7 +3,8 @@ import {
   FAIL,
   LOAD_RESTAURANTS,
   START,
-  SUCCESS
+  SUCCESS,
+  LOAD_RESTAURANT_DISHES
 } from "../constants";
 import { fromJS } from "immutable";
 
@@ -20,8 +21,13 @@ export default (restaurantsState = fromJS(initialState), action) => {
       return restaurantsState.set("loading", true);
     }
     case LOAD_RESTAURANTS + SUCCESS: {
+      let restaurants = [...action.response].map(restaurant => ({
+        ...restaurant,
+        dishesLoaded: false
+      }));
+
       return restaurantsState
-        .set("entities", fromJS(action.response))
+        .set("entities", fromJS(restaurants))
         .set("loading", false)
         .set("loaded", true);
     }
@@ -44,6 +50,20 @@ export default (restaurantsState = fromJS(initialState), action) => {
       return restaurantsState.updateIn(
         ["entities", targetIndex, "reviews"],
         reviews => reviews.push(action.generatedId)
+      );
+    }
+    case LOAD_RESTAURANT_DISHES: {
+      const id = action.payload.restaurantId;
+      const targetRestaurant = restaurantsState
+        .get("entities")
+        .find(restaurant => restaurant.get("id") === id);
+      const targetIndex = restaurantsState
+        .get("entities")
+        .indexOf(targetRestaurant);
+
+      return restaurantsState.updateIn(
+        ["entities", targetIndex, "dishesLoaded"],
+        () => true
       );
     }
     default:

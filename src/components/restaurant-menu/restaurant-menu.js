@@ -5,8 +5,8 @@ import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import {
   createDishesSelector,
-  dishesLoadedSelector,
-  dishesLoadingSelector,
+  restaurantDishesLoadingSelector,
+  restaurantDishesLoadedSelector,
   restaurantsLoadedSelector,
   restaurantsLoadingSelector
 } from "../../selectors";
@@ -15,6 +15,8 @@ import "./restaurant-menu.css";
 
 function RestaurantMenu(props) {
   useEffect(() => {
+    console.log("props.isDishesLoading ", props.isDishesLoading);
+    console.log("props.isDishesLoaded ", props.isDishesLoaded);
     if (!props.isDishesLoading && !props.isDishesLoaded) {
       props.loadDishes(props.id);
     }
@@ -51,8 +53,8 @@ const initMapStateToProps = () => {
   return (state, ownProps) => {
     return {
       menu: dishSelector(state, ownProps).map(dish => dish.id),
-      isDishesLoading: dishesLoadingSelector(state),
-      isDishesLoaded: dishesLoadedSelector(state),
+      isDishesLoading: restaurantDishesLoadingSelector(state, ownProps),
+      isDishesLoaded: restaurantDishesLoadedSelector(state, ownProps),
       isRestaurantLoading: restaurantsLoadingSelector(state),
       isRestaurantLoaded: restaurantsLoadedSelector(state)
     };

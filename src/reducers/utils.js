@@ -1,8 +1,8 @@
 import { Record, Map } from "immutable";
 
 export const ResourceRecord = Record({
-  loading: false,
-  loaded: false,
+  loading: {}, // restaurantId : true|false
+  loaded: {}, // restaurantId : true|false
   error: null,
   entities: Map({})
 });
